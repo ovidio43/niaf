@@ -1,0 +1,8 @@
+@font-face {
+    font-family: 'LandmarkRegular';
+    src: url('landmark-regular.eot');
+    src: url('landmark-regular.eot') format('embedded-opentype'),
+         url('landmark-regular.woff') format('woff'),
+         url('landmark-regular.ttf') format('truetype'),
+         url('landmark-regular.svg#LandmarkRegular') format('svg');
+}

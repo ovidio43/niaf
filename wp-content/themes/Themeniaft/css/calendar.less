@@ -1,0 +1,95 @@
+/**define variables*/
+@wrapper: 970px;
+@normal:'Arial', sans-serif;
+
+
+/*definition colors*/
+@white:#ffffff;
+@gold:#b68133;
+@blue:#0f1d40;
+@white1:#F7F7F7;
+@green:#E2FED5;
+@yellow:#FBEB8B;
+/*
+*******************************************define mixins general class******************************************
+*/
+
+/**************************** */
+.gradient-calendar-blues(){
+background: rgb(49,95,154); 
+background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzMxNWY5YSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMzZThiYmYiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+background: -moz-linear-gradient(top, rgba(49,95,154,1) 0%, rgba(62,139,191,1) 100%); 
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(49,95,154,1)), color-stop(100%,rgba(62,139,191,1))); 
+background: -webkit-linear-gradient(top, rgba(49,95,154,1) 0%,rgba(62,139,191,1) 100%);
+background: -o-linear-gradient(top, rgba(49,95,154,1) 0%,rgba(62,139,191,1) 100%); 
+background: -ms-linear-gradient(top, rgba(49,95,154,1) 0%,rgba(62,139,191,1) 100%); 
+background: linear-gradient(to bottom, rgba(49,95,154,1) 0%,rgba(62,139,191,1) 100%); 
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#315f9a', endColorstr='#3e8bbf',GradientType=0 );
+}
+.gradient-calendar-gris{
+background: rgb(215,215,215); 
+background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2Q3ZDdkNyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmYmZiZmIiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+background: -moz-linear-gradient(top, rgba(215,215,215,1) 0%, rgba(251,251,251,1) 100%); 
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(215,215,215,1)), color-stop(100%,rgba(251,251,251,1)));
+background: -webkit-linear-gradient(top, rgba(215,215,215,1) 0%,rgba(251,251,251,1) 100%);
+background: -o-linear-gradient(top, rgba(215,215,215,1) 0%,rgba(251,251,251,1) 100%); 
+background: -ms-linear-gradient(top, rgba(215,215,215,1) 0%,rgba(251,251,251,1) 100%);
+background: linear-gradient(to bottom, rgba(215,215,215,1) 0%,rgba(251,251,251,1) 100%); 
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d7d7d7', endColorstr='#fbfbfb',GradientType=0 );
+}
+
+.widget_pippin_cpt_calendar{
+	
+	background:@white!important;	
+	.widget_calendar{
+		background:#f7f7f7;
+		color: #000000;
+		padding: 15px;	
+		#calendar_wrap{
+			table{
+				text-align:center;
+				width:100%;
+				caption{
+					color:#000000;
+					padding: 10px;
+					border: 2px solid #ededed;
+					background: #f3f3f3;				
+				}
+				thead{
+					th{ padding: 5px 0 5px 0;}
+				}
+				tr {
+					td{		
+						border: 1px solid #ebebeb;
+						a{
+							border: 3px solid #ff9a05;
+							display: block;
+							text-decoration: none;
+							color: #000;
+							&:hover{
+								background:#ff9a05;
+								color: #fff;
+							}
+						}
+						span{
+							border: 3px solid #f7f7f7;
+							display: block;
+						}
+					}
+					td#today{
+						background:#99cc00;
+						color: #ffffff;	
+						span{ 
+							border: 3px solid #99cc00;
+						}						
+					}
+					td.pad{ background:none; border:0;}
+				}				
+			}			
+		}		
+	}
+}
+
+a.viewfullcalendar{ color: black;padding: 10px;border: 0!important;background: #F3F3F3;width: 100%;}
+
+

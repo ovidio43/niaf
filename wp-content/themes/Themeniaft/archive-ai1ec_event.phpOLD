@@ -1,0 +1,29 @@
+<?php 
+/**
+ * The page containing .
+ *
+ * @package WordPress
+ * @subpackage themeniaft
+ * @since theme niaft 1.0
+ */
+get_header(); ?>
+        <div class="main-container">
+            <div class="main clearfix">
+				<div class="primary">
+                    <?php
+                    if ( have_posts() ) : ?>
+                        <?php while ( have_posts() ) : the_post(); ?>
+                            <?php get_template_part( 'content', 'archive' ); ?>
+                        <?php endwhile; else: ?>
+                        <p><?php _e('THIS IS  A MEMBERS ONLY AREA PLEASE LOG IN.'); ?></p>
+                    <?php endif; ?>
+                    <?php wp_reset_query(); ?>  
+                </div>
+                <aside class="sidebar">
+                    <?php get_sidebar(); ?>
+                </aside>
+    </div> <!-- #main -->
+</div> <!-- #main-container -->
+
+<?php get_footer(); ?>
+   

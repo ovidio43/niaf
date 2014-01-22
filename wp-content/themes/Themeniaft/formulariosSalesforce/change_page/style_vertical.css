@@ -1,0 +1,50 @@
+*{
+    margin:0;
+    padding:0;
+}
+.section{
+    margin:0px;
+    height:4000px;
+    width:100%;
+    float:left;
+    text-shadow:1px 1px 2px #f0f0f0;
+}
+.section h2{
+    margin:50px 0px 30px 50px;
+}
+.section p{
+    margin:20px 0px 0px 50px;
+    width:600px;
+}
+.section ul{
+    list-style:none;
+    margin:5px 0px 0px 150px;
+}
+.black ul li{
+    float:left;
+    padding:5px;
+    margin:5px;
+    color:#000;
+}
+.black ul li a{
+    display:block;
+    color:#666;
+}
+.black ul li a:hover{
+    text-decoration:none;
+    color:#000;
+}
+.white ul li{
+    float:left;
+    padding:5px;
+    margin:5px;
+    color:#000;
+}
+.white ul li a{
+    display:block;
+    color:#222;
+}
+.white ul li a:hover{
+    text-decoration:none;
+    color:#000;
+}
