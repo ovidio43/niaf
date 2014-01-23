@@ -30,8 +30,8 @@ get_header(); ?>
                           $args=array(
                             'post_type' => $type,
                             'post_status' => 'publish',
-                            'orderby' => 'date',
-                            'order' => 'DESC',
+                            'orderby' => 'title',
+                            'order' => 'ASC',
                             'posts_per_page'=>-1,
                             'meta_query' => array(
                                 array(
@@ -69,7 +69,14 @@ get_header(); ?>
                                  
                         $myposts = new WP_Query( $args );
                     if ( $myposts->have_posts() ) : ?>
-                        <?php while ( $myposts->have_posts() ) : $myposts->the_post(); ?>
+                            <header class="entry-header">
+                              <h1 class="entry-title">
+                              <?php 
+                              single_cat_title();
+                              ?>
+                              </h1>
+                            </header>                     
+                        <?php while ( $myposts->have_posts() ) : $myposts->the_post(); ?>                         
                             <?php get_template_part( 'content', 'category' ); ?>
                         <?php endwhile; else: ?>
                           <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>

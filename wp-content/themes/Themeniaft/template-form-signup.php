@@ -59,7 +59,7 @@ get_header();
                             <div class="row-input">
                                 <div class="midinput">
                                     <input type=hidden name="cid" value="8b8dcabdb4cf0d7e3d69910dcd140dfb">
-                                    <b>Email:</b>
+                                    <b>Email :<span class="error">*Required</span></b>
                                     <input type="text" name="email">
                                 </div>
                                 <div class="midinput">
@@ -291,14 +291,19 @@ get_header();
                 query(url, cod);
             });
 
+            jQuery("#SubmitBullsEye").mouseover(function() {
+              jQuery("#SubmitBullsEye").focus();
+            });            
             jQuery('#SubmitBullsEye').on('click', function() {
                 var cod = jQuery('input#captcha-code').val();
                 var url = jQuery('body').attr('rel') + '/get_captcha.php';
                 query(url, cod);
                 if (jQuery('#aux').val() != 'ok') {
-                    alert('please Type the characters');
+                    alert('please Type the characters you see in the image captcha below or fill required fields');
                     change_captcha();
                     return false;
+                }else{
+                    jQuery("#bullseye").submit();
                 }
             });
 
@@ -309,7 +314,8 @@ get_header();
                     data: {cod: cod},
                     type: "POST",
                     beforeSend: function() {
-                        jQuery("#SubmitBullsEye").prop('disabled', true);
+                        //jQuery("#SubmitBullsEye").prop('disabled', true);
+                        jQuery('#SubmitBullsEye').attr('disabled', true);
                     },
                     success: function(data) {
                         if (data == 'ok') {
@@ -317,7 +323,8 @@ get_header();
                         } else {
                             jQuery('#aux').val('no');
                         }
-                        jQuery("#SubmitBullsEye").prop('disabled', false);
+                        //jQuery("#SubmitBullsEye").prop('disabled', false);
+                        jQuery('#SubmitBullsEye').attr('disabled', false);
                     }
                 })
             }
