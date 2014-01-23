@@ -29,7 +29,7 @@ get_header();
                     if ( $myposts->have_posts() ) : 
                     while ( $myposts->have_posts() ) : $myposts->the_post(); ?>
                     <div class="entry-content">
-                        <h4><?php the_title(); ?></h4>
+                        <h4><a href="<?php the_permalink();?>"><?php the_title(); ?></a></h4>
                         <?php the_excerpt(); ?>
                     </div><!-- .entry-content -->
                     <?php endwhile; else: ?>

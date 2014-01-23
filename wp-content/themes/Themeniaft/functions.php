@@ -107,7 +107,7 @@ class LoginFormWidget extends WP_Widget {
         <?php if ($current_user->ID == null) { ?>
                     <form name="validar_form" id="validar_form" method="post" action="">
 
-                        <br>Not a member? <a href="<?php echo get_permalink($pageregister->ID); ?>">Register here</a><br><br>
+                        <br>Not a member? <a href="/memberships/join-the-niaf/">Register here</a><br><br>
                         <div class="wrap-input-login"><input class="text" type="text" id="email" name="email" onfocus="if (this.value == 'Email Address') {
                                     this.value = '';
                                 }" onblur="if (this.value == '') {
@@ -116,7 +116,7 @@ class LoginFormWidget extends WP_Widget {
 
                         <input class="text" type="text" name="website_login" id="website_login" value="Password">
             <?php $pageforgot = get_page_by_path('forgot-your-password'); ?>
-                        <span><a href="<?php echo get_permalink($pageforgot->ID); ?>">Forgot you password?</a></span><br><br>
+                        <span><a href="<?php echo get_permalink($pageforgot->ID); ?>">Forgot your password?</a></span><br><br>
                         <!--span><input type="radio" name="remember" id="remember"><label for="remember">Remember me</label> </span><br-->
                         <input class="button btb_blue gradient" id="submit" type="submit" value="Sign In">	
                         <span id="msg"></span>
@@ -346,3 +346,8 @@ function mirriad_image_sizes() {
 }
 
 add_action('init', 'mirriad_image_sizes', 0);
+
+function new_excerpt_more( $more ) {
+    return ' <a class="read-more" href="'. get_permalink( get_the_ID() ) . '">Read More</a>';
+}
+add_filter('excerpt_more', 'new_excerpt_more');
