@@ -17,12 +17,12 @@ get_header();
                     <h1 class="entry-title"><?php the_title(); ?></h1>
                 </header>
                 <div class="entry-content">
-                    <?php while ( have_posts() ) : the_post(); ?>
-                        <?php the_content();?>
+                    <?php while (have_posts()) : the_post(); ?>
+                        <?php the_content(); ?>
                     <?php endwhile; // end of the loop. ?>
-                    
+
                     <div class="wrap-form">
-                        <?php require_once (get_template_directory() . '/include/form-new-york-gala-registration.php');?>
+                        <?php require_once (get_template_directory() . '/include/form-new-york-gala-registration.php'); ?>
                     </div>
                 </div><!-- .entry-content -->
             </article><!-- #post -->        

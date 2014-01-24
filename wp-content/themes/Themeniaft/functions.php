@@ -161,7 +161,7 @@ class LoginFormWidget extends WP_Widget {
                             <span class="userdetail">Welcome<br>
                                 <b><?php echo $_SESSION['firstName'] . " " . $_SESSION['lastName']; ?><br><?php echo "Member ID: " . $_SESSION['member_id__c']; ?></b>
                                 <a href="<?php echo get_permalink($page->ID); ?>">Change Password </a>
-                                <a href="/update-information/">Edit my profile</a>
+                                <a href="/update-information/">Edit My Profile</a>
                             </span>
                         </div>
                         <br>					
