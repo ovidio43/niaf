@@ -90,6 +90,8 @@
         <script src="<?php echo get_template_directory_uri(); ?>/js/jquery.validate.min.js"></script>
 		<script src="<?php echo get_template_directory_uri();?>/js/jquery.ad-gallery/jquery.ad-gallery.js?<?php echo date('ymdhis');?>"></script>
         <script src="<?php echo get_template_directory_uri();?>/js/main.js?<?php echo date('ymdhis');?>"></script>
+        <script src="<?php echo get_template_directory_uri();?>/js/custom_forms.js?<?php echo date('ymdhis');?>"></script>
+        
         <script>
             var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
             (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];

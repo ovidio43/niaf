@@ -732,12 +732,18 @@ nav.header-nav .current_page_ancestor > a {
 .bx-wrapper .bx-prev{ background: url(../img/bx-prev.png)no-repeat!important;}
 
 /* form 7*/
+.required{
+	color: red;
+	font-size: 20px;
+	line-height:0.5em;
+}
 .wrap-form, .form-signup, .wpcf7{
 	.row-input{
 		float: left;
 		width: 100%;
 		padding: 10px 0;
 		font-size: 12px;
+
 		input, textarea, select{
 			border: 1px solid #ccc;
 		}
@@ -750,14 +756,14 @@ nav.header-nav .current_page_ancestor > a {
 		.biginput{
 			float: left;
 			width: 98%;
-			input{
+			input[type="text"]{
 				width: 100%;
 			}
 		}
 		.midinput{
 			float: left;
 			width: 50%;
-			input{
+			input[type="text"]{
 				width: 96%;
 			}
 			select{
@@ -772,7 +778,7 @@ nav.header-nav .current_page_ancestor > a {
 		.smallinput{
 			float: left;
 			width: 33%;
-			input{
+			input[type="text"]{
 				width: 90%;
 			}	
 			select{
@@ -780,7 +786,7 @@ nav.header-nav .current_page_ancestor > a {
 			}					
 		}
 		&.btb-form{
-			input{
+			input[type="text"]{
 			padding: 7px 25px;
 			background: #0f1d40;
 			color: #fff;

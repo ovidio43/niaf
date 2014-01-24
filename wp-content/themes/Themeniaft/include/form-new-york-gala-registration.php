@@ -1,9 +1,9 @@
-<form action="" method="post" name="" id="">
+<form action="<?php echo get_template_directory_uri(); ?>/include/send-form-new-york-gala-registration.php" method="post" name="form-new-york" id="form-new-york">
                             
-Welcome to the NIAF'S New York Gala Registration Form. <b>Please Reserve </b>Your Spot Today!
+<p>Welcome to the NIAF'S New York Gala Registration Form. <b>Please Reserve </b>Your Spot Today!</p>
 <ul>
     <u>Please Note:</u>
-    - Fields with a red <span color="required"><b>*</b></span> are <span color="required"><b>Required</b></span>
+    - Fields with a red <span class="required">*</span> are <span class="required">Required</span>
     - All forms are <u>securely</u> submitted using encryption
 </ul>
 
@@ -11,11 +11,11 @@ Welcome to the NIAF'S New York Gala Registration Form. <b>Please Reserve </b>You
 
 <div class="row-input">
     <div class="biginput">
-    <b><span color="required">*</span> Choose Your Package: </b><br>
-    <input type="radio" value="Member" name="level" id="level1" onclick="clevel(750)">
+    <b><span class="required">*</span> Choose Your Package: </b><br>
+    <input type="radio" value="Member" name="level" id="level1">
     <label for="level1">Member: $750</label>
 
-    <input type="radio" value="Non-Member" name="level" id="level2" onclick="clevel(1000)">
+    <input type="radio" value="Non-Member" name="level" id="level2">
     <label for="level2">Non-Member: $1,000</label>
     </div>
 </div>
@@ -34,7 +34,7 @@ NIAF Membership #<input type="text" value="" size="60" maxlength="100" name="gue
 <center><b><u>Please complete below</u></b></center>
 <div class="row-input">
     <div class="biginput">
-    <span color="required">*&nbsp;</span> Salutation:
+    <span class="required">*&nbsp;</span> Salutation:
     <select name="Salutation" value="Select Salutation" size="1">
         <option value="Mr.">Mr.</option>
         <option value="Mrs.">Mrs.</option>
@@ -49,57 +49,57 @@ NIAF Membership #<input type="text" value="" size="60" maxlength="100" name="gue
 </div>
 <div class="row-input">
     <div class="midinput">
-    <span color="required">*&nbsp;</span> First Name:
-    <input name="txtFirstName" size="50" maxlength="50" value="">
+    <span class="required">*&nbsp;</span> First Name:
+    <input type="text" name="txtFirstName" size="50" maxlength="50" value="">
     </div>
     <div class="midinput">
-    <span color="required">*&nbsp;</span> Last Name:
-    <input name="txtLastName" size="50" maxlength="75" value="">
+    <span class="required">*&nbsp;</span> Last Name:
+    <input type="text" name="txtLastName" size="50" maxlength="75" value="">
     </div>
 </div>
 <div class="row-input">
     <div class="biginput">
     Firm/Organization:
-    <input name="txtOrganization" size="50" maxlength="75" value="">
+    <input type="text" name="txtOrganization" size="50" maxlength="75" value="">
     </div>
 </div>
 <div class="row-input">
     <div class="midinput">
-    <span color="required">*&nbsp;</span>Address:
-    <input name="txtAddress1" size="50" maxlength="60" value="">
+    <span class="required">*&nbsp;</span>Address:
+    <input type="text" name="txtAddress1" size="50" maxlength="60" value="">
     </div>
     <div class="midinput"> 
     <br>                                                                       
-    <input name="txtAddress2" size="50" maxlength="60" value="">
+    <input type="text" name="txtAddress2" size="50" maxlength="60" value="">
     </div>
 </div>
 <div class="row-input">
     <div class="midinput">
-    <span color="required">*&nbsp;</span>City:
-    <input name="txtCity" size="25" maxlength="40" value="">
+    <span class="required">*&nbsp;</span>City:
+    <input type="text" name="txtCity" size="25" maxlength="40" value="">
     </div>
     <div class="midinput">    
-    <span color="required">*&nbsp;</span>State Abbreviation:
-    <input name="txtState" size="2" maxlength="2" value="">&nbsp;&nbsp;<i>example: DC</i>
+    <span class="required">*&nbsp;</span>State Abbreviation:
+    <input type="text" name="txtState" size="2" maxlength="2" value="">&nbsp;&nbsp;<i>example: DC</i>
     </div>
 </div>
 <div class="row-input">
     <div class="midinput">      
-    <span color="required">*&nbsp;</span>Zip Code:
-    <input name="txtZip" size="10" maxlength="10" value="">
+    <span class="required">*&nbsp;</span>Zip Code:
+    <input type="text" name="txtZip" size="10" maxlength="10" value="">
     </div>
     <div class="midinput">    
     Home Phone:
-    <input name="txtHomePhone" size="12" maxlength="12" value="">&nbsp;&nbsp;<i>example: 202-387-0600</i>
+    <input type="text" name="txtHomePhone" size="12" maxlength="12" value="">&nbsp;&nbsp;<i>example: 202-387-0600</i>
     </div>
 </div>                                                                                                                              <div class="row-input">
     <div class="midinput"> 
     Business Phone:
-    <input name="txtBizPhone" size="12" maxlength="12" value="">&nbsp;&nbsp;<i>example: 202-387-0800</i>
+    <input type="text" name="txtBizPhone" size="12" maxlength="12" value="">&nbsp;&nbsp;<i>example: 202-387-0800</i>
     </div>
     <div class="midinput">             
-    <span color="required">*&nbsp;</span>Email Address:
-    <input name="txtEmail" size="30" maxlength="30" value="">&nbsp;&nbsp;<i>example: johndoe@aol.com</i>
+    <span class="required">*&nbsp;</span>Email Address:
+    <input type="text" name="txtEmail" size="30" maxlength="30" value="">&nbsp;&nbsp;<i>example: johndoe@aol.com</i>
     </div>
 </div>
 <h3><u>Payment Method</u></h3>
@@ -108,14 +108,14 @@ NIAF Membership #<input type="text" value="" size="60" maxlength="100" name="gue
     Credit Card:
     <select name="CardType" size="1">
         <option value="N/A">Select</option>
-            <option value="0">Visa</option>
-        <option value="1">MasterCard</option>
-        <option value="2">American Express</option>
+            <option value="Visa">Visa</option>
+        <option value="MasterCard1">MasterCard</option>
+        <option value="American Express">American Express</option>
     </select>                   
     </div>
     <div class="midinput">   
     Credit Card Number:
-    <input name="txtCCNumber" size="16" maxlength="16" value="">
+    <input type="text" name="txtCCNumber" size="16" maxlength="16" value="">
     </div>
 </div>
 <div class="row-input">
@@ -158,36 +158,37 @@ NIAF Membership #<input type="text" value="" size="60" maxlength="100" name="gue
 </div>
 <div class="row-input">
     <div class="midinput">
-    First Name <span color="required">*</span>
-    <input name="txtCCFirstName" id="txtCCFirstName" size="25" maxlength="32" value="">
+    First Name <span class="required">*</span>
+    <input type="text" name="txtCCFirstName" id="txtCCFirstName" size="25" maxlength="32" value="">
     </div>
     <div class="midinput"> 
-    Last Name <span color="required">*</span>
-    <input name="txtCCLastName" id="txtCCLastName" size="25" maxlength="64" value="">
+    Last Name <span class="required">*</span>
+    <input type="text" name="txtCCLastName" id="txtCCLastName" size="25" maxlength="64" value="">
     </div>
 </div>
 <div class="row-input">
     <div class="midinput">
-Street <span color="required">*</span>
-<input name="txtCCAddress1" id="txtCCAddress1" size="25" maxlength="100" value="">
+Street <span class="required">*</span>
+<input type="text" name="txtCCAddress1" id="txtCCAddress1" size="25" maxlength="100" value="">
     </div>
     <div class="midinput"> 
-City <span color="required">*</span>
-<input name="txtCCCity" id="txtCCCity" size="25" maxlength="40" value="">
+City <span class="required">*</span>
+<input type="text" name="txtCCCity" id="txtCCCity" size="25" maxlength="40" value="">
     </div>
 </div>
 <div class="row-input">
     <div class="midinput">
-State <span color="required">*</span>
+State <span class="required">*</span>
 <input type="text" name="txtCCState" id="txtCCState" size="12" maxlength="12" value="">
     </div>
     <div class="midinput"> 
-Zip <span color="required">*</span>
-<input name="txtCCZip" id="txtCCZip" size="10" maxlength="10" value="">
+Zip <span class="required">*</span>
+<input type="text" name="txtCCZip" id="txtCCZip" size="10" maxlength="10" value="">
     </div>
 </div>
 <center>
     <input type="submit" name="submit" value="SUBMIT">
     <input type="reset" name="reset" value="RESET">
+    <span id="msg"></span>
 </center>
-                        </form>
+</form>
