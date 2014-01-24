@@ -1,6 +1,6 @@
 <?php
 /**
- * Template name: gala registration form
+ * Template name: form give the gif of heritage
  *
  * @package WordPress
  * @subpackage themeniaft
@@ -22,7 +22,7 @@ get_header();
                     <?php endwhile; // end of the loop. ?>
                     
                     <div class="wrap-form">
-                        <?php require_once (get_template_directory() . '/include/form-new-york-gala-registration.php');?>
+                        <?php require_once (get_template_directory() . '/include/form-give_the_gift_of_heritage.php');?>
                     </div>
                 </div><!-- .entry-content -->
             </article><!-- #post -->        
