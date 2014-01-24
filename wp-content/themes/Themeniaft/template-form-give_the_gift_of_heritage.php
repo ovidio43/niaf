@@ -22,7 +22,10 @@ get_header();
                     <?php endwhile; // end of the loop. ?>
                     
                     <div class="wrap-form">
-                        <?php require_once (get_template_directory() . '/include/form-give_the_gift_of_heritage.php');?>
+                        <?php /*require_once (get_template_directory() . '/include/form-give_the_gift_of_heritage.php');*/
+                        /*require_once (get_template_directory() . '/include/form-give_the_gift_of_heritage_one.php');*/
+                        require_once (get_template_directory() . '/include/form-give_the_gift_of_heritage_two.php');
+                        ?>
                     </div>
                 </div><!-- .entry-content -->
             </article><!-- #post -->        
