@@ -1,6 +1,6 @@
 <?php
 /**
- * Template name: gala registration form
+ * Template name: form give the gif of heritage donate info
  *
  * @package WordPress
  * @subpackage themeniaft
@@ -17,14 +17,15 @@ get_header();
                     <h1 class="entry-title"><?php the_title(); ?></h1>
                 </header>
                 <div class="entry-content">
-                    <?php while (have_posts()) : the_post(); ?>
-                        <?php the_content(); ?>
+                    <?php while ( have_posts() ) : the_post(); ?>
+                        <?php the_content();?>
                     <?php endwhile; // end of the loop. ?>
-
+                    
                     <div class="wrap-form">
-                        <?php require_once (get_template_directory() . '/include/form-new-york-gala-registration.php');
-                       
-                         ?>
+                        <?php /*require_once (get_template_directory() . '/include/form-give_the_gift_of_heritage.php');*/
+                        /*require_once (get_template_directory() . '/include/form-give_the_gift_of_heritage_one.php');*/
+                        require_once (get_template_directory() . '/include/form-give_the_gift_of_heritage_one_one.php');
+                        ?>
                     </div>
                 </div><!-- .entry-content -->
             </article><!-- #post -->        

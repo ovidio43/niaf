@@ -544,7 +544,6 @@
 			"reset" to start over:</b>
 		</div>
 	</div>
-
 		<input type="hidden" name="fromdcp" value="">
 		<input type="hidden" name="fromemail" value="">
 	<div class="row-input">
