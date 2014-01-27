@@ -8,7 +8,7 @@
  */
 get_header();
 ?>
-
+<h1>jojojo</h1>;
 <div class="main-container">
     <div class="main clearfix">
         <div class="primary">
@@ -17,13 +17,12 @@ get_header();
                     <h1 class="entry-title"><?php the_title(); ?></h1>
                 </header>
                 <div class="entry-content">
-                    <?php while ( have_posts() ) : the_post(); ?>
-                        <?php the_content();?>
+                    <?php while (have_posts()) : the_post(); ?>
+                        <?php the_content(); ?>
                     <?php endwhile; // end of the loop. ?>
-                    
+
                     <div class="wrap-form">
-                        <?php /*require_once (get_template_directory() . '/include/form-give_the_gift_of_heritage.php');*/
-                        /*require_once (get_template_directory() . '/include/form-give_the_gift_of_heritage_one.php');*/
+                        <?php                        
                         require_once (get_template_directory() . '/include/form-give_the_gift_of_heritage_one_one.php');
                         ?>
                     </div>
