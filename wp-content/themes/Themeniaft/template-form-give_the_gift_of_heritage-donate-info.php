@@ -8,7 +8,7 @@
  */
 get_header();
 ?>
-<h1>jojojo</h1>;
+
 <div class="main-container">
     <div class="main clearfix">
         <div class="primary">

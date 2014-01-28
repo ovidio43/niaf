@@ -1,4 +1,5 @@
-<form method="post" action="donate-4.asp" name="DonateInfo" onsubmit="return(checkit(this));">
+<!--<form method="post" action="donate-4.asp" name="DonateInfo" onsubmit="return(checkit(this));">-->
+<form method="post" action="" name="DonateInfo" onsubmit="return(checkit(this));">
 	<input name="txtFirstName" id="txtFirstName" type="hidden" value="fddf">
 	<input name="txtAddress1" id="txtAddress1" type="hidden" value="sdfsd">
 	<input name="txtAddress2" id="txtAddress2" type="hidden" value="sdfsd">
@@ -131,6 +132,7 @@
 			<input type="button" onclick="javascript:history.go(-1);" name="previous" value="PREVIOUS"> &nbsp; &nbsp;
 			<input type="submit" name="submit" value="SUBMIT">&nbsp; &nbsp;
 			<input type="reset" name="reset" value="RESET">
+                        <input type="hidden" name="step" value="5">
 		</div>
 	</div>
 </form>
