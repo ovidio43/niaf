@@ -152,7 +152,8 @@ foreach ($_POST as $key => $value) {
         </div>
         <div class="midinput">	
             <span>Check if this is a work address:</span>
-            <input type="checkbox" value="1" name="strWorkAddr2" value="no" <?php echo $_SESSION['strWorkAddr2'] == 'yes' ? 'checked' : ''; ?> class="checkedYes">
+            <input type="checkbox"  name="strWorkAddr2" <?php echo $_SESSION['strWorkAddr2Ref'] == 'yes' ? 'checked' : ''; ?> class="checkedYes">
+            <input type="hidden"  name="strWorkAddr2Ref" value="<?php echo $_SESSION['strWorkAddr2Ref'] == 'yes' ? 'yes' : 'no'; ?>" >
         </div>
     </div>
     <div class="row-input">
@@ -205,7 +206,6 @@ foreach ($_POST as $key => $value) {
             <input type="text" name="txtEmail2" size="25" maxlength="65" value="<?php echo $_SESSION['txtEmail2']; ?>">
         </div>
     </div>
-
     <font color="blue">--------------------------------------------------------------------</font>
     <div class="row-input">
         <div class="biginput">	
@@ -544,7 +544,8 @@ foreach ($_POST as $key => $value) {
     </div>
     <div class="row-input">
         <div class="biginput">	    
-            <input type="checkbox" name="txtCCChkAddress" id="txtCCChkAddress" value="no" <?php echo $_SESSION['txtCCChkAddress'] == 'yes' ? 'checked' : ''; ?> class="checkedYes">
+            <input type="checkbox" name="txtCCChkAddress" id="txtCCChkAddress" <?php echo $_SESSION['txtCCChkAddressRef'] == 'yes' ? 'checked' : ''; ?> class="checkedYes">
+            <input type="hidden" name="txtCCChkAddressRef"  value="<?php echo $_SESSION['txtCCChkAddressRef'] == 'yes' ? 'yes' : 'no'; ?>" >
             <font face="verdana, arial, helvetica" size="1">Check this box if the credit card billing address is the same as previously entered.  If not, please complete the below</font>&nbsp;<br><br>
         </div>
     </div>

@@ -11,6 +11,7 @@ foreach ($_POST as $key => $value) {
             rules: {
                 DonateAmtConfirm: {required: true, number: true},
                 cboCardType: {required: true},
+                txtCardNumber2: {required: true},
                 txtCardNumber: {required: true},
                 cboCardMonth: {required: true},
                 cboCardYear: {required: true},
@@ -87,7 +88,7 @@ foreach ($_POST as $key => $value) {
                 <?php
                 for ($i = 2012; $i < 2020; $i++) {
                     $selected = '';
-                    if ($i == $_SESSION['cboCardYear']) {
+                    if ($i == $_SESSION['cboCardYear2']) {
                         $selected = 'selected';
                     }
                     ?>
@@ -100,7 +101,7 @@ foreach ($_POST as $key => $value) {
     </div>
     <div class="row-input">
         <div class="biginput">
-            <input type="checkbox" value="1" name="txtCCChkAddress" id="txtCCChkAddress">
+            <input type="checkbox" value="yes" name="txtCCChkAddress2" id="txtCCChkAddress2">
             <font face="verdana, arial, helvetica" size="1">Check this box if the credit card billing address is the same as previously entered.  If not, please complete the below</font>&nbsp;<br><br>
         </div>
     </div>	
@@ -150,6 +151,5 @@ foreach ($_POST as $key => $value) {
     </div>
 </form>
 <form method="post" action="" id="formBack">
-    <input type="hidden" name="step" value="2">
-    <input type="hidden" name="back" value="true">
+    <input type="hidden" name="step" value="2">    
 </form>

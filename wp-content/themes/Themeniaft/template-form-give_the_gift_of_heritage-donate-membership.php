@@ -31,12 +31,11 @@ $step = $_POST['step'];
                                 });
                                 jQuery('.checkedYes').on('click', function() {
                                     if (jQuery(this).is(':checked')) {
-                                        jQuery(this).val('yes');
+                                        jQuery(this).siblings('input').val('yes');
                                     } else {
-                                        jQuery(this).val('no');
+                                        jQuery(this).siblings('input').val('no');
                                     }
                                 });
-
                             });
                         </script>
                         <?php

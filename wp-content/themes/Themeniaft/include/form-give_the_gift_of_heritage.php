@@ -52,7 +52,8 @@
     </div>
     <div class="row-input">
         <div class="biginput">
-            <input type="checkbox"  name="strWorkAddr" value="no" <?php echo $_SESSION['strWorkAddr'] == 'yes' ? 'checked' : ''; ?> class="checkedYes">
+            <input type="checkbox"  name="strWorkAddr" <?php echo $_SESSION['strWorkAddrRef'] == 'yes' ? 'checked' : ''; ?> class="checkedYes">
+            <input type="hidden"  name="strWorkAddrRef" value="<?php echo $_SESSION['strWorkAddrRef'] == 'yes' ? 'yes' : 'no'; ?>">            
             <span >Check if this is a work address</span>&nbsp;
         </div>
     </div>		

