@@ -133,7 +133,7 @@ foreach ($_POST as $key => $value) {
         <div class="biginput">	
             <button id="btn-previous" type="button">PREVIOUS</button>&nbsp; &nbsp; 
             <input type="submit" name="submit" value="SUBMIT">&nbsp; &nbsp;
-            <input type="reset" name="reset" value="RESET">
+            <button type="button" id="btn-reset">RESET</button>
             <input type="hidden" name="step" value="4">
         </div>
     </div>

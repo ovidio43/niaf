@@ -74,7 +74,8 @@ $nameAttr = Array(
     'txtCCState2' => 'step 3 : State',
     'txtCCZip2' => 'step 3 : Zip'
 );
-$destinatario = "jorge.quispe@altra.com.bo";
+//$destinatario = "jorge.quispe@altra.com.bo";
+$destinatario = "altra@omnilogic.us";
 //$destinatario = "droman@innervel.com";
 $asunto = "asunto:NIAF";
 

@@ -35,7 +35,35 @@ $step = $_POST['step'];
                                         jQuery(this).siblings('input').val('no');
                                     }
                                 });
+                                jQuery('#btn-reset').on('click', function() {
+                                    limpiarformulario('#ss-form');
+                                });
                             });
+                            function limpiarformulario(formulario) {
+                                /* Se encarga de leer todas las etiquetas input del formulario*/
+                                jQuery(formulario).find('input').each(function() {
+                                    switch (this.type) {
+                                        case 'password':
+                                        case 'text':
+//            case 'hidden':
+                                        case 'file':
+                                            $(this).val('');
+                                            break;
+                                        case 'checkbox':
+                                        case 'radio':
+                                            this.checked = false;
+                                    }
+                                });
+
+                                /* Se encarga de leer todas las etiquetas select del formulario */
+                                $(formulario).find('select').each(function() {
+                                    $("#" + this.id + " option[value=0]").attr("selected", true);
+                                });
+                                /* Se encarga de leer todas las etiquetas textarea del formulario */
+                                $(formulario).find('textarea').each(function() {
+                                    $(this).val('');
+                                });
+                            }
                         </script>
                         <?php
                         if ($step == '1' || $step == '') {
@@ -45,7 +73,7 @@ $step = $_POST['step'];
                         } elseif ($step == '3') {
                             require_once (get_template_directory() . '/include/form-give_the_gift_of_heritage_one_three.php');
                         } elseif ($step == '4') {
-                             require_once (get_template_directory() . '/include/send-form2.php');
+                            require_once (get_template_directory() . '/include/send-form2.php');
                         }
                         ?>                       
                     </div>

@@ -186,7 +186,7 @@
         <div class="row-input">
             <div class="biginput">
                 <input type="submit" name="submit" value="CONTINUE">&nbsp; &nbsp;
-                <input type="reset" name="reset" value="RESET">
+                <button type="button" id="btn-reset">RESET</button>
                 <input type="hidden" name="step" value="2">
             </div>
         </div>
