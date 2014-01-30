@@ -33,7 +33,14 @@ get_currentuserinfo();
                                 <h1 class="entry-title"><?php the_title(); ?></h1>
                             </header>
                             <div class="entry-content">
-                                <p><?php _e('THIS IS  A MEMBERS ONLY AREA PLEASE LOG IN.'); ?></p>
+                            <?php if(is_page('ambassador-magazine')){ ?>
+                                <p><?php 
+                                    echo   htmlspecialchars_decode(get_field('content_area_restricted'));
+                                 ?></p>
+                                <?php }else{
+
+                                    _e('THIS IS  A MEMBERS ONLY AREA PLEASE LOG IN.');
+                                    }?>
                             </div><!-- .entry-content -->
                         </article><!-- #post -->
                     <?php endwhile; // end of the loop. ?>
