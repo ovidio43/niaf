@@ -1,4 +1,5 @@
-<form action="<?php echo get_template_directory_uri(); ?>/include/send-form-new-york-gala-registration.php" method="post" name="form-new-york" id="form-new-york">
+<!--<form action="<?php echo get_template_directory_uri(); ?>/include/send-form-new-york-gala-registration.php" method="post" name="form-new-york" id="form-new-york">-->
+<form action="" method="post" name="form-new-york" id="form-new-york">
 
     <p>Welcome to the NIAF'S New York Gala Registration Form. <b>Please Reserve </b>Your Spot Today!</p>
     <ul>
@@ -221,6 +222,7 @@
     <center>
         <input type="submit" name="submit" value="SUBMIT">
         <input type="reset" name="reset" value="RESET">
+        <input type="hidden" name="step" value="8">
         <span id="msg"></span>
     </center>
 </form>

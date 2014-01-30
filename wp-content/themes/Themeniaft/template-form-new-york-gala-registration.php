@@ -22,7 +22,9 @@ get_header();
                     <?php endwhile; // end of the loop. ?>
 
                     <div class="wrap-form">
-                        <?php require_once (get_template_directory() . '/include/form-new-york-gala-registration.php'); ?>
+                        <?php require_once (get_template_directory() . '/include/form-new-york-gala-registration.php');
+                       
+                         ?>
                     </div>
                 </div><!-- .entry-content -->
             </article><!-- #post -->        
