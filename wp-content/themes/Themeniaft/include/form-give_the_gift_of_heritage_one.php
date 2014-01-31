@@ -33,7 +33,7 @@ foreach ($_POST as $key => $value) {
                 txtCCZip: {required: true, number: true},
                 inttrestCategories: {required: true},
                 heardAbout: {required: true},
-                txtHomePhone2: {number: true, minlength: 15},
+                txtHomePhone2: {numeric: true},
                 txtWorkPhone2: {numeric: true}
             }
         });

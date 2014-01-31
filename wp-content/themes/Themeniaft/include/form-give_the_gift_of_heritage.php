@@ -14,7 +14,7 @@
                 txtZip: {required: true, number: true},
                 txtEmail: {required: true, email: true},
                 nummemberships: {required: true},
-                txtHomePhone: {number: true, minlength: 15},
+                txtHomePhone: {numeric: true},
                 txtWorkPhone: {numeric: true},
             }
         });

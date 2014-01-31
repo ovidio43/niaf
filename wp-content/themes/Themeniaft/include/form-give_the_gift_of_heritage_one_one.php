@@ -10,7 +10,6 @@
                 txtCity: {required: true},
                 txtState: {required: true},
                 txtZip: {required: true, number: true},
-                txtHomePhone: {number: true, minlength: 15}
                 txtEmail: {required: true, email: true},
                 categoryDonation: {required: true},
                 DonateAmt: {required: true, numeric: true}
