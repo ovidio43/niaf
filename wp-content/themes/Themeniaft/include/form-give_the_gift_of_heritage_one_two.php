@@ -35,27 +35,27 @@ foreach ($_POST as $key => $value) {
     <div class="row-input">
         <div class="midinput">
             <span>First Name <span class="required">*</span></span>
-            <input text="text" name="RFirstName1" id="RFirstName1" size="25" maxlength="32" value="<?php echo $_SESSION['RFirstName1']; ?>">
+            <input type="text" name="RFirstName1" id="RFirstName1" size="25" maxlength="32" value="<?php echo $_SESSION['RFirstName1']; ?>">
         </div>
         <div class="midinput">
             <span>Last Name <span class="required">*</span></span>
-            <input text="text" name="RLastName1" id="RLastName1" size="25" maxlength="64" value="<?php echo $_SESSION['RLastName1']; ?>">
+            <input type="text" name="RLastName1" id="RLastName1" size="25" maxlength="64" value="<?php echo $_SESSION['RLastName1']; ?>">
         </div>
     </div>	
     <div class="row-input">
         <div class="midinput">
             <span>Street <span class="required">*</span></span>
-            <input text="text" name="RAddress11" id="RAddress11" size="25" maxlength="100" value="<?php echo $_SESSION['RAddress11']; ?>">
+            <input type="text" name="RAddress11" id="RAddress11" size="25" maxlength="100" value="<?php echo $_SESSION['RAddress11']; ?>">
         </div>
         <div class="midinput">
             <br>
-            <input text="text" name="RAddress21" size="25" maxlength="100" value="<?php echo $_SESSION['RAddress21']; ?>">
+            <input type="text" name="RAddress21" size="25" maxlength="100" value="<?php echo $_SESSION['RAddress21']; ?>">
         </div>
     </div>
     <div class="row-input">
         <div class="midinput">
             <span>City <span class="required">*</span></span>
-            <input text="text" name="RCity1" id="RCity1" size="25" maxlength="40" value="<?php echo $_SESSION['RCity1']; ?>">
+            <input type="text" name="RCity1" id="RCity1" size="25" maxlength="40" value="<?php echo $_SESSION['RCity1']; ?>">
         </div>
         <div class="midinput">
             <span>State <span class="required">*</span></span>
@@ -65,7 +65,7 @@ foreach ($_POST as $key => $value) {
     <div class="row-input">
         <div class="midinput">
             <span>Zip <span class="required">*</span></span>
-            <input text="text" name="RZip1" id="RZip1" size="10" maxlength="10" value="<?php echo $_SESSION['RZip1']; ?>">
+            <input type="text" name="RZip1" id="RZip1" size="10" maxlength="10" value="<?php echo $_SESSION['RZip1']; ?>">
         </div>
     </div>
 
@@ -77,27 +77,27 @@ foreach ($_POST as $key => $value) {
     <div class="row-input">
         <div class="midinput">
             <span>First Name <span class="required">*</span></span>
-            <input text="text" name="RFirstName2" id="RFirstName2" size="25" maxlength="32" value="<?php echo $_SESSION['RFirstName2']; ?>">
+            <input type="text" name="RFirstName2" id="RFirstName2" size="25" maxlength="32" value="<?php echo $_SESSION['RFirstName2']; ?>">
         </div>
         <div class="midinput">
             <span>Last Name <span class="required">*</span></span>
-            <input text="text" name="RLastName2" id="RLastName2" size="25" maxlength="64" value="<?php echo $_SESSION['RLastName2']; ?>">
+            <input type="text" name="RLastName2" id="RLastName2" size="25" maxlength="64" value="<?php echo $_SESSION['RLastName2']; ?>">
         </div>
     </div>
     <div class="row-input">
         <div class="midinput">
             <span>Street <span class="required">*</span></span>
-            <input text="text" name="RAddress12" id="RAddress22" size="25" maxlength="100" value="<?php echo $_SESSION['RAddress12']; ?>">
+            <input type="text" name="RAddress12" id="RAddress22" size="25" maxlength="100" value="<?php echo $_SESSION['RAddress12']; ?>">
         </div>
         <div class="midinput">
             <br>
-            <input text="text" name="RAddress22" size="25" maxlength="100" value="<?php echo $_SESSION['RAddress22']; ?>">
+            <input type="text" name="RAddress22" size="25" maxlength="100" value="<?php echo $_SESSION['RAddress22']; ?>">
         </div>
     </div>
     <div class="row-input">
         <div class="midinput">
             <span>City <span class="required">*</span></span>
-            <input text="text" name="RCity2" id="RCity2" size="25" maxlength="40" value="<?php echo $_SESSION['RCity2']; ?>">
+            <input type="text" name="RCity2" id="RCity2" size="25" maxlength="40" value="<?php echo $_SESSION['RCity2']; ?>">
         </div>
         <div class="midinput">
             <span>State <span class="required">*</span></span>
@@ -107,7 +107,7 @@ foreach ($_POST as $key => $value) {
     <div class="row-input">
         <div class="midinput">
             <span>Zip <span class="required">*</span></span>
-            <input text="text" name="RZip2" id="RZip2" size="10" maxlength="10" value="<?php echo $_SESSION['RZip2']; ?>">
+            <input type="text" name="RZip2" id="RZip2" size="10" maxlength="10" value="<?php echo $_SESSION['RZip2']; ?>">
         </div>
     </div>
     <div class="row-input">

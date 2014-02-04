@@ -98,6 +98,7 @@ class LoginFormWidget extends WP_Widget {
                         unset($_SESSION['firstName']);
                         unset($_SESSION['lastName']);
                         unset($_SESSION['member_id__c']);
+                        unset($_SESSION['dateexpiration']);
                         ?>
                         <a href="/memberships/join-the-niaf/" class="btb_blue a-btb alignleft">Join Us</a>
                     <?php } else { ?>
@@ -158,8 +159,12 @@ class LoginFormWidget extends WP_Widget {
                                 <a href="<?php echo get_permalink($page->ID); ?>">Change Password </a>
                                 <a href="/update-information/">Edit my profile</a>
                             </span>-->
-                            <span class="userdetail">Welcome<br>
-                                <b><?php echo $_SESSION['firstName'] . " " . $_SESSION['lastName']; ?><br><?php echo "Member ID: " . $_SESSION['member_id__c']; ?></b>
+                            <span class="userdetail">
+                                <div class="wrap-user-info">
+                                Welcome: <?php echo $_SESSION['firstName'] . " " . $_SESSION['lastName']; ?><br>
+                                <?php echo "Member ID: " . $_SESSION['member_id__c']; ?><br>
+                                <?php echo "Membership Expiration: " . $_SESSION['dateexpiration']; ?>
+                                </div>
                                 <a href="<?php echo get_permalink($page->ID); ?>">Change Password </a>
                                 <a href="/update-information/">Edit My Profile</a>
                             </span>
@@ -351,3 +356,9 @@ function new_excerpt_more( $more ) {
     return ' <a class="read-more" href="'. get_permalink( get_the_ID() ) . '">Read More</a>';
 }
 add_filter('excerpt_more', 'new_excerpt_more');
+
+add_filter( 'auth_cookie_expiration', 'keep_me_logged_in' );
+
+function keep_me_logged_in( $expirein ) {
+return 3600; // 1 year in seconds
+}
