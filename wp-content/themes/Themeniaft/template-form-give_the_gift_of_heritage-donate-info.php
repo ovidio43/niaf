@@ -70,8 +70,10 @@ $step = $_POST['step'];
                             require_once (get_template_directory() . '/include/form-give_the_gift_of_heritage_one_one.php');
                         } elseif ($step == '2') {
                             require_once (get_template_directory() . '/include/form-give_the_gift_of_heritage_one_two.php');
-                        } elseif ($step == '3') {
-                            require_once (get_template_directory() . '/include/form-give_the_gift_of_heritage_one_three.php');
+                        } elseif ($step == '3') {                            
+//                            require_once (get_template_directory() . '/include/form-give_the_gift_of_heritage_one_three.php');
+                            require_once (get_template_directory() . '/include/anet_php_sdk/AuthorizeNet.php');
+                            
                         } elseif ($step == '4') {
                             require_once (get_template_directory() . '/include/send-form2.php');
                         }
@@ -86,4 +88,5 @@ $step = $_POST['step'];
     </div> <!-- #main -->
 </div> <!-- #main-container -->
 
-<?php get_footer(); ?>
+<?php
+get_footer();
