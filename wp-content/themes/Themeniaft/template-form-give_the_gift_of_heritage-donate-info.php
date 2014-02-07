@@ -67,15 +67,15 @@ $step = $_POST['step'];
                         </script>
                         <?php
                         if ($step == '1' || $step == '') {
-                            require_once (get_template_directory() . '/include/form-give_the_gift_of_heritage_one_one.php');
+//                            require_once (get_template_directory() . '/include/form-give_the_gift_of_heritage_one_one.php');
+                            require_once (get_template_directory() . '/include/form-donate-info1.php');
                         } elseif ($step == '2') {
-                            require_once (get_template_directory() . '/include/form-give_the_gift_of_heritage_one_two.php');
-                        } elseif ($step == '3') {                            
-//                            require_once (get_template_directory() . '/include/form-give_the_gift_of_heritage_one_three.php');
-                            require_once (get_template_directory() . '/include/anet_php_sdk/AuthorizeNet.php');
-                            
+//                            require_once (get_template_directory() . '/include/form-give_the_gift_of_heritage_one_two.php');
+                            require_once (get_template_directory() . '/include/form-donate-info2.php');
+                        } elseif ($step == '3') {
+                            require_once (get_template_directory() . '/include/form-donate-info3test.php');
                         } elseif ($step == '4') {
-                            require_once (get_template_directory() . '/include/send-form2.php');
+                            require_once (get_template_directory() . '/include/send-form-donate-info.php');
                         }
                         ?>                       
                     </div>
