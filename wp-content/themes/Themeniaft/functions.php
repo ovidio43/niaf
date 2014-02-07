@@ -1,5 +1,7 @@
 <?php
 session_start();
+require_once (get_template_directory() . '/lib/ezSQL-master/shared/ez_sql_core.php');
+require_once (get_template_directory() . '/lib/ezSQL-master/mysqli/ez_sql_mysqli.php');
 require_once (get_template_directory() . '/customgalery.php');
 //require_once (get_template_directory().'/formulariosSalesforce/_SF_validation_user2.php') ; 
 
@@ -83,12 +85,11 @@ class LoginFormWidget extends WP_Widget {
         ?>
         <aside class="widget widget_loginform" id="loginform" rel="<?php echo $current_user->ID; ?>">          
             <div class="menu-social-menu-container">
-                    <?php get_search_form(); 
-
-                    ?> 
-                    <?php 
-                    $pageregister = get_page_by_path('join-us');
-                     ?>
+                <?php get_search_form();
+                ?> 
+                <?php
+                $pageregister = get_page_by_path('join-us');
+                ?>
                 <div class="loginform-btb-wrap"> 
                     <?php
                     if ($current_user->ID == null) {
@@ -98,13 +99,14 @@ class LoginFormWidget extends WP_Widget {
                         unset($_SESSION['firstName']);
                         unset($_SESSION['lastName']);
                         unset($_SESSION['member_id__c']);
+                        unset($_SESSION['dateexpiration']);
                         ?>
                         <a href="/memberships/join-the-niaf/" class="btb_blue a-btb alignleft">Join Us</a>
                     <?php } else { ?>
                         <a href="<?php echo wp_logout_url($redirect); ?>" class="btb_blue a-btb alignleft">Log Out</a>
-                <?php } ?>
+                    <?php } ?>
                     <a href="/support/make-a-charitable-donation/" class="btb_orange a-btb alignright">Donate</a></div>
-        <?php if ($current_user->ID == null) { ?>
+                <?php if ($current_user->ID == null) { ?>
                     <form name="validar_form" id="validar_form" method="post" action="">
 
                         <br>Not a member? <a href="/memberships/join-the-niaf/">Register here</a><br><br>
@@ -115,15 +117,15 @@ class LoginFormWidget extends WP_Widget {
                                         }" value="Email Address"> </div>
 
                         <input class="text" type="text" name="website_login" id="website_login" value="Password">
-            <?php $pageforgot = get_page_by_path('forgot-your-password'); ?>
+                        <?php $pageforgot = get_page_by_path('forgot-your-password'); ?>
                         <span><a href="<?php echo get_permalink($pageforgot->ID); ?>">Forgot your password?</a></span><br><br>
                         <!--span><input type="radio" name="remember" id="remember"><label for="remember">Remember me</label> </span><br-->
                         <input class="button btb_blue gradient" id="submit" type="submit" value="Sign In">	
                         <span id="msg"></span>
 
                     </form>
-        <?php } else {
-            ?>
+                <?php } else {
+                    ?>
 
                     <div class="loginform-btb-wrap">
                         <?php
@@ -151,15 +153,19 @@ class LoginFormWidget extends WP_Widget {
                         <?php // }
                         ?>
 
-            <?php $page = get_page_by_path('change-password'); ?>
+                        <?php $page = get_page_by_path('change-password'); ?>
                         <div class="userlogued">
             <!--                            <span class="userdetail">Welcome<br>
                                 <b><?php echo $_COOKIE["first_name"] . " " . $_COOKIE["last_name"]; ?><br><?php echo "Member ID: " . $_COOKIE["id_member"]; ?></b>
                                 <a href="<?php echo get_permalink($page->ID); ?>">Change Password </a>
                                 <a href="/update-information/">Edit my profile</a>
                             </span>-->
-                            <span class="userdetail">Welcome<br>
-                                <b><?php echo $_SESSION['firstName'] . " " . $_SESSION['lastName']; ?><br><?php echo "Member ID: " . $_SESSION['member_id__c']; ?></b>
+                            <span class="userdetail">
+                                <div class="wrap-user-info">
+                                    Welcome: <?php echo $_SESSION['firstName'] . " " . $_SESSION['lastName']; ?><br>
+                                    <?php echo "Member ID: " . $_SESSION['member_id__c']; ?><br>
+                                    <?php echo "Membership Expiration: " . $_SESSION['dateexpiration']; ?>
+                                </div>
                                 <a href="<?php echo get_permalink($page->ID); ?>">Change Password </a>
                                 <a href="/update-information/">Edit My Profile</a>
                             </span>
@@ -181,7 +187,7 @@ class LoginFormWidget extends WP_Widget {
                         </ul>
 
                     </div>
-        <?php } ?>
+                <?php } ?>
             </div>
         </aside>	
         <?php
@@ -347,7 +353,14 @@ function mirriad_image_sizes() {
 
 add_action('init', 'mirriad_image_sizes', 0);
 
-function new_excerpt_more( $more ) {
-    return ' <a class="read-more" href="'. get_permalink( get_the_ID() ) . '">Read More</a>';
+function new_excerpt_more($more) {
+    return ' <a class="read-more" href="' . get_permalink(get_the_ID()) . '">Read More</a>';
 }
+
 add_filter('excerpt_more', 'new_excerpt_more');
+
+add_filter('auth_cookie_expiration', 'keep_me_logged_in');
+
+function keep_me_logged_in($expirein) {
+    return 3600; // 1 year in seconds
+}

@@ -1,14 +1,13 @@
 <?php
 /**
- * Template name: gala registration form
+ * Template name: golf reg form
  *
  * @package WordPress
  * @subpackage themeniaft
  * @since theme niaft 1.0
  */
 get_header();
-$send=$_POST['send'];
-
+$send = $_POST['send'];
 ?>
 <div class="main-container">
     <div class="main clearfix">
@@ -24,10 +23,10 @@ $send=$_POST['send'];
                     <div class="wrap-form">
                         <?php
                         if ($send != 'true') {
-                            require_once (get_template_directory() . '/include/form-new-york-gala-registration.php');
+                            require_once (get_template_directory() . '/include/form-golf_reg.php');
                         } else {
-                            require_once (get_template_directory() . '/include/send-form-new-york-gala-registration.php');
-                        }
+                            require_once (get_template_directory() . '/include/send-form-golf_reg.php');
+                        }                        
                         ?>
                     </div>
                 </div><!-- .entry-content -->

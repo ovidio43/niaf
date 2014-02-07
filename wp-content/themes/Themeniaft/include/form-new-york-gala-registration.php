@@ -1,5 +1,6 @@
 <!--<form action="<?php echo get_template_directory_uri(); ?>/include/send-form-new-york-gala-registration.php" method="post" name="form-new-york" id="form-new-york">-->
-<form action="" method="post" name="form-new-york" id="form-new-york">
+<!--<form action="" method="post" name="form-new-york" id="form-new-york">-->
+<form action="" method="post" >
 
     <p>Welcome to the NIAF'S New York Gala Registration Form. <b>Please Reserve </b>Your Spot Today!</p>
     <ul>
@@ -24,7 +25,7 @@
         jQuery(document).ready(function() {
             jQuery('.amount').on('click', function() {
                 var amount = jQuery(this).attr('amount');
-                jQuery('#GrandTotal').val(amount);
+                jQuery('#x_amount').val(amount);
                 if (jQuery(this).val() == 'Member' && jQuery(this).is(':checked')) {
                     jQuery('#guest1').addClass('required').parent().remove('span').prepend('<span class="required">*&nbsp;</span>');
                 } else {
@@ -34,19 +35,19 @@
 
             jQuery('#txtCCChkAddress').on('click', function() {
                 if (jQuery(this).is(':checked')) {
-                    jQuery('#txtCCFirstName').val(jQuery('#txtFirstName').val());
-                    jQuery('#txtCCLastName').val(jQuery('#txtLastName').val());
-                    jQuery('#txtCCAddress1').val(jQuery('#txtAddress1').val());
-                    jQuery('#txtCCCity').val(jQuery('#txtCity').val());
-                    jQuery('#txtCCState').val(jQuery('#txtState').val());
-                    jQuery('#txtCCZip').val(jQuery('#txtZip').val());
+                    jQuery('#x_first_name').val(jQuery('#txtFirstName').val());
+                    jQuery('#x_last_name').val(jQuery('#txtLastName').val());
+                    jQuery('#x_address').val(jQuery('#txtAddress1').val());
+                    jQuery('#x_city').val(jQuery('#txtCity').val());
+                    jQuery('#x_state').val(jQuery('#txtState').val());
+                    jQuery('#x_zip').val(jQuery('#txtZip').val());
                 } else {
-                    jQuery('#txtCCFirstName').val('');
-                    jQuery('#txtCCLastName').val('');
-                    jQuery('#txtCCAddress1').val('');
-                    jQuery('#txtCCCity').val('');
-                    jQuery('#txtCCState').val('');
-                    jQuery('#txtCCZip').val('');
+                    jQuery('#x_first_name').val('');
+                    jQuery('#x_last_name').val('');
+                    jQuery('#x_address').val('');
+                    jQuery('#x_city').val('');
+                    jQuery('#x_state').val('');
+                    jQuery('#x_zip').val('');
                 }
             });
 
@@ -54,8 +55,10 @@
 
     <div class="row-input">
         <div class="biginput">
-            <b>TOTAL REMITTED $</b><input type="hidden" name="dollartotal" size="9" maxlength="9" value="0.00">
-            <input type="text" name="dollartotal2" id="GrandTotal" size="9" maxlength="9" value="0.00" onfocus="blur();">
+            <b>TOTAL REMITTED $</b>
+            <!--<input type="hidden" name="dollartotal" size="9" maxlength="9" value="0.00">-->
+            <!--<input type="text" name="dollartotal2" id="GrandTotal" size="9" maxlength="9" value="0.00" onfocus="blur();">-->
+            <input type="text" name="x_amount" id="x_amount" size="9" maxlength="9" value="0.00" onfocus="blur();">
         </div>
     </div>
     <b><u>Please enter your NIAF membership number if a member:</u></b>
@@ -135,11 +138,15 @@
             <input type="text" id="txtEmail" name="txtEmail" size="30" maxlength="30" value="">&nbsp;&nbsp;<i>example: johndoe@aol.com</i>
         </div>
     </div>
+
+
+
     <h3><u>Payment Method</u></h3>
     <div class="row-input">
         <div class="midinput"> 
             Credit Card:
-            <select id="CardType" name="CardType" size="1">
+            <!--<select id="CardType" name="CardType" size="1">-->
+            <select id="x_card_type" name="x_card_type" size="1">
                 <option value="N/A">Select</option>
                 <option value="Visa">Visa</option>
                 <option value="MasterCard1">MasterCard</option>
@@ -148,13 +155,15 @@
         </div>
         <div class="midinput">   
             Credit Card Number:
-            <input type="text" id="" name="txtCCNumber" size="16" maxlength="16" value="">
+            <!--<input type="text" id="" name="txtCCNumber" size="16" maxlength="16" value="">-->
+            <input type="text" id="" name="x_card_num" size="16" maxlength="16" value="">
         </div>
     </div>
     <div class="row-input">
         <div class="midinput"> 
             Credit Card Expiration Month:
-            <select id="" name="CardExpMonth" value="Select Month" size="1">
+            <!--<select id="" name="CardExpMonth" value="Select Month" size="1">-->
+            <select id="" name="x_expiration_month" value="Select Month" size="1">
                 <option value="N/A">Select</option>
                 <option value="01">1 - Jan</option>
                 <option value="02">2 - Feb</option>
@@ -172,7 +181,8 @@
         </div>
         <div class="midinput"> 
             Credit Card Expiration Year:
-            <select id="" name="CardExpYear" size="1">
+            <!--<select id="" name="CardExpYear" size="1">-->
+            <select id="" name="x_expiration_year" size="1">
                 <option value="N/A" selected="">Select</option>
                 <option value="2013">2013</option>
                 <option value="2014">2014</option>                  
@@ -186,43 +196,50 @@
     <div class="row-input">
         <div class="biginput"> 
             <input type="checkbox" value="1" name="txtCCChkAddress" id="txtCCChkAddress">
+
             Check this box if the credit card billing address is the same as previously entered.  If not, please complete the below</span>&nbsp;
         </div>
     </div>
     <div class="row-input">
         <div class="midinput">
             First Name <span class="required">*</span>
-            <input type="text" name="txtCCFirstName" id="txtCCFirstName" size="25" maxlength="32" value="">
+            <!--<input type="text" name="txtCCFirstName" id="txtCCFirstName" size="25" maxlength="32" value="">-->
+            <input type="text" name="x_first_name" id="x_first_name" size="25" maxlength="32" value="">
         </div>
         <div class="midinput"> 
             Last Name <span class="required">*</span>
-            <input type="text" name="txtCCLastName" id="txtCCLastName" size="25" maxlength="64" value="">
+            <!--<input type="text" name="txtCCLastName" id="txtCCLastName" size="25" maxlength="64" value="">-->
+            <input type="text" name="x_last_name" id="x_last_name" size="25" maxlength="64" value="">
         </div>
     </div>
     <div class="row-input">
         <div class="midinput">
             Street <span class="required">*</span>
-            <input type="text" name="txtCCAddress1" id="txtCCAddress1" size="25" maxlength="100" value="">
+            <!--<input type="text" name="txtCCAddress1" id="txtCCAddress1" size="25" maxlength="100" value="">-->
+            <input type="text" name="x_address" id="x_address" size="25" maxlength="100" value="">
         </div>
         <div class="midinput"> 
             City <span class="required">*</span>
-            <input type="text" name="txtCCCity" id="txtCCCity" size="25" maxlength="40" value="">
+            <!--<input type="text" name="txtCCCity" id="txtCCCity" size="25" maxlength="40" value="">-->
+            <input type="text" name="x_city" id="x_city" size="25" maxlength="40" value="">
         </div>
     </div>
     <div class="row-input">
         <div class="midinput">
             State <span class="required">*</span>
-            <input type="text" name="txtCCState" id="txtCCState" size="12" maxlength="12" value="">
+            <!--<input type="text" name="txtCCState" id="txtCCState" size="12" maxlength="12" value="">-->
+            <input type="text" name="x_state" id="x_state" size="12" maxlength="12" value="">
         </div>
         <div class="midinput"> 
             Zip <span class="required">*</span>
-            <input type="text" name="txtCCZip" id="txtCCZip" size="10" maxlength="10" value="">
+            <!--<input type="text" name="txtCCZip" id="txtCCZip" size="10" maxlength="10" value="">-->
+            <input type="text" name="x_zip" id="x_zip" size="10" maxlength="10" value="">
         </div>
     </div>
-    <center>
-        <input type="submit" name="submit" value="SUBMIT">
-        <input type="reset" name="reset" value="RESET">
-        <input type="hidden" name="step" value="8">
+    <center>       
+        <input type="hidden" name="send" value="true">
+        <input type="submit" value="SUBMIT">
+        <input type="reset" value="RESET">        
         <span id="msg"></span>
     </center>
 </form>
