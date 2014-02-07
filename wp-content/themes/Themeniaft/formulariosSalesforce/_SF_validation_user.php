@@ -53,7 +53,8 @@ require_once (get_template_directory() . '/formulariosSalesforce/_SF_config.php'
 				$query = "SELECT 
 								 FirstName, 
 								 LastName,
-								 Member_ID__c
+								 Member_ID__c,
+								 Membership_Exp_Date__c
 								FROM contact 
 								WHERE email = '$mail'";
 
@@ -69,6 +70,8 @@ require_once (get_template_directory() . '/formulariosSalesforce/_SF_config.php'
 				$datos = str_replace("</sf:LastName>", "", $datos);
 				$datos = str_replace("<sf:Member_ID__c>", "|", $datos);
 				$datos = str_replace("</sf:Member_ID__c>", "", $datos);
+				$datos = str_replace("<sf:Membership_Exp_Date__c>", "|", $datos);
+				$datos = str_replace("</sf:Membership_Exp_Date__c>", "", $datos);				
 				$arregloDatos = array();
 				$arregloDatos = explode("|", $datos);
 				//EXTRACTING EMAIL OF SALESFORCE
@@ -77,6 +80,14 @@ require_once (get_template_directory() . '/formulariosSalesforce/_SF_config.php'
 				foreach ($responseMemberBenefitLevel->records as $recordMemberBenefitLevel) {
 					 $MemberBenefitLevel = $recordMemberBenefitLevel->any;
 				}
+				$fecha = explode("-", $arregloDatos[3]);
+				$fechaDMY = array();
+
+				$fechaDMY[0] = $fecha[1]; //MES
+				$fechaDMY[1] = $fecha[2];//DIA
+				$fechaDMY[2] = $fecha[0];//ANIO
+
+				$arregloDatos[3] = implode("/", $fechaDMY);
 
 				$MemberBenefitLevel = strip_tags($MemberBenefitLevel);
 		        function custom_login($MemberBenefitLevel, $arregloDatos) {
@@ -93,6 +104,7 @@ require_once (get_template_directory() . '/formulariosSalesforce/_SF_config.php'
 		                $_SESSION['firstName']=$arregloDatos[0];
 		                $_SESSION['lastName']=$arregloDatos[1];
 		                $_SESSION['member_id__c']=$arregloDatos[2];
+		                $_SESSION['dateexpiration']= $arregloDatos[3];
 		//                $data_to_write = $arregloDatos[0] . "|" . $arregloDatos[1] . "|" . $arregloDatos[2];
 		//                $filename = 'temporalfile.txt';
 		//                $fp = fopen(TEMPLATEPATH . "/temporalfile.txt", "w");

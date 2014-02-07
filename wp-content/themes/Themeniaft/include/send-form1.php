@@ -75,9 +75,9 @@ $nameAttr = Array(
     'txtCCZip2' => 'step 3 : Zip'
 );
 //$destinatario = "jorge.quispe@altra.com.bo";
-$destinatario = "altra@omnilogic.us";
+$destinatario = "websitemembership@niaf.org";
 //$destinatario = "droman@innervel.com";
-$asunto = "asunto:NIAF";
+$asunto = "NIAF membership";
 
 $cuerpo = '';
 foreach ($_SESSION as $key => $value) {
@@ -96,9 +96,9 @@ foreach ($_SESSION as $key => $value) {
 }
 $headers = "MIME-Version: 1.0\r\n";
 
-$headers .= "From: NIAF <noreply@mommyhotspot.com>\r\n";
+$headers .= "From: NIAF <noreply@niaf.net>\r\n";
 if (mail($destinatario, $asunto, $cuerpo, $headers)) {
-    echo '<h1>Tahnk..</h1>';
+    echo '<h1>thank you.</h1>';
     session_destroy();
 } else {
     ?>

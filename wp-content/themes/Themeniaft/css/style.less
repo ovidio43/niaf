@@ -10,16 +10,16 @@
 @white:#ffffff;
 @gold:#b68133;
 @blue:#0f1d40;
-
+@import url("../webfonts/Landmark-Regular/styles.css");
 /*definition font*/
-@font-face {
+/*@font-face {
     font-family: 'LandmarkRegular';
     src: url('../webfonts/Landmark-Regular/landmark-regular.eot');
     src: url('../webfonts/Landmark-Regular/landmark-regular.eot?#iefix') format('embedded-opentype'),
          url('../webfonts/Landmark-Regular/landmark-regular.woff') format('woff'),
          url('../webfonts/Landmark-Regular/landmark-regular.ttf') format('truetype'),
          url('../webfonts/Landmark-Regular/landmark-regular.svg#LandmarkRegular') format('svg');
-}
+}*/
 @font-face {font-family: 'TradeGothicLT';src: url('../webfonts/284AA8_9_0.eot');src: url('../webfonts/284AA8_9_0.eot?#iefix') format('embedded-opentype'),url('../webfonts/284AA8_9_0.woff') format('woff'),url('../webfonts/284AA8_9_0.ttf') format('truetype');}
 @font-face {font-family: 'TradeGothicLT-Light';src: url('../webfonts/284AA8_B_0.eot');src: url('../webfonts/284AA8_B_0.eot?#iefix') format('embedded-opentype'),url('../webfonts/284AA8_B_0.woff') format('woff'),url('../webfonts/284AA8_B_0.ttf') format('truetype');}
 @font-face {font-family: 'TradeGothicLT-Bold';src: url('../webfonts/284AA8_D_0.eot');src: url('../webfonts/284AA8_D_0.eot?#iefix') format('embedded-opentype'),url('../webfonts/284AA8_D_0.woff') format('woff'),url('../webfonts/284AA8_D_0.ttf') format('truetype');}
@@ -159,7 +159,7 @@ h1{
 }
 
 h2{
-	font-family: 'LandmarkRegular', arial;
+	font-family: 'Landmark-Regular', arial;
 	font-size: 21px;
 	font-weight: 400;
 	line-height: 2em; 
@@ -292,7 +292,7 @@ nav.header-nav .current_page_ancestor > a {
 	padding: 20px 0 0 0;
 	position: relative; 
 	.header-title{
-		font-family: 'LandmarkRegular', arial; 
+		font-family: 'Landmark-Regular', arial; 
 		background: @white;
 		border-top: 4px solid @gold;
 		border-bottom: 4px solid @gold;
@@ -378,7 +378,7 @@ nav.header-nav .current_page_ancestor > a {
 		margin: 0;
 		text-indent: 4%;
 		font-size: 25px;
-		font-family: 'LandmarkRegular', arial;
+		font-family: 'Landmark-Regular', arial;
 	}
 
 }
@@ -669,6 +669,10 @@ nav.header-nav .current_page_ancestor > a {
 	.userdetail{
 		font-size: 12px;
 		float: left;
+		.wrap-user-info{
+			font-size: 11px;
+			padding: 0 0 10px 0;
+		}
 		b{
 			font-size: 10px!important;
 			display: block;
