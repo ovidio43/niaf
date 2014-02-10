@@ -144,19 +144,11 @@
                 }
                 ?>         
             </div>
-            <!--            <div class="midinput">
-                            <input type="checkbox" name="chkHonor" id="chkHonor" onclick="verifychkhonor(this);"> In Memory / In Honor Of <br>
-                            <input type="checkbox" name="chkGeneral" id="chkGeneral" onclick="verifychkgeneral(this);"> General	
-                        </div>
-                        <div class="midinput">
-                            <input type="checkbox" name="chkScholar" id="chkScholar" onclick="verifychkscholar(this);"> Scholarship<br>
-                            <input type="checkbox" name="chkAll" id="chkAll" onclick="verifychkall(this);"> All
-                        </div>-->
         </div>
         <div class="row-input">
             <div class="midinput">
                 <span>Recipient(s)</span>               
-                <select name="numgifts" id="numgifts" size="1" onchange="verifynumgifts(this)">
+                <select name="numgifts" id="numgifts" size="1" >
                     <?php
                     for ($i = 0; $i < 11; $i++) {
                         $selected = '';
@@ -172,7 +164,7 @@
             </div>
             <div class="midinput">
                 <span>Donation Amount <span class="required">*</span>  <b>$</b></span>				
-                <input type="text" name="DonateAmt" id="DonateAmt" value="<?php echo $_SESSION['DonateAmt']; ?>" size="10" maxlength="10" onchange="verifyamount(this)">
+                <input type="text" name="DonateAmt" id="DonateAmt" value="<?php echo $_SESSION['DonateAmt']; ?>" size="10" maxlength="10" >
             </div>
         </div>		
 

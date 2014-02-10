@@ -9,7 +9,7 @@ $titleData = Array(
     'txtLastName' => 'Last Name',
     'txtOrganization' => 'Firm/Organization',
     'txtAddress1' => 'Address',
-    'txtAddress2' => 'Address',
+    'txtAddress2' => 'Address 2',
     'txtCity' => 'City',
     'txtState' => 'State Abbreviation',
     'txtZip' => 'Zip Code',
@@ -71,29 +71,7 @@ function performTransaction($data) {
     return $response_array;
 }
 
-function sendMail($data, $titleData,$subject) {
-    $body = '';
-    foreach ($data as $key => $value) {
-        if (!isIn($key) && $key != '') {
-            $body.='<b>' . $titleData[$key] . ' : </b>';
-            if (is_array($value)) {
-                $body.= formatArray($value);
-            } else {
-                $body.=$value . '<br>';
-            }
-        }
-    }
-    $from = 'jorge.quispe@altra.com.bo';
-//    $subject = 'New York Gala Registration';
-    $headers .= 'Content-type:text/html;charset=UTF-8 \rn'
-            . 'From: Registration <noreply@niaf.net>\rn';
 
-    if (mail($from, $subject, $body, $headers)) {
-        return true;
-    } else {
-        return false;
-    }
-}
 
 function formatArray($array) {
     $content = '';

@@ -3,7 +3,7 @@
 require_once ('AUTHORIZE.NET.php');
 $results = performTransaction($_POST);
 if ($results[3] == 'This transaction has been approved.') {
-    if (sendMail($_POST, $titleData, 'Golf Registration Form')) {
+    if (sendMail($_POST, $titleData)) {
         insertIntoDb($_POST);
         echo 'Your response has been recorded.';
     } else {
@@ -26,4 +26,25 @@ function insertIntoDb($data) {
             . "'$data[txtEmail]','1','$date')";
     $db = new ezSQL_mysqli();
     $db->query($query);
+}
+
+function sendMail($data, $titleData) {
+    $body = '';
+    foreach ($data as $key => $value) {
+        $body.='<b>' . $titleData[$key] . ' : </b>';
+        if (is_array($value)) {
+            $body.= formatArray($value);
+        } else {
+            $body.=$value . '<br>';
+        }
+    }
+    $subject = 'Golf Registration Form';
+    $from = 'jorge.quispe@altra.com.bo';
+    $headers .= 'Content-type:text/html;charset=UTF-8 \rn'
+            . 'From: Registration <noreply@niaf.net>\rn';
+    if (mail($from, $subject, $body, $headers)) {
+        return true;
+    } else {
+        return false;
+    }
 }

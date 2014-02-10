@@ -1,6 +1,42 @@
+<style type="text/css">
+    .sub-amount{
+        width: auto !important;        
+    }
+</style>
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        jQuery('.select-Packages').on('change', function() {
+            var am = jQuery(this).attr('amount');
+            var cant = jQuery(this).val();
+            var r = am * cant;
+            jQuery(this).parent().siblings().children('input').val(r);
 
-<form name="regform" action="" method="post">
-
+            var v1 = Number(jQuery('#dollarcorporatestandard').val());
+            var v2 = Number(jQuery('#dollarcorporatepremium').val());
+            var v3 = Number(jQuery('#dollarcorporatetitle').val());
+            r = v1 + v2 + v3;
+            jQuery('#x_amount').val(r);
+        });
+        jQuery('#regform').validate({
+            rules: {
+                x_amount: {required: true},
+                Salutation: {required: true},
+                x_first_name: {required: true},
+                x_last_name: {required: true},
+                x_address: {required: true},
+                x_city: {required: true},
+                x_state: {required: true},
+                x_zip: {required: true},
+                txtEmail: {required: true, email: true},
+                x_card_num: {required: true, number: true},
+                x_card_type: {required: true},
+                x_expiration_month: {required: true},
+                x_expiration_year: {required: true}
+            }
+        });
+    });
+</script>
+<form name="regform" id="regform" action="" method="post">
     <div class="row-input">
         <div class="biginput">
             Welcome to the 4th Annual NIAF Golf Tournament Registration Form. <b>Please Reserve </b>Your Spots Today! <br><br>
@@ -16,8 +52,8 @@
     </div>
 
     <div class="row-input">
-        <div class="biginput">
-            <select name="numcorporatestandards" size="1" >
+        <div class="midinput">
+            <select name="numcorporatestandards" size="1" class="select-Packages" amount="2500">
                 <option value="0" selected="">0</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -32,12 +68,15 @@
                 <li>Four (4) Rat Pack Live dinner and show tickets</li>
                 <li>Printed acknowledgement on event day material</li>   
             </ul>                           
-            <b>$</b>&nbsp;<input type="text" value="0.00" size="9" name="dollarcorporatestandard">
+
         </div>
+        <div class="midinput">
+            <b>$</b>&nbsp;<input type="text" readonly="" value="0.00" size="9" id="dollarcorporatestandard" name="dollarcorporatestandard" class="sub-amount">
+        </div>        
     </div>
     <div class="row-input">
-        <div class="biginput">
-            <select name="numcorporatepremiums" size="1" >
+        <div class="midinput">
+            <select name="numcorporatepremiums" size="1" class="select-Packages" amount="5000">
                 <option value="0" selected="">0</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -53,13 +92,16 @@
                 <li>Eight (8) Rat Pack Live dinner and show tickets</li>
                 <li>Recognition in the NIAF E-Newsletter</li>
             </ul>
-            <b>$</b>&nbsp;<input type="text" value="0.00" size="9" name="dollarcorporatepremium" >              
+
+        </div>
+        <div class="midinput">
+            <b>$</b>&nbsp;<input type="text" readonly="" value="0.00" size="9" id="dollarcorporatepremium" name="dollarcorporatepremium" class="sub-amount">      
         </div>
     </div>
 
     <div class="row-input">
-        <div class="biginput">        
-            <select name="numcorporatetitles" size="1" >
+        <div class="midinput">        
+            <select name="numcorporatetitles" size="1" class="select-Packages" amount="10000">
                 <option value="0" selected="">0</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -77,14 +119,21 @@
                 <li>Advertisement and recognition  in the NIAF E-Newsletter</li>
                 <li>Full page ad in one issue of NIAF Ambassador Magazine</li>
             </ul>
-            <b>$</b>&nbsp;<input type="text" value="0.00" size="9" name="dollarcorporatetitle" >
+
+        </div>
+        <div class="midinput">
+            <b>$</b>&nbsp;<input type="text" readonly="" value="0.00" size="9" id="dollarcorporatetitle" name="dollarcorporatetitle" class="sub-amount">
         </div>
     </div>
-    <div class="row-input">
+    <div class="row-input">        
         <div class="biginput">      
-            <b>TOTAL REMITTED $</b>
+            <?php
+            for ($i = 0; $i < 40; $i++) {
+                echo '&nbsp;';
+            }
+            ?><b>TOTAL REMITTED $</b>
             <!--<input type="hidden" name="dollartotal" size="9" maxlength="9" value="0.00">--> 
-            <input type="text" name="x_amount" size="9" maxlength="9" value="0.00">    
+            <input type="text" name="x_amount"  id="x_amount" readonly="" size="9" maxlength="9" value="" class="sub-amount">    
         </div>
     </div>              
 
@@ -205,7 +254,7 @@
         <div class="midinput">
             <span>Credit Card:</span>
             <select name="x_card_type" size="1">
-                <option value="N/A">Select</option>
+                <option value="">Select</option>
                 <option value="0">Visa</option>
                 <option value="1">MasterCard</option>
                 <option value="2">American Express</option>
@@ -220,7 +269,7 @@
         <div class="midinput">
             Credit Card Expiration Month:
             <select name="x_expiration_month" value="Select Month" size="1">
-                <option value="N/A">Select</option>
+                <option value="">Select</option>
                 <option value="01">1 - Jan</option>
                 <option value="02">2 - Feb</option>
                 <option value="03">3 - Mar</option>
@@ -238,7 +287,7 @@
         <div class="midinput">
             Credit Card Expiration Year:
             <select name="x_expiration_year" size="1">
-                <option value="N/A" selected="">Select</option>
+                <option value="" selected="">Select</option>
                 <option value="2014">2014</option>                  
                 <option value="2015">2015</option>              
                 <option value="2016">2016</option>              
