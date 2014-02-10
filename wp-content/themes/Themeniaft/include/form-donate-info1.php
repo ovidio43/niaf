@@ -9,10 +9,11 @@
                 txtAddress1: {required: true},
                 txtCity: {required: true},
                 txtState: {required: true},
+                numgifts: {required: true},
                 txtZip: {required: true, number: true},
                 txtEmail: {required: true, email: true},
-                categoryDonation: {required: true},
-                DonateAmt: {required: true, numeric: true}
+                "categoryDonation[]": {required: true},
+                DonateAmt: {required: true, number: true, min: 10}
             }
         });
     });
@@ -122,7 +123,7 @@
                         }
                     }
                     ?>
-                    <input type="checkbox" name="categoryDonation[]" value="<?php echo $value; ?>" <?php echo $checked; ?> ><?php echo $value; ?><br>
+                    <input type="checkbox" class="cat-don" name="categoryDonation[]" value="<?php echo $value; ?>" <?php echo $checked; ?> ><?php echo $value; ?><br>
                     <?php
                 }
                 ?>
@@ -130,7 +131,7 @@
             <div class="midinput">
                 <?php
                 unset($data);
-                $data = Array('Scholarship', 'All');
+                $data = Array('Scholarship');
                 foreach ($data as $value) {
                     $checked = '';
                     foreach ($_SESSION['categoryDonation'] as $val) {
@@ -139,10 +140,26 @@
                         }
                     }
                     ?>
-                    <input type="checkbox" name="categoryDonation[]" value="<?php echo $value; ?>" <?php echo $checked; ?> ><?php echo $value; ?><br>
+                    <input type="checkbox" class="cat-don" name="categoryDonation[]" value="<?php echo $value; ?>" <?php echo $checked; ?> ><?php echo $value; ?><br>
                     <?php
                 }
-                ?>         
+                ?>  
+                <input type="checkbox" id="cat-all">All<br>
+                <script type="text/javascript">
+                    jQuery(document).ready(function() {
+                        jQuery('#cat-all').on('click', function() {
+                            if (jQuery(this).is(':checked')) {
+                                jQuery('input.cat-don').prop('checked', true);
+                            } else {
+                                jQuery('input.cat-don').prop('checked', false);
+                            }
+                        });
+                        jQuery('.cat-don').on('click', function() {
+                            jQuery('#cat-all').prop('checked', false);
+                        });
+
+                    });
+                </script>
             </div>
         </div>
         <div class="row-input">
@@ -156,7 +173,7 @@
                             $selected = 'selected';
                         }
                         ?>
-                        <option value="<?php echo $i; ?>" <?php echo $selected; ?>><?php echo $i; ?></option>
+                        <option value="<?php echo $i == 0 ? '' : $i; ?>" <?php echo $selected; ?>><?php echo $i; ?></option>
                         <?php
                     }
                     ?>
