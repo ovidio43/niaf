@@ -138,6 +138,6 @@ foreach ($_POST as $key => $value) {
         </div>
     </div>
 </form>
-<form method="post" action="" id="formBack">
-    <input type="hidden" name="step" value="2">    
+<form method="post" action="?step-back=true" id="formBack">
+    <input type="hidden" name="step" value="2">         
 </form>

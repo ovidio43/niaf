@@ -2,6 +2,31 @@
 <!--<form method="post" action="donate-2.asp" name="DonateInfo" onsubmit="return(checkit(this));">-->
 <script type="text/javascript">
     jQuery(document).ready(function() {
+        jQuery('#cat-all').on('click', function() {
+            if (jQuery(this).is(':checked')) {
+                jQuery('input.cat-don').prop('checked', true);
+            } else {
+                jQuery('input.cat-don').prop('checked', false);
+            }
+        });
+        jQuery('.cat-don').on('click', function() {
+            jQuery('#cat-all').prop('checked', false);
+        });
+        jQuery('#ss-form').submit(function(e) {
+            var don = 0;
+            jQuery('.cat-don').each(function() {
+                if (jQuery(this).is(':checked')) {
+                    don += 5;
+                }
+            });
+            var rec = Number(jQuery('#numgifts').val());
+            var r = rec * don;
+            var amount = Number(jQuery('#DonateAmt').val());
+            if (amount < r) {
+                alert('Minimum donation amount is $' + r);
+                return false;
+            }
+        });
         jQuery('#ss-form').validate({
             rules: {
                 txtFirstName: {required: true},
@@ -13,7 +38,7 @@
                 txtZip: {required: true, number: true},
                 txtEmail: {required: true, email: true},
                 "categoryDonation[]": {required: true},
-                DonateAmt: {required: true, number: true, min: 10}
+                DonateAmt: {required: true, number: true}
             }
         });
     });
@@ -144,19 +169,9 @@
                     <?php
                 }
                 ?>  
-                <input type="checkbox" id="cat-all">All<br>
+                <input type="checkbox" id="cat-all">All<br>                
                 <script type="text/javascript">
                     jQuery(document).ready(function() {
-                        jQuery('#cat-all').on('click', function() {
-                            if (jQuery(this).is(':checked')) {
-                                jQuery('input.cat-don').prop('checked', true);
-                            } else {
-                                jQuery('input.cat-don').prop('checked', false);
-                            }
-                        });
-                        jQuery('.cat-don').on('click', function() {
-                            jQuery('#cat-all').prop('checked', false);
-                        });
 
                     });
                 </script>
