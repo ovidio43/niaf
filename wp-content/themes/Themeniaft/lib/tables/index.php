@@ -33,6 +33,7 @@ if ($form == 'New York Gala Registration') {
             } else {
                 echo 'error';
             }
+            break;
         case 'get_form':
             getGolfRegistrationForm($db, $dataMixed);
             break;
@@ -49,7 +50,8 @@ if ($form == 'New York Gala Registration') {
                 echo 'ok';
             } else {
                 echo 'error';
-            };
+            }
+            break;
         case 'get_form':
             getDonateInfoForm($db, $dataMixed);
             break;
