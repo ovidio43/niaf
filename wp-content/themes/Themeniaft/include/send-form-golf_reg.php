@@ -3,7 +3,7 @@
 require_once ('AUTHORIZE.NET.php');
 $results = performTransaction($_POST);
 if ($results[3] == 'This transaction has been approved.') {
-    if (!sendMail($_POST, $titleData) && !sendMail_client($_POST)) {
+    if (!sendMail($_POST, $titleData) || !sendMail_client($_POST)) {
         echo 'An unknown erro occurred.';
     } else {
         echo 'Your response has been recorded.';
@@ -56,11 +56,11 @@ function sendMail_client($data) {
     $headers .= 'Content-type:text/html;charset=UTF-8 \rn'
             . 'From: Registration <noreply@niaf.net>\rn';
     $body = $name_complete . '<br>';
-    $body.= 'Thank you for registering for the NIAF New York Spring Golf.<br>';
-    $body.= 'Your Registration information has been received." . <br><br>';
-    $body.='The National Italian American Foundation looks forward to seeing you at the NIAF New York Spring Extravaganza!<br><br>';
-    $body.='If you have any questions, please don\'t hesitate to email Jerry Jones (jerry@niaf.org), or call 202-939-3102.<br><br>';
-    $body.='Thank you for your support,<br><br>';
+    $body.= 'Thank you for registering for the NIAF New York Spring Golf.</br>';
+    $body.= 'Your Registration information has been received.</br>';
+    $body.='The National Italian American Foundation looks forward to seeing you at the NIAF New York Spring Extravaganza!</br>';
+    $body.='If you have any questions, please don\'t hesitate to email Jerry Jones (jerry@niaf.org), or call 202-939-3102.</br>';
+    $body.='Thank you for your support,</br>';
     $body.='NIAF';
 
     if (mail($from, $subject, $body, $headers)) {
