@@ -372,3 +372,65 @@ function getDetailGolfRegistrationForm($db, $id, $paginationFrom, $show) {
     <p><a href="#" class="link-back" paginationFrom="<?php echo $paginationFrom; ?>" show="<?php echo $show; ?>">Back</a></p>
     <?php
 }
+
+/* * *******************Donate Info Form******************************* */
+
+function getDonateInfoForm($db, $paginationFrom, $show) {
+    ?>
+    <center><h1>Data : Donate Info Form</h1></center>
+    <table border="1" cellspacing="0" cellpadding="3" align="center">
+        <thead>
+            <tr>                
+                <th>First Name</th>
+                <th>Last Name</th>                                
+                <th>Organization</th>
+                <th>Address 1</th>            
+                <th>City</th>
+                <th>State</th>
+                <th>Zip</th>
+                <th>Home Telephone</th>
+                <th>Work Telephone</th>
+                <th>Emial</th>
+                <th>Date</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            $query = 'select * from  _golf_reg_form ORDER BY date DESC LIMIT ' . $paginationFrom . ',' . $show;
+            $results = $db->get_results($query);
+            if ($results) {
+                foreach ($results as $row) {
+                    ?>
+                    <tr>                         
+                        <td><?php echo $row->txtFirstName; ?></td>                    
+                        <td><?php echo $row->txtLastName; ?></td>                                                                                    
+                        <td><?php echo $row->txtOrganization; ?></td>                    
+                        <td><?php echo $row->txtAddress1; ?></td>                                                            
+                        <td><?php echo $row->txtCity; ?></td>                    
+                        <td><?php echo $row->txtState; ?></td>                    
+                        <td><?php echo $row->txtZip; ?></td>                    
+                        <td><?php echo $row->txtHomePhone; ?></td>                    
+                        <td><?php echo $row->txtWorkPhone; ?></td>                    
+                        <td><?php echo $row->txtEmail; ?></td>                                        
+                        <td><?php echo $row->date; ?></td>                                        
+                        <td>
+                            <a href="<?php echo $row->id_golf_reg_form; ?>" class="view-detail" paginationFrom="<?php echo $paginationFrom; ?>" show="<?php echo $show; ?>" >View Detail</a>
+                            <a  href="<?php echo $row->id_golf_reg_form; ?>" class="del-item">Delete</a>
+                        </td>                                        
+                    </tr>          
+                    <?php
+                }
+                paginationItems($db, $paginationFrom, $show, 12);
+            } else {
+                ?>
+                <tr>
+                    <td colspan="12">No records found.</td>
+                </tr>
+                <?php
+            }
+            ?>       
+        </tbody>
+    </table>
+    <?php
+}
