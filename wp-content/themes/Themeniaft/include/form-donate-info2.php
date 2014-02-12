@@ -26,7 +26,7 @@ for ($i = 1; $i <= 10; $i++) {
 <?php for ($i = 1; $i <= $recip; $i++) { ?>
             RFirstName<?php echo $i; ?>: {required: true},
                     RLastName<?php echo $i; ?>: {required: true},
-                    RAddress1<?php echo $i; ?>: {
+                    RAddress<?php echo $i; ?>: {
                     required: true
                     }
             ,
@@ -102,7 +102,7 @@ for ($i = 1; $i <= 10; $i++) {
     <div class="row-input">
         <div class="biginput">
             <button id="btn-previous" type="button">PREVIOUS</button>&nbsp; &nbsp;            
-            <input type="submit" name="submit" value="CONTINUE">&nbsp; &nbsp;
+            <input type="submit" value="CONTINUE">&nbsp; &nbsp;
             <button type="button" id="btn-reset">RESET</button>
             <input type="hidden" name="step" value="3">
         </div>

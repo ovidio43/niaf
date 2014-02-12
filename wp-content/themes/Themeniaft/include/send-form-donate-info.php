@@ -6,104 +6,60 @@ foreach ($_POST as $key => $value) {
 $results = performTransaction($_SESSION);
 
 if ($results[3] == 'This transaction has been approved.') {
-    sendEmail();
+    if (sendMail($_SESSION, $titleData)) {
+        echo 'Your response has been recorded.';
+    } else {
+        echo 'An unknown erro occurred.';
+    }
 } else {
     echo $results[3];
     ?>    
     <form method="post" action="" id="formBack">
         <input type="hidden" name="step" value="3">   
-        <input type="submit" name="submit" value=" << BACK">&nbsp; &nbsp;
+        <input type="submit" value=" << BACK">&nbsp; &nbsp;
     </form>
     <?php
 }
 
-function sendEmail() {
-    $nameAttr = Array(
-        'txtFirstName' => 'step 1 : First Name',
-        'txtLastName' => 'step 1 : Last Name',
-        'txtSpouse' => 'step 1 : Spouse Name - if applicable',
-        'txtOrganization' => 'step 1 : Organization',
-        'txtTitle' => 'step 1 : Title',
-        'strWorkAddrRef' => 'step 1 :  Check if this is a work address',
-        'txtAddress1' => 'step 1 :  Street',
-        'txtAddress2' => 'step 1 :  Street 2',
-        'txtCity' => 'step 1 :  City',
-        'txtState' => 'step 1 :  State',
-        'txtZip' => 'step 1 :  Zip',
-        'txtHomePhone' => 'step 1 :  Home Telephone',
-        'txtWorkPhone' => 'step 1 :  Work Telephone',
-        'txtEmail' => 'step 1 :  E-mail',
-        'txtFaxPhone' => 'step 1 :  Fax',
-        'categoryDonation' => 'step 1 :  Category of Donation',
-        'numgifts' => 'step 1 :  Recipient(s)',
-        'DonateAmt' => 'step 1 :  Donation Amount',
-        'RFirstName1' => 'step 2 :  First Name',
-        'RLastName1' => 'step 2 :  Last Name',
-        'RAddress11' => 'step 2 :  Street',
-        'RAddress21' => 'step 2 :  Street 2',
-        'RCity1' => 'step 2 :  City',
-        'RState1' => 'step 2 :  State',
-        'RZip1' => 'step 2 :  Zip',
-        'RFirstName2' => 'step 2 Recipient 2:  First Name',
-        'RLastName2' => 'step 2 Recipient 2:  Last Name',
-        'RAddress12' => 'step 2 Recipient 2:  Street',
-        'RAddress22' => 'step 2 Recipient 2:  Street',
-        'RCity2' => 'step 2 Recipient 2:  City',
-        'RState2' => 'step 2 Recipient 2:  State',
-        'RZip2' => 'step 2 Recipient 2:  Zip',
-        'DonateAmtConfirm' => 'step 3 : Entered Donation Amount',
-        'cboCardType' => 'step 3 : Card Type',
-        'txtCardNumber' => 'step 3 : Card Number',
-        'cboCardMonth' => 'step 3 : Expiration Month ',
-        'cboCardYear' => 'step 3 : Expiration Year ',
-        'txtCCChkAddress' => 'step 3 : Check this box if the credit card billing address is the same as previously entered. If not, please complete the below ',
-        'txtCCFirstName' => 'step 3 : First Name',
-        'txtCCLastName' => 'step 3 : Last Name',
-        'txtCCAddress1' => 'step 3 : Street',
-        'txtCCCity' => 'step 3 : City',
-        'txtCCState' => 'step 3 : State',
-        'txtCCZip' => 'step 3 : Zip'
-    );
-    $destinatario = "jorge.quispe@altra.com.bo";
-//    $destinatario = "altra@omnilogic.us";
-//$destinatario = "droman@innervel.com";
-    $asunto = "Donate Info Form";
-
-    $cuerpo = '';
-    foreach ($_SESSION as $key => $value) {
-
-        if (is_array($value)) {
-            $cuerpo.= "---------------------------------------------------\r\n ";
-            $cuerpo.="[" . $nameAttr[$key] . " :] \r\n ";
-            foreach ($value as $val) {
-                $cuerpo.= $val . " \r\n";
+function sendMail($data, $titleData) {
+    $body = '';
+    foreach ($data as $key => $value) {
+        if (!isIn($key) && $key != '') {
+            $body.='<b>' . $titleData[$key] . ' : </b>';
+            if (is_array($value)) {
+                $body.= formatArray($value);
+            } else {
+                $body.=$value . '<br>';
             }
-        } else {
-            $cuerpo.= "---------------------------------------------------\r\n ";
-            $cuerpo.="[" . $nameAttr[$key] . "] \r\n";
-            $cuerpo.= $value . " \r\n";
         }
     }
-    $headers = "MIME-Version: 1.0\r\n";
-
-    $headers .= "From: NIAF <noreply@mommyhotspot.com>\r\n";
-    if (mail($destinatario, $asunto, $cuerpo, $headers)) {
-        echo '<h1>Tahnk..</h1>';
-//        session_destroy();
+    $subject = 'Donate Info Form';
+    $from = 'jorge.quispe@altra.com.bo';
+    $headers .= 'Content-type:text/html;charset=UTF-8 \rn'
+            . 'From: Registration <noreply@niaf.net>\rn';
+    if (mail($from, $subject, $body, $headers)) {
+        return true;
     } else {
-        ?>
-        <script type="text/javascript">
-            jQuery(document).ready(function() {
-                jQuery('#btn-previous').on('click', function() {
-                    jQuery('#formBack').submit();
-                });
-            });
-
-        </script>
-        <button id="btn-previous" type="button">PREVIOUS</button>&nbsp; &nbsp;
-        <form action="" id="formBack" method="post">
-            <input type="hidden" name="step" value="3">
-        </form>
-        <?php
+        return false;
     }
+}
+
+function insertIntoDb($data) {
+    $date = date('Y-m-d H:i:s');
+    $query = "INSERT INTO `_donate_info_form`(`txtFirstName`, `txtLastName`, `txtSpouse`, "
+            . "`txtOrganization`, `txtTitle`, `strWorkAddr`, `txtAddress1`, "
+            . "`txtAddress2`, `txtCity`, `txtState`, `txtZip`,"
+            . " `txtHomePhone`, `txtWorkPhone`, "
+            . "`txtEmail`, `txtFaxPhone`, `categoryDonation`, `numgifts`, "
+            . "`DonateAmt`, `x_amount`, `x_card_type`, `x_card_num`,"
+            . " `x_expiration_month`, `x_expiration_year`, `checkAddressSame`,"
+            . " `x_last_name`, `x_address`, `x_city`, `x_state`, `x_zip`, `status`, `date`) "
+            . "VALUES ('$data[txtFirstName]','$data[txtLastName]','$data[txtSpouse]','$data[txtOrganization]','$data[txtTitle]',"
+            . "'$data[strWorkAddr]','$data[txtAddress1]','$data[txtAddress2]','$data[txtCity]','$data[txtState]',"
+            . "'$data[txtZip]','$data[txtHomePhone]','$data[txtWorkPhone]','$data[txtEmail]','$data[txtFaxPhone]',"
+            . "'$data[categoryDonation]','$data[numgifts]','$data[DonateAmt]','$data[x_amount]','$data[x_card_type]',"
+            . "'$data[x_card_num]','$data[x_expiration_month]','$data[x_expiration_year]','$data[checkAddressSame]','$data[x_last_name]',"
+            . "'$data[x_address]','$data[x_city]','$data[x_state]','$data[x_zip]','1','$date')";
+    $db = new ezSQL_mysqli();
+    $db->query($query);
 }
