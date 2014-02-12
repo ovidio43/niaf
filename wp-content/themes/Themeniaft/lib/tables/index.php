@@ -82,7 +82,10 @@ function paginationItems($db, $dataMixed) {
             if ($next < $row->num_items) {
                 ?>
                 <a href="#" class="link-prevNext" paginationFrom="<?php echo $next; ?>" show="<?php echo $dataMixed['show']; ?>"> &#8594; </a>
-            <?php } ?>
+                <?php
+            }
+            ?>
+            <strong>&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $row->num_items . ' Records'; ?></strong>
         </td>
     </tr>
     <?php
@@ -166,7 +169,7 @@ function deleteItemNewYorkGalaRegistration($db, $dataMixed) {
 
 function getDetailNewYorkGalaRegistration($db, $dataMixed) {
     ?>
-    <h1>Detail</h1>
+    <h1>Detail Item - New York Gala Registration</h1>
     <table cellpadding="3" align="center">        
         <tbody>
             <?php
@@ -321,7 +324,7 @@ function deleteItemGolfRegistrationForm($db, $dataMixed) {
 
 function getDetailGolfRegistrationForm($db, $dataMixed) {
     ?>
-    <h1>Detail</h1>
+    <h1>Detail Item - Golf Registration Form</h1>
     <table cellpadding="3" align="center">        
         <tbody>
             <?php
@@ -465,7 +468,7 @@ function deleteItemDonateInfoForm($db, $dataMixed) {//ojo tiene tablas relaciond
 
 function getDetailDonateInfoForm($db, $dataMixed) {
     ?>
-    <h1>Detail</h1>
+    <h1>Detail Item - Donate Info Form</h1>
     <table cellpadding="3" align="center">        
         <tbody>
             <?php
@@ -491,11 +494,7 @@ function getDetailDonateInfoForm($db, $dataMixed) {
             <tr>
                 <td align="right"><strong>Organization</strong></td>
                 <td><?php echo $row->txtOrganization; ?></td>                    
-            </tr>            
-            <tr>
-                <td align="right"><strong>Organization</strong></td>
-                <td><?php echo $row->txtOrganization; ?></td>                    
-            </tr>            
+            </tr>                               
             <tr>
                 <td align="right"><strong>Title</strong></td>
                 <td><?php echo $row->txtTitle; ?></td>                    
