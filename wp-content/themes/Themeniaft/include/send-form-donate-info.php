@@ -7,6 +7,7 @@ $results = performTransaction($_SESSION);
 
 if ($results[3] == 'This transaction has been approved.') {
     if (sendMail($_SESSION, $titleData)) {
+        insertIntoDb($_SESSION);
         echo 'Your response has been recorded.';
     } else {
         echo 'An unknown erro occurred.';
@@ -46,19 +47,17 @@ function sendMail($data, $titleData) {
 
 function insertIntoDb($data) {
     $date = date('Y-m-d H:i:s');
-    $query = "INSERT INTO `_donate_info_form`(`txtFirstName`, `txtLastName`, `txtSpouse`, "
-            . "`txtOrganization`, `txtTitle`, `strWorkAddr`, `txtAddress1`, "
-            . "`txtAddress2`, `txtCity`, `txtState`, `txtZip`,"
-            . " `txtHomePhone`, `txtWorkPhone`, "
-            . "`txtEmail`, `txtFaxPhone`, `categoryDonation`, `numgifts`, "
-            . "`DonateAmt`, `x_amount`, `x_card_type`, `x_card_num`,"
-            . " `x_expiration_month`, `x_expiration_year`, `checkAddressSame`,"
-            . " `x_last_name`, `x_address`, `x_city`, `x_state`, `x_zip`, `status`, `date`) "
+    $query = "INSERT INTO `_donate_info_form`(`txtFirstName`, `txtLastName`, `txtSpouse`, `txtOrganization`, "
+            . "`txtTitle`, `strWorkAddr`, `txtAddress1`, `txtAddress2`, `txtCity`, `txtState`, `txtZip`, "
+            . "`txtHomePhone`, `txtWorkPhone`, `txtEmail`, `txtFaxPhone`, `categoryDonation`, `numgifts`,"
+            . " `DonateAmt`, `x_amount`, `x_card_type`, `x_card_num`, `x_expiration_month`, `x_expiration_year`, "
+            . "`checkAddressSame`, `x_first_name`, `x_last_name`, `x_address`, `x_city`, `x_state`, `x_zip`, `status`, "
+            . "`date`) "
             . "VALUES ('$data[txtFirstName]','$data[txtLastName]','$data[txtSpouse]','$data[txtOrganization]','$data[txtTitle]',"
             . "'$data[strWorkAddr]','$data[txtAddress1]','$data[txtAddress2]','$data[txtCity]','$data[txtState]',"
             . "'$data[txtZip]','$data[txtHomePhone]','$data[txtWorkPhone]','$data[txtEmail]','$data[txtFaxPhone]',"
             . "'$data[categoryDonation]','$data[numgifts]','$data[DonateAmt]','$data[x_amount]','$data[x_card_type]',"
-            . "'$data[x_card_num]','$data[x_expiration_month]','$data[x_expiration_year]','$data[checkAddressSame]','$data[x_last_name]',"
+            . "'$data[x_card_num]','$data[x_expiration_month]','$data[x_expiration_year]','$data[checkAddressSame]','$data[x_first_name]','$data[x_last_name]',"
             . "'$data[x_address]','$data[x_city]','$data[x_state]','$data[x_zip]','1','$date')";
     $db = new ezSQL_mysqli();
     $db->query($query);
