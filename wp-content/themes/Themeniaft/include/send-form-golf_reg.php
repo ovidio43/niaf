@@ -57,7 +57,6 @@ function sendMail_client($data) {
     $from = $data['txtEmail'];
     $headers .= 'Content-type:text/html;charset=UTF-8 \rn'
             . 'From: Registration <noreply@niaf.net>\rn';
-    $body="Gracias por participar";
     $body.= "Thank you for registering for the NIAF New York Spring Golf."."<br>"; 
     $body.= "Your Registration information has been received."."<br>"."<br>"; 
      
