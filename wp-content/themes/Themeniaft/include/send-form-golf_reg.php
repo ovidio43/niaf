@@ -58,17 +58,17 @@ function sendMail_client($data) {
     $name_complete= "Dear"."  ".$data['x_first_name']." ".$data['x_last_name'];
     $headers .= 'Content-type:text/html;charset=UTF-8 \rn'
             . 'From: Registration <noreply@niaf.net>\rn';
-    $body.= $name_complete."<br>";
-    $body.= "Thank you for registering for the NIAF New York Spring Golf."."<br>"; 
+    $body.=  $name_complete .'<br>';
+    $body.= 'Thank you for registering for the NIAF New York Spring Golf.'.'<br>'; 
     $body.= "Your Registration information has been received."."<br>"."<br>"; 
      
-    $body.="The National Italian American Foundation looks forward to seeing you at the NIAF New York Spring Extravaganza!"."<br>"."<br>"; 
+    $body.='The National Italian American Foundation looks forward to seeing you at the NIAF New York Spring Extravaganza!'.'<br>'.'<br>'; 
      
-    $body.="If you have any questions, please don't hesitate to email Jerry Jones (jerry@niaf.org), or call 202-939-3102."."<br>"."<br>"; 
+    $body.='If you have any questions, please don\'t hesitate to email Jerry Jones (jerry@niaf.org), or call 202-939-3102.'.'<br>'.'<br>'; 
      
-    $body.="Thank you for your support,"."<br>"."<br>"; 
+    $body.='Thank you for your support,'.'<br>'.'<br>'; 
      
-    $body.="NIAF";
+    $body.='NIAF';
 
     if (mail($from, $subject, $body, $headers)) {
         return true;
