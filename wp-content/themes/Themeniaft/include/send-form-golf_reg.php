@@ -43,6 +43,22 @@ function sendMail($data, $titleData) {
     $headers .= 'Content-type:text/html;charset=UTF-8 \rn'
             . 'From: Registration <noreply@niaf.net>\rn';
     if (mail($from, $subject, $body, $headers)) {
+        if (sendMail_client($data, $titleData)){
+            return true;    
+        }
+        return false;
+    } else {
+        return false;
+    }
+}
+
+function sendMail_client($data, $titleData) {
+    $subject = 'Golf Registration Form';
+    $from = $data['txtEmail'];
+    $headers .= 'Content-type:text/html;charset=UTF-8 \rn'
+            . 'From: Registration <noreply@niaf.net>\rn';
+    $body="Gracias por participar";
+    if (mail($from, $subject, $body, $headers)) {
         return true;
     } else {
         return false;
