@@ -46,6 +46,11 @@ function sendMail($data, $titleData) {
 }
 
 function insertIntoDb($data) {
+    $categoryDonation = '';
+    foreach ($data['categoryDonation'] as $value) {
+        $categoryDonation.=$value . ' , ';
+    }
+
     $date = date('Y-m-d H:i:s');
     $query = "INSERT INTO `_donate_info_form`(`txtFirstName`, `txtLastName`, `txtSpouse`, `txtOrganization`, "
             . "`txtTitle`, `strWorkAddr`, `txtAddress1`, `txtAddress2`, `txtCity`, `txtState`, `txtZip`, "
@@ -56,7 +61,7 @@ function insertIntoDb($data) {
             . "VALUES ('$data[txtFirstName]','$data[txtLastName]','$data[txtSpouse]','$data[txtOrganization]','$data[txtTitle]',"
             . "'$data[strWorkAddr]','$data[txtAddress1]','$data[txtAddress2]','$data[txtCity]','$data[txtState]',"
             . "'$data[txtZip]','$data[txtHomePhone]','$data[txtWorkPhone]','$data[txtEmail]','$data[txtFaxPhone]',"
-            . "'$data[categoryDonation]','$data[numgifts]','$data[DonateAmt]','$data[x_amount]','$data[x_card_type]',"
+            . "'$categoryDonation','$data[numgifts]','$data[DonateAmt]','$data[x_amount]','$data[x_card_type]',"
             . "'$data[x_card_num]','$data[x_expiration_month]','$data[x_expiration_year]','$data[checkAddressSame]','$data[x_first_name]','$data[x_last_name]',"
             . "'$data[x_address]','$data[x_city]','$data[x_state]','$data[x_zip]','1','$date')";
     $db = new ezSQL_mysqli();

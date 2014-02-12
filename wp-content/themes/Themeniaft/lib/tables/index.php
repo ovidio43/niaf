@@ -3,66 +3,69 @@ require_once '../ezSQL-master/shared/ez_sql_core.php';
 require_once '../ezSQL-master/mysqli/ez_sql_mysqli.php';
 $form = $_POST['form'];
 $action = $_POST['action'];
-
-//$id = $_POST['id'];
-//$paginationFrom = $_POST['paginationFrom'];
-//$show = $_POST['show'];
-
 $dataMixed = Array('show' => $_POST['show'], 'paginationFrom' => $_POST['paginationFrom'], 'id' => $_POST['id']);
 $db = new ezSQL_mysqli();
 if ($form == 'New York Gala Registration') {
+    $dataMixed['table_name'] = '_new_york_gala_registration';
+    $dataMixed['colspan'] = '13';
     switch ($action) {
         case 'delete':
-            if (deleteItemNewYorkGalaRegistration($db, $id)) {
+            if (deleteItemNewYorkGalaRegistration($db, $dataMixed)) {
                 echo 'ok';
             } else {
                 echo 'error';
             }
             break;
         case 'get_form':
-            getFormNewYorkGalaRegistration($db, $paginationFrom, $show);
+            getFormNewYorkGalaRegistration($db, $dataMixed);
             break;
         case 'get_detail':
-            getDetailNewYorkGalaRegistration($db, $id, $paginationFrom, $show);
+            getDetailNewYorkGalaRegistration($db, $dataMixed);
             break;
     }
 } elseif ($form == 'Golf Registration Form') {
+    $dataMixed['table_name'] = '_golf_reg_form';
+    $dataMixed['colspan'] = '13';
     switch ($action) {
         case 'delete':
-            if (deleteItemGolfRegistrationForm($db, $id)) {
+            if (deleteItemGolfRegistrationForm($db, $dataMixed)) {
                 echo 'ok';
             } else {
                 echo 'error';
             }
+            break;
         case 'get_form':
-            getGolfRegistrationForm($db, $paginationFrom, $show);
+            getGolfRegistrationForm($db, $dataMixed);
             break;
         case 'get_detail':
-            getDetailGolfRegistrationForm($db, $id, $paginationFrom, $show);
+            getDetailGolfRegistrationForm($db, $dataMixed);
             break;
     }
 } elseif ($form == 'Donate Info Form') {
+    $dataMixed['table_name'] = '_donate_info_form';
+    $dataMixed['colspan'] = '12';
     switch ($action) {
         case 'delete':
-            if (deleteItemDonateInfoForm($db, $id)) {
+            if (deleteItemDonateInfoForm($db, $dataMixed)) {
                 echo 'ok';
             } else {
                 echo 'error';
-            };
+            }
+            break;
         case 'get_form':
-            getDonateInfoForm($db, $paginationFrom, $show);
+            getDonateInfoForm($db, $dataMixed);
             break;
         case 'get_detail':
-            getDetailDonateInfoForm($db, $id, $paginationFrom, $show);
+            getDetailDonateInfoForm($db, $dataMixed);
             break;
     }
 }
 
-function paginationItems($db, $paginationFrom, $show, $dataMixed) {
+function paginationItems($db, $dataMixed) {
     $query = 'select count(*) as "num_items" from ' . $dataMixed['table_name'];
     $row = $db->get_row($query);
-    $next = ($paginationFrom + $show);
-    $prev = ($paginationFrom - $show);
+    $next = ($dataMixed['paginationFrom'] + $dataMixed['show']);
+    $prev = ($dataMixed['paginationFrom'] - $dataMixed['show']);
     if ($prev < 0) {
         $prev = 0;
     }
@@ -70,16 +73,19 @@ function paginationItems($db, $paginationFrom, $show, $dataMixed) {
     <tr>
         <td colspan="<?php echo $dataMixed['colspan']; ?>" align="center">
             <?php
-            if ($paginationFrom > 0) {
+            if ($dataMixed['paginationFrom'] > 0) {
                 ?>
-                <a href="#" class="link-prevNext" paginationFrom="<?php echo $prev; ?>" show="<?php echo $show; ?>"> &#8592; </a> 
+                <a href="#" class="link-prevNext" paginationFrom="<?php echo $prev; ?>" show="<?php echo $dataMixed['show']; ?>"> &#8592; </a> 
                 &nbsp;&nbsp;&nbsp;&nbsp;
                 <?php
             }
             if ($next < $row->num_items) {
                 ?>
-                <a href="#" class="link-prevNext" paginationFrom="<?php echo $next; ?>" show="<?php echo $show; ?>"> &#8594; </a>
-            <?php } ?>
+                <a href="#" class="link-prevNext" paginationFrom="<?php echo $next; ?>" show="<?php echo $dataMixed['show']; ?>"> &#8594; </a>
+                <?php
+            }
+            ?>
+            <strong>&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $row->num_items . ' Records'; ?></strong>
         </td>
     </tr>
     <?php
@@ -87,7 +93,7 @@ function paginationItems($db, $paginationFrom, $show, $dataMixed) {
 
 /* * *******************New York Gala Registration Function******************************* */
 
-function getFormNewYorkGalaRegistration($db, $paginationFrom, $show) {
+function getFormNewYorkGalaRegistration($db, $dataMixed) {
     ?>
     <center><h1>Data : New York Gala Registration</h1></center>
     <table border="1" cellspacing="0" cellpadding="3" align="center">
@@ -110,7 +116,7 @@ function getFormNewYorkGalaRegistration($db, $paginationFrom, $show) {
         </thead>
         <tbody>
             <?php
-            $query = 'select * from _new_york_gala_registration ORDER BY date DESC LIMIT ' . $paginationFrom . ',' . $show;
+            $query = 'select * from _new_york_gala_registration ORDER BY date DESC LIMIT ' . $dataMixed['paginationFrom'] . ',' . $dataMixed['show'];
             $results = $db->get_results($query);
             if ($results) {
                 foreach ($results as $row) {
@@ -129,13 +135,13 @@ function getFormNewYorkGalaRegistration($db, $paginationFrom, $show) {
                         <td><?php echo $row->txtEmail; ?></td>                                        
                         <td><?php echo $row->date; ?></td>                                        
                         <td>
-                            <a href="<?php echo $row->id_newYorkGalaRegistration; ?>" class="view-detail" paginationFrom="<?php echo $paginationFrom; ?>" show="<?php echo $show; ?>" >View Detail</a>
+                            <a href="<?php echo $row->id_newYorkGalaRegistration; ?>" class="view-detail" paginationFrom="<?php echo $dataMixed['paginationFrom']; ?>" show="<?php echo $dataMixed['show']; ?>" >View Detail</a>
                             <a  href="<?php echo $row->id_newYorkGalaRegistration; ?>" class="del-item">Delete</a>
                         </td>                                        
                     </tr>          
                     <?php
                 }
-                paginationItems($db, $paginationFrom, $show, 13);
+                paginationItems($db, $dataMixed);
             } else {
                 ?>
                 <tr>
@@ -152,8 +158,8 @@ function getFormNewYorkGalaRegistration($db, $paginationFrom, $show) {
 //    $db->debug($db->query($query));
 }
 
-function deleteItemNewYorkGalaRegistration($db, $id) {
-    $query = 'DELETE FROM `_new_york_gala_registration` WHERE id_newYorkGalaRegistration=' . $id;
+function deleteItemNewYorkGalaRegistration($db, $dataMixed) {
+    $query = 'DELETE FROM `_new_york_gala_registration` WHERE id_newYorkGalaRegistration=' . $dataMixed['id'];
     if ($db->query($query)) {
         return true;
     } else {
@@ -161,18 +167,18 @@ function deleteItemNewYorkGalaRegistration($db, $id) {
     }
 }
 
-function getDetailNewYorkGalaRegistration($db, $id, $paginationFrom, $show) {
+function getDetailNewYorkGalaRegistration($db, $dataMixed) {
     ?>
-    <h1>Detail</h1>
+    <h1>Detail Item - New York Gala Registration</h1>
     <table cellpadding="3" align="center">        
         <tbody>
             <?php
-            $query = 'SELECT * FROM `_new_york_gala_registration` WHERE id_newYorkGalaRegistration=' . $id;
+            $query = 'SELECT * FROM `_new_york_gala_registration` WHERE id_newYorkGalaRegistration=' . $dataMixed['id'];
             $row = $db->get_row($query);
             ?>
             <tr>
                 <td align="right"><strong>ID</strong></td>
-                <td><?php echo $id; ?></td>     
+                <td><?php echo $dataMixed['id']; ?></td>     
             </tr>            
             <tr>
                 <td align="right"><strong>Package</strong></td>
@@ -236,13 +242,13 @@ function getDetailNewYorkGalaRegistration($db, $id, $paginationFrom, $show) {
             </tr>                       
         </tbody>
     </table>
-    <p><a href="#" class="link-back" paginationFrom="<?php echo $paginationFrom; ?>" show="<?php echo $show; ?>">Back</a></p>
+    <p><a href="#" class="link-back" paginationFrom="<?php echo $dataMixed['paginationFrom']; ?>" show="<?php echo $dataMixed['show']; ?>">Back</a></p>
     <?php
 }
 
 /* * *******************Golf Registration Form Function******************************* */
 
-function getGolfRegistrationForm($db, $paginationFrom, $show) {
+function getGolfRegistrationForm($db, $dataMixed) {
     ?>
     <center><h1>Data : Golf Registration Form</h1></center>
     <table border="1" cellspacing="0" cellpadding="3" align="center">
@@ -265,7 +271,7 @@ function getGolfRegistrationForm($db, $paginationFrom, $show) {
         </thead>
         <tbody>
             <?php
-            $query = 'select * from  _golf_reg_form ORDER BY date DESC LIMIT ' . $paginationFrom . ',' . $show;
+            $query = 'select * from  _golf_reg_form ORDER BY date DESC LIMIT ' . $dataMixed['paginationFrom'] . ',' . $dataMixed['show'];
             $results = $db->get_results($query);
             if ($results) {
                 foreach ($results as $row) {
@@ -284,13 +290,13 @@ function getGolfRegistrationForm($db, $paginationFrom, $show) {
                         <td><?php echo $row->txtEmail; ?></td>                                        
                         <td><?php echo $row->date; ?></td>                                        
                         <td>
-                            <a href="<?php echo $row->id_golf_reg_form; ?>" class="view-detail" paginationFrom="<?php echo $paginationFrom; ?>" show="<?php echo $show; ?>" >View Detail</a>
+                            <a href="<?php echo $row->id_golf_reg_form; ?>" class="view-detail" paginationFrom="<?php echo $dataMixed['paginationFrom']; ?>" show="<?php echo $dataMixed['show']; ?>" >View Detail</a>
                             <a  href="<?php echo $row->id_golf_reg_form; ?>" class="del-item">Delete</a>
                         </td>                                        
                     </tr>          
                     <?php
                 }
-                paginationItems($db, $paginationFrom, $show, 13);
+                paginationItems($db, $dataMixed);
             } else {
                 ?>
                 <tr>
@@ -307,8 +313,8 @@ function getGolfRegistrationForm($db, $paginationFrom, $show) {
 //    $db->debug($db->query($query));
 }
 
-function deleteItemGolfRegistrationForm($db, $id) {
-    $query = 'DELETE FROM `_golf_reg_form` WHERE id_golf_reg_form=' . $id;
+function deleteItemGolfRegistrationForm($db, $dataMixed) {
+    $query = 'DELETE FROM `_golf_reg_form` WHERE id_golf_reg_form=' . $dataMixed['id'];
     if ($db->query($query)) {
         return true;
     } else {
@@ -316,18 +322,18 @@ function deleteItemGolfRegistrationForm($db, $id) {
     }
 }
 
-function getDetailGolfRegistrationForm($db, $id, $paginationFrom, $show) {
+function getDetailGolfRegistrationForm($db, $dataMixed) {
     ?>
-    <h1>Detail</h1>
+    <h1>Detail Item - Golf Registration Form</h1>
     <table cellpadding="3" align="center">        
         <tbody>
             <?php
-            $query = 'SELECT * FROM `_golf_reg_form` WHERE id_golf_reg_form=' . $id;
+            $query = 'SELECT * FROM `_golf_reg_form` WHERE id_golf_reg_form=' . $dataMixed['id'];
             $row = $db->get_row($query);
             ?>            
             <tr>
                 <td align="right"><strong>ID</strong></td>
-                <td><?php echo $id; ?></td>     
+                <td><?php echo $dataMixed['id']; ?></td>     
             </tr>            
             <tr>
                 <td align="right"><strong>First Name</strong></td>
@@ -385,13 +391,13 @@ function getDetailGolfRegistrationForm($db, $id, $paginationFrom, $show) {
             </tr>                       
         </tbody>
     </table>
-    <p><a href="#" class="link-back" paginationFrom="<?php echo $paginationFrom; ?>" show="<?php echo $show; ?>">Back</a></p>
+    <p><a href="#" class="link-back" paginationFrom="<?php echo $dataMixed['paginationFrom']; ?>" show="<?php echo $dataMixed['show']; ?>">Back</a></p>
     <?php
 }
 
 /* * *******************Donate Info Form******************************* */
 
-function getDonateInfoForm($db, $paginationFrom, $show) {
+function getDonateInfoForm($db, $dataMixed) {
     ?>
     <center><h1>Data : Donate Info Form</h1></center>
     <table border="1" cellspacing="0" cellpadding="3" align="center">
@@ -413,7 +419,7 @@ function getDonateInfoForm($db, $paginationFrom, $show) {
         </thead>
         <tbody>
             <?php
-            $query = 'select * from  _donate_info_form ORDER BY date DESC LIMIT ' . $paginationFrom . ',' . $show;
+            $query = 'select * from  _donate_info_form ORDER BY date DESC LIMIT ' . $dataMixed['paginationFrom'] . ',' . $dataMixed['show'];
             $results = $db->get_results($query);
             if ($results) {
                 foreach ($results as $row) {
@@ -431,13 +437,13 @@ function getDonateInfoForm($db, $paginationFrom, $show) {
                         <td><?php echo $row->txtEmail; ?></td>                                        
                         <td><?php echo $row->date; ?></td>                                        
                         <td>
-                            <a href="<?php echo $row->id_donate_info_form; ?>" class="view-detail" paginationFrom="<?php echo $paginationFrom; ?>" show="<?php echo $show; ?>" >View Detail</a>
+                            <a href="<?php echo $row->id_donate_info_form; ?>" class="view-detail" paginationFrom="<?php echo $dataMixed['paginationFrom']; ?>" show="<?php echo $dataMixed['show']; ?>" >View Detail</a>
                             <a  href="<?php echo $row->id_donate_info_form; ?>" class="del-item">Delete</a>
                         </td>                                        
                     </tr>          
                     <?php
                 }
-                paginationItems($db, $paginationFrom, $show, 12);
+                paginationItems($db, $dataMixed);
             } else {
                 ?>
                 <tr>
@@ -451,8 +457,8 @@ function getDonateInfoForm($db, $paginationFrom, $show) {
     <?php
 }
 
-function deleteItemDonateInfoForm($db, $id) {//ojo tiene tablas relaciondas (recipietns)
-    $query = 'DELETE FROM `_donate_info_form` WHERE id_donate_info_form=' . $id;
+function deleteItemDonateInfoForm($db, $dataMixed) {//ojo tiene tablas relaciondas (recipietns)
+    $query = 'DELETE FROM `_donate_info_form` WHERE id_donate_info_form=' . $dataMixed['id'];
     if ($db->query($query)) {
         return true;
     } else {
@@ -460,18 +466,18 @@ function deleteItemDonateInfoForm($db, $id) {//ojo tiene tablas relaciondas (rec
     }
 }
 
-function getDetailDonateInfoForm($db, $id, $paginationFrom, $show) {
+function getDetailDonateInfoForm($db, $dataMixed) {
     ?>
-    <h1>Detail</h1>
+    <h1>Detail Item - Donate Info Form</h1>
     <table cellpadding="3" align="center">        
         <tbody>
             <?php
-            $query = 'SELECT * FROM `_donate_info_form` WHERE id_donate_info_form=' . $id;
+            $query = 'SELECT * FROM `_donate_info_form` WHERE id_donate_info_form=' . $dataMixed['id'];
             $row = $db->get_row($query);
             ?>            
             <tr>
                 <td align="right"><strong>ID</strong></td>
-                <td><?php echo $id; ?></td>     
+                <td><?php echo $dataMixed['id']; ?></td>     
             </tr>            
             <tr>
                 <td align="right"><strong>First Name</strong></td>
@@ -488,11 +494,7 @@ function getDetailDonateInfoForm($db, $id, $paginationFrom, $show) {
             <tr>
                 <td align="right"><strong>Organization</strong></td>
                 <td><?php echo $row->txtOrganization; ?></td>                    
-            </tr>            
-            <tr>
-                <td align="right"><strong>Organization</strong></td>
-                <td><?php echo $row->txtOrganization; ?></td>                    
-            </tr>            
+            </tr>                               
             <tr>
                 <td align="right"><strong>Title</strong></td>
                 <td><?php echo $row->txtTitle; ?></td>                    
@@ -599,6 +601,6 @@ function getDetailDonateInfoForm($db, $id, $paginationFrom, $show) {
             </tr>                                        
         </tbody>
     </table>
-    <p><a href="#" class="link-back" paginationFrom="<?php echo $paginationFrom; ?>" show="<?php echo $show; ?>">Back</a></p>
+    <p><a href="#" class="link-back" paginationFrom="<?php echo $dataMixed['paginationFrom']; ?>" show="<?php echo $dataMixed['show']; ?>">Back</a></p>
     <?php
 }
