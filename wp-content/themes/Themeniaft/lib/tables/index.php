@@ -3,9 +3,12 @@ require_once '../ezSQL-master/shared/ez_sql_core.php';
 require_once '../ezSQL-master/mysqli/ez_sql_mysqli.php';
 $form = $_POST['form'];
 $action = $_POST['action'];
-$id = $_POST['id'];
-$paginationFrom = $_POST['paginationFrom'];
-$show = $_POST['show'];
+
+//$id = $_POST['id'];
+//$paginationFrom = $_POST['paginationFrom'];
+//$show = $_POST['show'];
+
+$dataMixed = Array('show' => $_POST['show'], 'paginationFrom' => $_POST['paginationFrom'], 'id' => $_POST['id']);
 $db = new ezSQL_mysqli();
 if ($form == 'New York Gala Registration') {
     switch ($action) {
@@ -55,8 +58,8 @@ if ($form == 'New York Gala Registration') {
     }
 }
 
-function paginationItems($db, $paginationFrom, $show, $cols) {
-    $query = 'select count(*) as "num_items" from _new_york_gala_registration ';
+function paginationItems($db, $paginationFrom, $show, $dataMixed) {
+    $query = 'select count(*) as "num_items" from ' . $dataMixed['table_name'];
     $row = $db->get_row($query);
     $next = ($paginationFrom + $show);
     $prev = ($paginationFrom - $show);
@@ -65,7 +68,7 @@ function paginationItems($db, $paginationFrom, $show, $cols) {
     }
     ?>
     <tr>
-        <td colspan="<?php echo $cols; ?>" align="center">
+        <td colspan="<?php echo $dataMixed['colspan']; ?>" align="center">
             <?php
             if ($paginationFrom > 0) {
                 ?>
