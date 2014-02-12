@@ -38,8 +38,21 @@ if ($form == 'New York Gala Registration') {
             getDetailGolfRegistrationForm($db, $id, $paginationFrom, $show);
             break;
     }
-} elseif ($form == 3) {
-    echo 'paso 3';
+} elseif ($form == 'Donate Info Form') {
+    switch ($action) {
+        case 'delete':
+            if (deleteItemDonateInfoForm($db, $id)) {
+                echo 'ok';
+            } else {
+                echo 'error';
+            };
+        case 'get_form':
+            getDonateInfoForm($db, $paginationFrom, $show);
+            break;
+        case 'get_detail':
+            getDetailDonateInfoForm($db, $id, $paginationFrom, $show);
+            break;
+    }
 }
 
 function paginationItems($db, $paginationFrom, $show, $cols) {
@@ -155,67 +168,67 @@ function getDetailNewYorkGalaRegistration($db, $id, $paginationFrom, $show) {
             $row = $db->get_row($query);
             ?>
             <tr>
-                <td><strong>ID</strong></td>
+                <td align="right"><strong>ID</strong></td>
                 <td><?php echo $id; ?></td>     
             </tr>            
             <tr>
-                <td><strong>Package</strong></td>
+                <td align="right"><strong>Package</strong></td>
                 <td><?php echo $row->level; ?></td>     
             </tr>            
             <tr>
-                <td><strong>NIAF Membership #</strong></td>
+                <td align="right"><strong>NIAF Membership #</strong></td>
                 <td><?php echo $row->guest1; ?></td> 
             </tr>            
             <tr>
-                <td><strong>Salutation</strong></td>
+                <td align="right"><strong>Salutation</strong></td>
                 <td><?php echo $row->Salutation; ?></td>
             </tr>            
             <tr>
-                <td><strong>First Name</strong></td>
+                <td align="right"><strong>First Name</strong></td>
                 <td><?php echo $row->txtFirstName; ?></td>
             </tr>            
             <tr>
-                <td><strong>Last Name</strong></td>
+                <td align="right"><strong>Last Name</strong></td>
                 <td><?php echo $row->txtLastName; ?></td>                    
             </tr>            
             <tr>
-                <td><strong>Organization</strong></td>
+                <td align="right"><strong>Organization</strong></td>
                 <td><?php echo $row->txtOrganization; ?></td>   
             </tr>            
             <tr>
-                <td><strong>Address 1</strong></td>
+                <td align="right"><strong>Address 1</strong></td>
                 <td><?php echo $row->txtAddress1; ?></td>    
             </tr>            
             <tr>
-                <td><strong>Address 2</strong></td>
+                <td align="right"><strong>Address 2</strong></td>
                 <td><?php echo $row->txtAddress2; ?></td>  
             </tr>            
             <tr>
-                <td><strong>City</strong></td>
+                <td align="right"><strong>City</strong></td>
                 <td><?php echo $row->txtCity; ?></td>  
             </tr>            
             <tr>
-                <td><strong>State</strong></td>
+                <td align="right"><strong>State</strong></td>
                 <td><?php echo $row->txtState; ?></td>  
             </tr>            
             <tr>
-                <td><strong>Zip</strong></td>
+                <td align="right"><strong>Zip</strong></td>
                 <td><?php echo $row->txtZip; ?></td>   
             </tr>            
             <tr>
-                <td><strong>Home Phone</strong></td>
+                <td align="right"><strong>Home Phone</strong></td>
                 <td><?php echo $row->txtHomePhone; ?></td>    
             </tr>            
             <tr>
-                <td><strong>Business Phone</strong></td>
+                <td align="right"><strong>Business Phone</strong></td>
                 <td><?php echo $row->txtBizPhone; ?></td>     
             </tr>            
             <tr>
-                <td><strong>Emial</strong></td>
+                <td align="right"><strong>Emial</strong></td>
                 <td><?php echo $row->txtEmail; ?></td>  
             </tr>            
             <tr>
-                <td><strong>Date</strong></td>
+                <td align="right"><strong>Date</strong></td>
                 <td><?php echo $row->date; ?></td> 
             </tr>                       
         </tbody>
@@ -310,61 +323,61 @@ function getDetailGolfRegistrationForm($db, $id, $paginationFrom, $show) {
             $row = $db->get_row($query);
             ?>            
             <tr>
-                <td><strong>ID</strong></td>
+                <td align="right"><strong>ID</strong></td>
                 <td><?php echo $id; ?></td>     
             </tr>            
             <tr>
-                <td><strong>First Name</strong></td>
+                <td align="right"><strong>First Name</strong></td>
                 <td><?php echo $row->x_first_name; ?></td>                    
             </tr>            
             <tr>
-                <td><strong>Last Name</strong></td>
+                <td align="right"><strong>Last Name</strong></td>
                 <td><?php echo $row->x_last_name; ?></td>  
             </tr>           
 
             <tr>
-                <td><strong>Salutation</strong></td>
+                <td align="right"><strong>Salutation</strong></td>
                 <td><?php echo $row->Salutation; ?></td>
             </tr>            
 
             <tr>
-                <td><strong>Organization</strong></td>
+                <td align="right"><strong>Organization</strong></td>
                 <td><?php echo $row->txtOrganization; ?></td>   
             </tr>            
             <tr>
-                <td><strong>Address 1</strong></td>
+                <td align="right"><strong>Address 1</strong></td>
                 <td><?php echo $row->x_address; ?></td>  
             </tr>            
             <tr>
-                <td><strong>Address 2</strong></td>
+                <td align="right"><strong>Address 2</strong></td>
                 <td><?php echo $row->txtAddress2; ?></td>  
             </tr>            
             <tr>
-                <td><strong>City</strong></td>
+                <td align="right"><strong>City</strong></td>
                 <td><?php echo $row->x_city; ?></td> 
             </tr>            
             <tr>
-                <td><strong>State</strong></td>
+                <td align="right"><strong>State</strong></td>
                 <td><?php echo $row->x_state; ?></td> 
             </tr>            
             <tr>
-                <td><strong>Zip</strong></td>
+                <td align="right"><strong>Zip</strong></td>
                 <td><?php echo $row->x_zip; ?></td>     
             </tr>            
             <tr>
-                <td><strong>Home Phone</strong></td>
+                <td align="right"><strong>Home Phone</strong></td>
                 <td><?php echo $row->txtHomePhone; ?></td>    
             </tr>            
             <tr>
-                <td><strong>Business Phone</strong></td>
+                <td align="right"><strong>Business Phone</strong></td>
                 <td><?php echo $row->txtBizPhone; ?></td>     
             </tr>            
             <tr>
-                <td><strong>Emial</strong></td>
+                <td align="right"><strong>Emial</strong></td>
                 <td><?php echo $row->txtEmail; ?></td>  
             </tr>            
             <tr>
-                <td><strong>Date</strong></td>
+                <td align="right"><strong>Date</strong></td>
                 <td><?php echo $row->date; ?></td> 
             </tr>                       
         </tbody>
@@ -397,7 +410,7 @@ function getDonateInfoForm($db, $paginationFrom, $show) {
         </thead>
         <tbody>
             <?php
-            $query = 'select * from  _golf_reg_form ORDER BY date DESC LIMIT ' . $paginationFrom . ',' . $show;
+            $query = 'select * from  _donate_info_form ORDER BY date DESC LIMIT ' . $paginationFrom . ',' . $show;
             $results = $db->get_results($query);
             if ($results) {
                 foreach ($results as $row) {
@@ -415,8 +428,8 @@ function getDonateInfoForm($db, $paginationFrom, $show) {
                         <td><?php echo $row->txtEmail; ?></td>                                        
                         <td><?php echo $row->date; ?></td>                                        
                         <td>
-                            <a href="<?php echo $row->id_golf_reg_form; ?>" class="view-detail" paginationFrom="<?php echo $paginationFrom; ?>" show="<?php echo $show; ?>" >View Detail</a>
-                            <a  href="<?php echo $row->id_golf_reg_form; ?>" class="del-item">Delete</a>
+                            <a href="<?php echo $row->id_donate_info_form; ?>" class="view-detail" paginationFrom="<?php echo $paginationFrom; ?>" show="<?php echo $show; ?>" >View Detail</a>
+                            <a  href="<?php echo $row->id_donate_info_form; ?>" class="del-item">Delete</a>
                         </td>                                        
                     </tr>          
                     <?php
@@ -432,5 +445,157 @@ function getDonateInfoForm($db, $paginationFrom, $show) {
             ?>       
         </tbody>
     </table>
+    <?php
+}
+
+function deleteItemDonateInfoForm($db, $id) {//ojo tiene tablas relaciondas (recipietns)
+    $query = 'DELETE FROM `_donate_info_form` WHERE id_donate_info_form=' . $id;
+    if ($db->query($query)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function getDetailDonateInfoForm($db, $id, $paginationFrom, $show) {
+    ?>
+    <h1>Detail</h1>
+    <table cellpadding="3" align="center">        
+        <tbody>
+            <?php
+            $query = 'SELECT * FROM `_donate_info_form` WHERE id_donate_info_form=' . $id;
+            $row = $db->get_row($query);
+            ?>            
+            <tr>
+                <td align="right"><strong>ID</strong></td>
+                <td><?php echo $id; ?></td>     
+            </tr>            
+            <tr>
+                <td align="right"><strong>First Name</strong></td>
+                <td><?php echo $row->txtFirstName; ?></td>                    
+            </tr>            
+            <tr>
+                <td align="right"><strong>Last Name</strong></td>
+                <td><?php echo $row->txtLastName; ?></td>                    
+            </tr>            
+            <tr>
+                <td align="right"><strong>Spouse Name - if applicable</strong></td>
+                <td><?php echo $row->txtSpouse; ?></td>                    
+            </tr>            
+            <tr>
+                <td align="right"><strong>Organization</strong></td>
+                <td><?php echo $row->txtOrganization; ?></td>                    
+            </tr>            
+            <tr>
+                <td align="right"><strong>Organization</strong></td>
+                <td><?php echo $row->txtOrganization; ?></td>                    
+            </tr>            
+            <tr>
+                <td align="right"><strong>Title</strong></td>
+                <td><?php echo $row->txtTitle; ?></td>                    
+            </tr>            
+            <tr>
+                <td align="right"><strong>Check if this is a work address</strong></td>
+                <td><?php echo $row->strWorkAddr; ?></td>                    
+            </tr>            
+            <tr>
+                <td align="right"><strong>Street</strong></td>
+                <td><?php echo $row->txtAddress1; ?></td>                    
+            </tr>            
+            <tr>
+                <td align="right"><strong>Street 2</strong></td>
+                <td><?php echo $row->txtAddress2; ?></td>                    
+            </tr>                                        
+            <tr>
+                <td align="right"><strong>City</strong></td>
+                <td><?php echo $row->txtCity; ?></td>                    
+            </tr>                                        
+            <tr>
+                <td align="right"><strong>State</strong></td>
+                <td><?php echo $row->txtState; ?></td>                    
+            </tr>                                        
+            <tr>
+                <td align="right"><strong>Zip</strong></td>
+                <td><?php echo $row->txtZip; ?></td>                    
+            </tr>                                        
+            <tr>
+                <td align="right"><strong>Home Phone</strong></td>
+                <td><?php echo $row->txtHomePhone; ?></td>                    
+            </tr>                                        
+            <tr>
+                <td align="right"><strong>Work Phone</strong></td>
+                <td><?php echo $row->txtWorkPhone; ?></td>                    
+            </tr>                                        
+            <tr>
+                <td align="right"><strong>Email</strong></td>
+                <td><?php echo $row->txtEmail; ?></td>                    
+            </tr>                                        
+            <tr>
+                <td align="right"><strong>Fax Phone</strong></td>
+                <td><?php echo $row->txtFaxPhone; ?></td>                    
+            </tr>                                        
+            <tr>
+                <td align="right"><strong>Category of Donation</strong></td>
+                <td><?php echo $row->categoryDonation; ?></td>                    
+            </tr>                                        
+            <tr>
+                <td align="right"><strong>Recipient(s)</strong></td>
+                <td><?php echo $row->numgifts; ?></td>                    
+            </tr>                                        
+            <tr>
+                <td align="right"><strong>Donation Amount </strong></td>
+                <td><?php echo $row->DonateAmt; ?></td>                    
+            </tr>                                        
+            <tr>
+                <td align="right"><strong>Step 3 : Donation Amount </strong></td>
+                <td><?php echo $row->x_amount; ?></td>                    
+            </tr>                                        
+            <tr>
+                <td align="right"><strong>Step 3 : Card Type</strong></td>
+                <td><?php echo $row->x_card_type; ?></td>                    
+            </tr>                                        
+            <tr>
+                <td align="right"><strong>Step 3 : Card Number </strong></td>
+                <td><?php echo $row->x_card_num; ?></td>                    
+            </tr>                                        
+            <tr>
+                <td align="right"><strong>Step 3 : Expiration Month</strong></td>
+                <td><?php echo $row->x_expiration_month; ?></td>                    
+            </tr>                                        
+            <tr>
+                <td align="right"><strong>Step 3 : Expiration Year</strong></td>
+                <td><?php echo $row->x_expiration_year; ?></td>                    
+            </tr>                                        
+            <tr>
+                <td align="right" width="40%" ><strong>Step 3 : Check this box if the credit card billing address is the same as previously entered. If not, please complete the below</strong></td>
+                <td><?php echo $row->checkAddressSame; ?></td>                    
+            </tr>                                        
+            <tr>
+                <td align="right"><strong>Step 3 : First Name</strong></td>
+                <td><?php echo $row->x_first_name; ?></td>                    
+            </tr>                                        
+            <tr>
+                <td align="right"><strong>Step 3 : Last Name</strong></td>
+                <td><?php echo $row->x_last_name; ?></td>                    
+            </tr>                                        
+            <tr>
+                <td align="right"><strong>Step 3 : Street </strong></td>
+                <td><?php echo $row->x_address; ?></td>                    
+            </tr>                                        
+            <tr>
+                <td align="right"><strong>Step 3 : City  </strong></td>
+                <td><?php echo $row->x_city; ?></td>                    
+            </tr>                                        
+            <tr>
+                <td align="right"><strong>Step 3 : State   </strong></td>
+                <td><?php echo $row->x_state; ?></td>                    
+            </tr>                                        
+            <tr>
+                <td align="right"><strong>Step 3 : Zip </strong></td>
+                <td><?php echo $row->x_zip; ?></td>                    
+            </tr>                                        
+        </tbody>
+    </table>
+    <p><a href="#" class="link-back" paginationFrom="<?php echo $paginationFrom; ?>" show="<?php echo $show; ?>">Back</a></p>
     <?php
 }
