@@ -3,7 +3,7 @@
 require_once ('AUTHORIZE.NET.php');
 $results = performTransaction($_POST);
 if ($results[3] == 'This transaction has been approved.') {
-    if (!sendMail($_POST, $titleData) || !sendMail_client($_POST)) {
+    if (!sendMail($_POST, $titleData)) {
         echo 'An unknown erro occurred.';
     } else {
         echo 'Your response has been recorded.';
@@ -43,7 +43,10 @@ function sendMail($data, $titleData) {
     $headers .= 'Content-type:text/html;charset=UTF-8 \rn'
             . 'From: Registration <noreply@niaf.net>\rn';
     if (mail($from, $subject, $body, $headers)) {
-        return true;
+        if (sendMail_client($data)){
+            return true;    
+        }
+        return false;
     } else {
         return false;
     }
@@ -52,16 +55,18 @@ function sendMail($data, $titleData) {
 function sendMail_client($data) {
     $subject = 'NIAF New York Spring Golf - CONFIRMATION ';
     $from = $data['txtEmail'];
-    $name_complete = 'Dear' . ' ' . $data['x_first_name'] . ' ' . $data['x_last_name'];
+    $name_complete = 'Dear' . ' ' .  $data['x_first_name'] . ' ' .$data['x_last_name'];
+    //$headers = "MIME-Version: 1.0rn"; 
     $headers .= 'Content-type:text/html;charset=UTF-8 \rn'
             . 'From: Registration <noreply@niaf.net>\rn';
-    $body = $name_complete . '<br>';
-    $body.= 'Thank you for registering for the NIAF New York Spring Golf.</br>';
-    $body.= 'Your Registration information has been received.</br>';
-    $body.='The National Italian American Foundation looks forward to seeing you at the NIAF New York Spring Extravaganza!</br>';
-    $body.='If you have any questions, please don\'t hesitate to email Jerry Jones (jerry@niaf.org), or call 202-939-3102.</br>';
-    $body.='Thank you for your support,</br>';
-    $body.='NIAF';
+    $body = '';
+    $body .= $name_complete.'<br><br>';
+    $body .= 'Thank you for registering for the NIAF New York Spring Golf.' .'<br>';
+    $body .= '  Your Registration information has been received. '.'<br><br>';
+    $body .= '  The National Italian American Foundation looks forward to seeing you at the NIAF New York Spring Extravaganza! '.'<br><br>';
+    $body .=' If you have any questions, please don\'t hesitate to email Jerry Jones (jerry@niaf.org), or call 202-939-3102.'.'<br><br>';
+    $body .=' Thank you for your support,' .'<br><br>';
+    $body .=' NIAF ';
 
     if (mail($from, $subject, $body, $headers)) {
         return true;
