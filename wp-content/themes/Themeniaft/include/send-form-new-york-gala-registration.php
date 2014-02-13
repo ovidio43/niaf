@@ -53,9 +53,9 @@ function sendMail($data, $titleData) {
     }
 }
 function sendMail_client($data) {
-    $subject = 'NIAF New York Spring Golf - CONFIRMATION ';
+    $subject = 'NIAF New York Spring gala - CONFIRMATION ';
     $from = $data['txtEmail'];
-    $name_complete = 'Dear' . ' ' .  $data['x_first_name'] . ' ' .$data['x_last_name'];
+    $name_complete = 'Dear' . ' ' .  $data['txtFirstName'] . ' ' .$data['txtLastName'];
     //$headers = "MIME-Version: 1.0rn"; 
     $headers .= 'Content-type:text/html;charset=UTF-8 \rn'
             . 'From: Registration <noreply@niaf.net>\rn';
