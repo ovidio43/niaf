@@ -3,25 +3,7 @@
 require_once ('AUTHORIZE.NET.php');
 $results = performTransaction($_POST);
 if ($results[3] == 'This transaction has been approved.') {
-
-    $titleData = Array(
-        'level' => ' Choose Your Package',
-        'x_amount' => 'TOTAL REMITTED $',
-        'guest1' => 'NIAF Membership #',
-        'Salutation' => ' Salutation',
-        'txtFirstName' => 'First Name',
-        'txtLastName' => 'Last Name',
-        'txtOrganization' => 'Firm/Organization',
-        'txtAddress1' => 'Address',
-        'txtAddress2' => 'Address',
-        'txtCity' => 'City',
-        'txtState' => 'State Abbreviation',
-        'txtZip' => 'Zip Code',
-        'txtHomePhone' => 'Home Phone',
-        'txtBizPhone' => 'Business Phone',
-        'txtEmail' => 'Email Address'
-    );
-    if (sendMail($_POST, $titleData,'New York Gala Registration')) {
+    if (sendMail($_POST, $titleData)) {
         insertIntoDb($_POST);
         echo 'Your response has been recorded.';
     } else {
@@ -43,4 +25,52 @@ function insertIntoDb($data) {
             . "'$data[txtState]','$data[txtZip]','$data[txtHomePhone]','$data[txtBizPhone]','$data[txtEmail]','1','$date')";
     $db = new ezSQL_mysqli();
     $db->query($query);
+}
+
+function sendMail($data, $titleData) {
+    $body = '';
+    foreach ($data as $key => $value) {
+        if (!isIn($key) && $key != '') {
+            $body.='<b>' . $titleData[$key] . ' : </b>';
+            if (is_array($value)) {
+                $body.= formatArray($value);
+            } else {
+                $body.=$value . '<br>';
+            }
+        }
+    }
+    $subject = 'New York Gala Registration';
+    $from = 'jorge.quispe@altra.com.bo';
+    $headers .= 'Content-type:text/html;charset=UTF-8 \rn'
+            . 'From: Registration <noreply@niaf.net>\rn';
+    if (mail($from, $subject, $body, $headers)) {
+        if (sendMail_client($data)){
+            return true;    
+        }
+        return false;
+    } else {
+        return false;
+    }
+}
+function sendMail_client($data) {
+    $subject = 'NIAF New York Spring gala - CONFIRMATION ';
+    $from = $data['txtEmail'];
+    $name_complete = 'Dear' . ' ' .  $data['txtFirstName'] . ' ' .$data['txtLastName'];
+    //$headers = "MIME-Version: 1.0rn"; 
+    $headers .= 'Content-type:text/html;charset=UTF-8 \rn'
+            . 'From: Registration <noreply@niaf.net>\rn';
+    $body = '';
+    $body .= $name_complete.'<br><br>';
+    $body .= 'Thank you for registering for the NIAF New York Spring Golf.' .'<br>';
+    $body .= '  Your Registration information has been received. '.'<br><br>';
+    $body .= '  The National Italian American Foundation looks forward to seeing you at the NIAF New York Spring Extravaganza! '.'<br><br>';
+    $body .=' If you have any questions, please don\'t hesitate to email Jerry Jones (jerry@niaf.org), or call 202-939-3102.'.'<br><br>';
+    $body .=' Thank you for your support,' .'<br><br>';
+    $body .=' NIAF ';
+
+    if (mail($from, $subject, $body, $headers)) {
+        return true;
+    } else {
+        return false;
+    }
 }

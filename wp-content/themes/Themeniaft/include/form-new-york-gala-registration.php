@@ -1,6 +1,61 @@
 <!--<form action="<?php echo get_template_directory_uri(); ?>/include/send-form-new-york-gala-registration.php" method="post" name="form-new-york" id="form-new-york">-->
 <!--<form action="" method="post" name="form-new-york" id="form-new-york">-->
-<form action="" method="post" >
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        jQuery('.amount').on('click', function() {
+            var amount = jQuery(this).attr('amount');
+            jQuery('#x_amount').val(amount);
+            if (jQuery(this).val() == 'Member' && jQuery(this).is(':checked')) {
+                jQuery('#guest1').addClass('required').parent().remove('span').prepend('<span class="required">*&nbsp;</span>');
+            } else {
+                jQuery('#guest1').removeClass('required').parent().children('span').remove();
+            }
+        });
+
+        jQuery('#txtCCChkAddress').on('click', function() {
+            if (jQuery(this).is(':checked')) {
+                jQuery('#x_first_name').val(jQuery('#txtFirstName').val());
+                jQuery('#x_last_name').val(jQuery('#txtLastName').val());
+                jQuery('#x_address').val(jQuery('#txtAddress1').val());
+                jQuery('#x_city').val(jQuery('#txtCity').val());
+                jQuery('#x_state').val(jQuery('#txtState').val());
+                jQuery('#x_zip').val(jQuery('#txtZip').val());
+            } else {
+                jQuery('#x_first_name').val('');
+                jQuery('#x_last_name').val('');
+                jQuery('#x_address').val('');
+                jQuery('#x_city').val('');
+                jQuery('#x_state').val('');
+                jQuery('#x_zip').val('');
+            }
+        });
+        jQuery('#regform').validate({
+            rules: {
+                level: {required: true},
+                txtFirstName: {required: true},
+                txtLastName: {required: true},
+                txtAddress1: {required: true},
+                txtCity: {required: true},
+                txtState: {required: true},
+                txtZip: {required: true},
+                x_amount: {required: true},
+                Salutation: {required: true},
+                x_first_name: {required: true},
+                x_last_name: {required: true},
+                x_address: {required: true},
+                x_city: {required: true},
+                x_state: {required: true},
+                x_zip: {required: true},
+                txtEmail: {required: true, email: true},
+                x_card_num: {required: true, number: true},
+                x_card_type: {required: true},
+                x_expiration_month: {required: true},
+                x_expiration_year: {required: true}
+            }
+        });
+    });
+</script>
+<form action="" method="post" id="regform">
 
     <p>Welcome to the NIAF'S New York Gala Registration Form. <b>Please Reserve </b>Your Spot Today!</p>
     <ul>
@@ -20,39 +75,7 @@
             <input type="radio" value="Non-Member" name="level" id="level2" amount="1000" class="amount">
             <label for="level2">Non-Member: $1,000</label>
         </div>
-    </div>
-    <script type="text/javascript">
-        jQuery(document).ready(function() {
-            jQuery('.amount').on('click', function() {
-                var amount = jQuery(this).attr('amount');
-                jQuery('#x_amount').val(amount);
-                if (jQuery(this).val() == 'Member' && jQuery(this).is(':checked')) {
-                    jQuery('#guest1').addClass('required').parent().remove('span').prepend('<span class="required">*&nbsp;</span>');
-                } else {
-                    jQuery('#guest1').removeClass('required').parent().children('span').remove();
-                }
-            });
-
-            jQuery('#txtCCChkAddress').on('click', function() {
-                if (jQuery(this).is(':checked')) {
-                    jQuery('#x_first_name').val(jQuery('#txtFirstName').val());
-                    jQuery('#x_last_name').val(jQuery('#txtLastName').val());
-                    jQuery('#x_address').val(jQuery('#txtAddress1').val());
-                    jQuery('#x_city').val(jQuery('#txtCity').val());
-                    jQuery('#x_state').val(jQuery('#txtState').val());
-                    jQuery('#x_zip').val(jQuery('#txtZip').val());
-                } else {
-                    jQuery('#x_first_name').val('');
-                    jQuery('#x_last_name').val('');
-                    jQuery('#x_address').val('');
-                    jQuery('#x_city').val('');
-                    jQuery('#x_state').val('');
-                    jQuery('#x_zip').val('');
-                }
-            });
-
-        });</script>
-
+    </div>   
     <div class="row-input">
         <div class="biginput">
             <b>TOTAL REMITTED $</b>
@@ -138,16 +161,13 @@
             <input type="text" id="txtEmail" name="txtEmail" size="30" maxlength="30" value="">&nbsp;&nbsp;<i>example: johndoe@aol.com</i>
         </div>
     </div>
-
-
-
     <h3><u>Payment Method</u></h3>
     <div class="row-input">
         <div class="midinput"> 
             Credit Card:
             <!--<select id="CardType" name="CardType" size="1">-->
             <select id="x_card_type" name="x_card_type" size="1">
-                <option value="N/A">Select</option>
+                <option value="">Select</option>
                 <option value="Visa">Visa</option>
                 <option value="MasterCard1">MasterCard</option>
                 <option value="American Express">American Express</option>
@@ -164,7 +184,7 @@
             Credit Card Expiration Month:
             <!--<select id="" name="CardExpMonth" value="Select Month" size="1">-->
             <select id="" name="x_expiration_month" value="Select Month" size="1">
-                <option value="N/A">Select</option>
+                <option value="">Select</option>
                 <option value="01">1 - Jan</option>
                 <option value="02">2 - Feb</option>
                 <option value="03">3 - Mar</option>
@@ -183,7 +203,7 @@
             Credit Card Expiration Year:
             <!--<select id="" name="CardExpYear" size="1">-->
             <select id="" name="x_expiration_year" size="1">
-                <option value="N/A" selected="">Select</option>
+                <option value="" selected="">Select</option>
                 <option value="2013">2013</option>
                 <option value="2014">2014</option>                  
                 <option value="2015">2015</option>              

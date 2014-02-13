@@ -3,113 +3,96 @@
 foreach ($_POST as $key => $value) {
     $_SESSION[$key] = $value;
 }
+$recip = $_SESSION['numgifts'];
+for ($i = 1; $i <= 10; $i++) {
+    if ($i > $recip) {
+        unset($_SESSION['RFirstName' . $i]);
+        unset($_SESSION['RLastName' . $i]);
+        unset($_SESSION['RAddress' . $i]);
+        unset($_SESSION['RAddress2' . $i]);
+        unset($_SESSION['RCity' . $i]);
+        unset($_SESSION['RState' . $i]);
+        unset($_SESSION['RZip' . $i]);
+    }
+}
+
+
+//$recip = $_SESSION['numgifts'];
 ?>
 <script type="text/javascript">
     jQuery(document).ready(function() {
         jQuery('#ss-form').validate({
-            rules: {
-                RFirstName1: {required: true},
-                RLastName1: {required: true},
-                RAddress11: {required: true},
-                RCity1: {required: true},
-                RState1: {required: true},
-                RZip1: {required: true, number: true},
-                RFirstName2: {required: true},
-                RLastName2: {required: true},
-                RAddress12: {required: true},
-                RCity2: {required: true},
-                RState2: {required: true},
-                RZip2: {required: true, number: true}
-            }
-        });
+        rules: {
+<?php for ($i = 1; $i <= $recip; $i++) { ?>
+            RFirstName<?php echo $i; ?>: {required: true},
+                    RLastName<?php echo $i; ?>: {required: true},
+                    RAddress<?php echo $i; ?>: {
+                    required: true
+                    }
+            ,
+                    RCity<?php echo $i; ?>: {
+                    required: true
+                    }
+            ,
+                    RState<?php echo $i; ?>: {
+                    required: true
+                    }
+            ,
+                    RZip<?php echo $i; ?>: {required: true, number: true},
+<?php } ?>
+        }
+    });
     });
 </script>
 <!--<form method="post" action="" name="DonateInfo" onsubmit="return(checkit(this));">-->
 <form method="post" action="" id="ss-form">
-
-    <div class="row-input">
-        <div class="biginput">
-            Recipient 1
+    <?php
+    for ($i = 1; $i <= $recip; $i++) {
+        ?>
+        <div class="row-input">
+            <div class="biginput">
+                <b> Recipient <?php echo $i; ?></b>
+            </div>
         </div>
-    </div>
-    <div class="row-input">
-        <div class="midinput">
-            <span>First Name <span class="required">*</span></span>
-            <input type="text" name="RFirstName1" id="RFirstName1" size="25" maxlength="32" value="<?php echo $_SESSION['RFirstName1']; ?>">
+        <div class="row-input">
+            <div class="midinput">
+                <span>First Name <span class="required">*</span></span>
+                <input type="text" name="RFirstName<?php echo $i; ?>" id="RFirstName<?php echo $i; ?>" size="25" maxlength="32" value="<?php echo $_SESSION['RFirstName' . $i]; ?>">
+            </div>
+            <div class="midinput">
+                <span>Last Name <span class="required">*</span></span>
+                <input type="text" name="RLastName<?php echo $i; ?>" id="RLastName<?php echo $i; ?>" size="25" maxlength="64" value="<?php echo $_SESSION['RLastName' . $i]; ?>">
+            </div>
+        </div>	
+        <div class="row-input">
+            <div class="midinput">
+                <span>Street <span class="required">*</span></span>
+                <input type="text" name="RAddress<?php echo $i; ?>" id="RAddress<?php echo $i; ?>" size="25" maxlength="100" value="<?php echo $_SESSION['RAddress' . $i]; ?>">
+            </div>
+            <div class="midinput">
+                <br>
+                <input type="text" name="RAddress2<?php echo $i; ?>" size="25" maxlength="100" value="<?php echo $_SESSION['RAddress2' . $i]; ?>">
+            </div>
         </div>
-        <div class="midinput">
-            <span>Last Name <span class="required">*</span></span>
-            <input type="text" name="RLastName1" id="RLastName1" size="25" maxlength="64" value="<?php echo $_SESSION['RLastName1']; ?>">
+        <div class="row-input">
+            <div class="midinput">
+                <span>City <span class="required">*</span></span>
+                <input type="text" name="RCity<?php echo $i; ?>" id="RCity<?php echo $i; ?>" size="25" maxlength="40" value="<?php echo $_SESSION['RCity' . $i]; ?>">
+            </div>
+            <div class="midinput">
+                <span>State <span class="required">*</span></span>
+                <input type="text" name="RState<?php echo $i; ?>" id="RState<?php echo $i; ?>" size="12" maxlength="12" value="<?php echo $_SESSION['RState' . $i]; ?>">
+            </div>
+        </div>	
+        <div class="row-input">
+            <div class="midinput">
+                <span>Zip <span class="required">*</span></span>
+                <input type="text" name="RZip<?php echo $i; ?>" id="RZip<?php echo $i; ?>" size="10" maxlength="10" value="<?php echo $_SESSION['RZip' . $i]; ?>">
+            </div>
         </div>
-    </div>	
-    <div class="row-input">
-        <div class="midinput">
-            <span>Street <span class="required">*</span></span>
-            <input type="text" name="RAddress11" id="RAddress11" size="25" maxlength="100" value="<?php echo $_SESSION['RAddress11']; ?>">
-        </div>
-        <div class="midinput">
-            <br>
-            <input type="text" name="RAddress21" size="25" maxlength="100" value="<?php echo $_SESSION['RAddress21']; ?>">
-        </div>
-    </div>
-    <div class="row-input">
-        <div class="midinput">
-            <span>City <span class="required">*</span></span>
-            <input type="text" name="RCity1" id="RCity1" size="25" maxlength="40" value="<?php echo $_SESSION['RCity1']; ?>">
-        </div>
-        <div class="midinput">
-            <span>State <span class="required">*</span></span>
-            <input type="text" name="RState1" id="RState1" size="12" maxlength="12" value="<?php echo $_SESSION['RState1']; ?>">
-        </div>
-    </div>	
-    <div class="row-input">
-        <div class="midinput">
-            <span>Zip <span class="required">*</span></span>
-            <input type="text" name="RZip1" id="RZip1" size="10" maxlength="10" value="<?php echo $_SESSION['RZip1']; ?>">
-        </div>
-    </div>
-
-    <div class="row-input">
-        <div class="biginput">
-            Recipient 2
-        </div>
-    </div>
-    <div class="row-input">
-        <div class="midinput">
-            <span>First Name <span class="required">*</span></span>
-            <input type="text" name="RFirstName2" id="RFirstName2" size="25" maxlength="32" value="<?php echo $_SESSION['RFirstName2']; ?>">
-        </div>
-        <div class="midinput">
-            <span>Last Name <span class="required">*</span></span>
-            <input type="text" name="RLastName2" id="RLastName2" size="25" maxlength="64" value="<?php echo $_SESSION['RLastName2']; ?>">
-        </div>
-    </div>
-    <div class="row-input">
-        <div class="midinput">
-            <span>Street <span class="required">*</span></span>
-            <input type="text" name="RAddress12" id="RAddress22" size="25" maxlength="100" value="<?php echo $_SESSION['RAddress12']; ?>">
-        </div>
-        <div class="midinput">
-            <br>
-            <input type="text" name="RAddress22" size="25" maxlength="100" value="<?php echo $_SESSION['RAddress22']; ?>">
-        </div>
-    </div>
-    <div class="row-input">
-        <div class="midinput">
-            <span>City <span class="required">*</span></span>
-            <input type="text" name="RCity2" id="RCity2" size="25" maxlength="40" value="<?php echo $_SESSION['RCity2']; ?>">
-        </div>
-        <div class="midinput">
-            <span>State <span class="required">*</span></span>
-            <input type="text" name="RState2" id="RState2" size="12" maxlength="12" value="<?php echo $_SESSION['RState2']; ?>">
-        </div>
-    </div>
-    <div class="row-input">
-        <div class="midinput">
-            <span>Zip <span class="required">*</span></span>
-            <input type="text" name="RZip2" id="RZip2" size="10" maxlength="10" value="<?php echo $_SESSION['RZip2']; ?>">
-        </div>
-    </div>
+        <?php
+    }
+    ?>
     <div class="row-input">
         <div class="biginput">
             <b><span class="required">*</span> Please review all the above information to make sure all fields are correct and click "continue" when finished or
@@ -119,7 +102,7 @@ foreach ($_POST as $key => $value) {
     <div class="row-input">
         <div class="biginput">
             <button id="btn-previous" type="button">PREVIOUS</button>&nbsp; &nbsp;            
-            <input type="submit" name="submit" value="CONTINUE">&nbsp; &nbsp;
+            <input type="submit" value="CONTINUE">&nbsp; &nbsp;
             <button type="button" id="btn-reset">RESET</button>
             <input type="hidden" name="step" value="3">
         </div>

@@ -2,6 +2,31 @@
 <!--<form method="post" action="donate-2.asp" name="DonateInfo" onsubmit="return(checkit(this));">-->
 <script type="text/javascript">
     jQuery(document).ready(function() {
+        jQuery('#cat-all').on('click', function() {
+            if (jQuery(this).is(':checked')) {
+                jQuery('input.cat-don').prop('checked', true);
+            } else {
+                jQuery('input.cat-don').prop('checked', false);
+            }
+        });
+        jQuery('.cat-don').on('click', function() {
+            jQuery('#cat-all').prop('checked', false);
+        });
+        jQuery('#ss-form').submit(function(e) {
+            var don = 0;
+            jQuery('.cat-don').each(function() {
+                if (jQuery(this).is(':checked')) {
+                    don += 5;
+                }
+            });
+            var rec = Number(jQuery('#numgifts').val());
+            var r = rec * don;
+            var amount = Number(jQuery('#DonateAmt').val());
+            if (amount < r) {
+                alert('Minimum donation amount is $' + r);
+                return false;
+            }
+        });
         jQuery('#ss-form').validate({
             rules: {
                 txtFirstName: {required: true},
@@ -9,10 +34,11 @@
                 txtAddress1: {required: true},
                 txtCity: {required: true},
                 txtState: {required: true},
+                numgifts: {required: true},
                 txtZip: {required: true, number: true},
                 txtEmail: {required: true, email: true},
-                categoryDonation: {required: true},
-                DonateAmt: {required: true, numeric: true}
+                "categoryDonation[]": {required: true},
+                DonateAmt: {required: true, number: true}
             }
         });
     });
@@ -122,7 +148,7 @@
                         }
                     }
                     ?>
-                    <input type="checkbox" name="categoryDonation[]" value="<?php echo $value; ?>" <?php echo $checked; ?> ><?php echo $value; ?><br>
+                    <input type="checkbox" class="cat-don" name="categoryDonation[]" value="<?php echo $value; ?>" <?php echo $checked; ?> ><?php echo $value; ?><br>
                     <?php
                 }
                 ?>
@@ -130,7 +156,7 @@
             <div class="midinput">
                 <?php
                 unset($data);
-                $data = Array('Scholarship', 'All');
+                $data = Array('Scholarship');
                 foreach ($data as $value) {
                     $checked = '';
                     foreach ($_SESSION['categoryDonation'] as $val) {
@@ -139,24 +165,22 @@
                         }
                     }
                     ?>
-                    <input type="checkbox" name="categoryDonation[]" value="<?php echo $value; ?>" <?php echo $checked; ?> ><?php echo $value; ?><br>
+                    <input type="checkbox" class="cat-don" name="categoryDonation[]" value="<?php echo $value; ?>" <?php echo $checked; ?> ><?php echo $value; ?><br>
                     <?php
                 }
-                ?>         
+                ?>  
+                <input type="checkbox" id="cat-all">All<br>                
+                <script type="text/javascript">
+                    jQuery(document).ready(function() {
+
+                    });
+                </script>
             </div>
-            <!--            <div class="midinput">
-                            <input type="checkbox" name="chkHonor" id="chkHonor" onclick="verifychkhonor(this);"> In Memory / In Honor Of <br>
-                            <input type="checkbox" name="chkGeneral" id="chkGeneral" onclick="verifychkgeneral(this);"> General	
-                        </div>
-                        <div class="midinput">
-                            <input type="checkbox" name="chkScholar" id="chkScholar" onclick="verifychkscholar(this);"> Scholarship<br>
-                            <input type="checkbox" name="chkAll" id="chkAll" onclick="verifychkall(this);"> All
-                        </div>-->
         </div>
         <div class="row-input">
             <div class="midinput">
                 <span>Recipient(s)</span>               
-                <select name="numgifts" id="numgifts" size="1" onchange="verifynumgifts(this)">
+                <select name="numgifts" id="numgifts" size="1" >
                     <?php
                     for ($i = 0; $i < 11; $i++) {
                         $selected = '';
@@ -164,7 +188,7 @@
                             $selected = 'selected';
                         }
                         ?>
-                        <option value="<?php echo $i; ?>" <?php echo $selected; ?>><?php echo $i; ?></option>
+                        <option value="<?php echo $i == 0 ? '' : $i; ?>" <?php echo $selected; ?>><?php echo $i; ?></option>
                         <?php
                     }
                     ?>
@@ -172,7 +196,7 @@
             </div>
             <div class="midinput">
                 <span>Donation Amount <span class="required">*</span>  <b>$</b></span>				
-                <input type="text" name="DonateAmt" id="DonateAmt" value="<?php echo $_SESSION['DonateAmt']; ?>" size="10" maxlength="10" onchange="verifyamount(this)">
+                <input type="text" name="DonateAmt" id="DonateAmt" value="<?php echo $_SESSION['DonateAmt']; ?>" size="10" maxlength="10" >
             </div>
         </div>		
 
@@ -185,7 +209,7 @@
         </div>
         <div class="row-input">
             <div class="biginput">
-                <input type="submit" name="submit" value="CONTINUE">&nbsp; &nbsp;
+                <input type="submit" value="CONTINUE">&nbsp; &nbsp;
                 <button type="button" id="btn-reset">RESET</button>
                 <input type="hidden" name="step" value="2">
             </div>

@@ -7,13 +7,17 @@ $titleData = Array(
     'Salutation' => ' Salutation',
     'txtFirstName' => 'First Name',
     'txtLastName' => 'Last Name',
+    'txtSpouse' => 'Spouse Name - if applicable',
     'txtOrganization' => 'Firm/Organization',
+    'txtTitle' => 'Title',
     'txtAddress1' => 'Address',
-    'txtAddress2' => 'Address',
+    'txtAddress2' => 'Address 2',
     'txtCity' => 'City',
     'txtState' => 'State Abbreviation',
+    'txtWorkPhone' => 'Work Telephone',
     'txtZip' => 'Zip Code',
     'txtHomePhone' => 'Home Phone',
+    'txtFaxPhone' => 'Fax',
     'txtBizPhone' => 'Business Phone',
     'txtEmail' => 'Email Address',
     'dollarcorporatestandard' => 'Standard Level Sponsorship - $2,500',
@@ -28,7 +32,15 @@ $titleData = Array(
     "x_address" => 'Address',
     "x_city" => 'City',
     "x_state" => 'State',
-    "x_zip" => 'Zip'
+    "x_zip" => 'Zip',
+    "x_card_type" => 'Card Type',
+    "x_card_type" => 'Card Number',
+    "x_expiration_month" => 'Expiration Month',
+    "x_expiration_year" => 'Expiration Year',
+    "categoryDonation" => 'Category of Donation',
+    "numgifts" => 'Recipient(s)',
+    "DonateAmt" => 'Donation Amount',
+    "checkAddressSame" => 'Check this box if the credit card billing address is the same as previously entered. If not, please complete the below',
 );
 
 function performTransaction($data) {
@@ -71,29 +83,7 @@ function performTransaction($data) {
     return $response_array;
 }
 
-function sendMail($data, $titleData,$subject) {
-    $body = '';
-    foreach ($data as $key => $value) {
-        if (!isIn($key) && $key != '') {
-            $body.='<b>' . $titleData[$key] . ' : </b>';
-            if (is_array($value)) {
-                $body.= formatArray($value);
-            } else {
-                $body.=$value . '<br>';
-            }
-        }
-    }
-    $from = 'jorge.quispe@altra.com.bo';
-//    $subject = 'New York Gala Registration';
-    $headers .= 'Content-type:text/html;charset=UTF-8 \rn'
-            . 'From: Registration <noreply@niaf.net>\rn';
 
-    if (mail($from, $subject, $body, $headers)) {
-        return true;
-    } else {
-        return false;
-    }
-}
 
 function formatArray($array) {
     $content = '';
