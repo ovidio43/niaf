@@ -10,6 +10,7 @@ $titleData = Array(
     'txtSpouse' => 'Spouse Name - if applicable',
     'txtOrganization' => 'Firm/Organization',
     'txtTitle' => 'Title',
+    'strWorkAddr' => 'Check if this is a work address ',
     'txtAddress1' => 'Address',
     'txtAddress2' => 'Address 2',
     'txtCity' => 'City',
@@ -20,6 +21,7 @@ $titleData = Array(
     'txtFaxPhone' => 'Fax',
     'txtBizPhone' => 'Business Phone',
     'txtEmail' => 'Email Address',
+    'nummemberships' => 'Gift Memberships - Recipient(s) ',
     'dollarcorporatestandard' => 'Standard Level Sponsorship - $2,500',
     'dollarcorporatepremium' => 'Premium Level Sponsorship - $5,000',
     'dollarcorporatetitle' => 'Title Level Sponsorship - $10,000',
@@ -34,13 +36,14 @@ $titleData = Array(
     "x_state" => 'State',
     "x_zip" => 'Zip',
     "x_card_type" => 'Card Type',
-    "x_card_type" => 'Card Number',
+    "x_card_num" => 'Card Number',
     "x_expiration_month" => 'Expiration Month',
     "x_expiration_year" => 'Expiration Year',
     "categoryDonation" => 'Category of Donation',
     "numgifts" => 'Recipient(s)',
     "DonateAmt" => 'Donation Amount',
     "checkAddressSame" => 'Check this box if the credit card billing address is the same as previously entered. If not, please complete the below',
+    
 );
 
 function performTransaction($data) {

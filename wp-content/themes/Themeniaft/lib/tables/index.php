@@ -59,6 +59,8 @@ if ($form == 'New York Gala Registration') {
             getDetailDonateInfoForm($db, $dataMixed);
             break;
     }
+} elseif ($form == 'Give the Gift of Heritage Form') {   
+    $db->debug($db->query('select * from _give_the_gift_of_heritage_form'));
 }
 
 function paginationItems($db, $dataMixed) {
