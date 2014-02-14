@@ -49,8 +49,7 @@ function sendMail($data, $titleData) {
 function sendMail_client($data) {
     $subject = 'NIAF Contribution - Confirmation ';
     $from = $data['txtEmail'];
-    $name_complete = 'Dear' . ' ' .  $data['txtFirstName'] . ' ' .$data['txtLastName'];
-    //$headers = "MIME-Version: 1.0rn"; 
+    $name_complete = 'Dear' . ' ' .  $data['txtFirstName'] . ' ' .$data['txtLastName']; 
     $headers .= 'Content-type:text/html;charset=UTF-8 \rn'
             . 'From:  NIAF (donations@niaf.org)\rn';
     $body = '';
@@ -64,14 +63,11 @@ function sendMail_client($data) {
     } 
     return false;
 }
-
-
 function insertIntoDb($data) {
     $categoryDonation = '';
     foreach ($data['categoryDonation'] as $value) {
         $categoryDonation.=$value . ' , ';
     }
-
     $date = date('Y-m-d H:i:s');
     $query = "INSERT INTO `_donate_info_form`(`txtFirstName`, `txtLastName`, `txtSpouse`, `txtOrganization`, "
             . "`txtTitle`, `strWorkAddr`, `txtAddress1`, `txtAddress2`, `txtCity`, `txtState`, `txtZip`, "
