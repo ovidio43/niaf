@@ -46,12 +46,10 @@ function sendMail($data, $titleData) {
     } 
     return false;
 }
-
 function sendMail_client($data) {
     $subject = 'NIAF New York Spring Menbership - CONFIRMATION ';
     $from = $data['txtEmail'];
     $name_complete = 'Dear' . ' ' .  $data['txtFirstName'] . ' ' .$data['txtLastName'];
-    //$headers = "MIME-Version: 1.0rn"; 
     $headers .= 'Content-type:text/html;charset=UTF-8 \rn'
             . 'From: Registration <noreply@niaf.net>\rn';
     $body = '';
@@ -67,7 +65,6 @@ function sendMail_client($data) {
     } 
     return false;
 }
-
 function insertIntoDb($data) {   
     $date = date('Y-m-d H:i:s');
     $query = "INSERT INTO `_give_the_gift_of_heritage_form`(`txtFirstName`, `txtLastName`, `txtSpouse`, `txtOrganization`,"

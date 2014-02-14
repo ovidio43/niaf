@@ -48,15 +48,13 @@ function sendMail($data, $titleData) {
             return true;    
         }
         return false;
-    } else {
-        return false;
-    }
+    } 
+    return false;
 }
 function sendMail_client($data) {
     $subject = 'NIAF New York Spring gala - CONFIRMATION ';
     $from = $data['txtEmail'];
     $name_complete = 'Dear' . ' ' .  $data['txtFirstName'] . ' ' .$data['txtLastName'];
-    //$headers = "MIME-Version: 1.0rn"; 
     $headers .= 'Content-type:text/html;charset=UTF-8 \rn'
             . 'From: Registration <noreply@niaf.net>\rn';
     $body = '';
@@ -67,10 +65,8 @@ function sendMail_client($data) {
     $body .=' If you have any questions, please don\'t hesitate to email Jerry Jones (jerry@niaf.org), or call 202-939-3102.'.'<br><br>';
     $body .=' Thank you for your support,' .'<br><br>';
     $body .=' NIAF ';
-
     if (mail($from, $subject, $body, $headers)) {
         return true;
-    } else {
-        return false;
     }
+    return false;
 }

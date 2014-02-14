@@ -39,18 +39,35 @@ function sendMail($data, $titleData) {
     $headers .= 'Content-type:text/html;charset=UTF-8 \rn'
             . 'From: Registration <noreply@niaf.net>\rn';
     if (mail($from, $subject, $body, $headers)) {
-        return true;
-    } else {
+        if (sendMail_client($data)){
+            return true;    
+        }
         return false;
-    }
+    } 
+    return false;
 }
-
+function sendMail_client($data) {
+    $subject = 'NIAF Contribution - Confirmation ';
+    $from = $data['txtEmail'];
+    $name_complete = 'Dear' . ' ' .  $data['txtFirstName'] . ' ' .$data['txtLastName']; 
+    $headers .= 'Content-type:text/html;charset=UTF-8 \rn'
+            . 'From:  NIAF (donations@niaf.org)\rn';
+    $body = '';
+    $body .= $name_complete.'<br><br>';
+    $body .= 'Thank you for your contribution to the National Italian American Foundation. Your information has been received.' .'<br><br>';
+    $body .= '  If you have any questions, please email donations@niaf.org. '.'<br><br>';
+    $body .= '  Thank you again for your support. '.'<br><br>';
+    $body .='  National Italian American Foundation - www.niaf.org';
+    if (mail($from, $subject, $body, $headers)) {
+        return true;
+    } 
+    return false;
+}
 function insertIntoDb($data) {
     $categoryDonation = '';
     foreach ($data['categoryDonation'] as $value) {
         $categoryDonation.=$value . ' , ';
     }
-
     $date = date('Y-m-d H:i:s');
     $query = "INSERT INTO `_donate_info_form`(`txtFirstName`, `txtLastName`, `txtSpouse`, `txtOrganization`, "
             . "`txtTitle`, `strWorkAddr`, `txtAddress1`, `txtAddress2`, `txtCity`, `txtState`, `txtZip`, "
