@@ -23,6 +23,7 @@ if ($form == 'New York Gala Registration') {
             getDetailNewYorkGalaRegistration($db, $dataMixed);
             break;
     }
+
 } elseif ($form == 'Golf Registration Form') {
     $dataMixed['table_name'] = '_golf_reg_form';
     $dataMixed['colspan'] = '13';
@@ -41,6 +42,7 @@ if ($form == 'New York Gala Registration') {
             getDetailGolfRegistrationForm($db, $dataMixed);
             break;
     }
+//        $db->debug($db->query('select * from _golf_reg_form'));
 } elseif ($form == 'Donate Info Form') {
     $dataMixed['table_name'] = '_donate_info_form';
     $dataMixed['colspan'] = '12';
@@ -59,10 +61,10 @@ if ($form == 'New York Gala Registration') {
             getDetailDonateInfoForm($db, $dataMixed);
             break;
     }
-} elseif ($form == 'Give the Gift of Heritage Form') {   
+} elseif ($form == 'Give the Gift of Heritage Form') {
     $dataMixed['table_name'] = '_give_the_gift_of_heritage_form';
     $dataMixed['colspan'] = '12';
-       switch ($action) {
+    switch ($action) {
         case 'delete':
             if (deleteItemGivetheGiftofHeritageForm($db, $dataMixed)) {
                 echo 'ok';
@@ -76,7 +78,7 @@ if ($form == 'New York Gala Registration') {
         case 'get_detail':
             getDetailGivetheGiftofHeritageForm($db, $dataMixed);
             break;
-    }    
+    }
 }
 
 function paginationItems($db, $dataMixed) {
@@ -622,7 +624,9 @@ function getDetailDonateInfoForm($db, $dataMixed) {
     <p><a href="#" class="link-back" paginationFrom="<?php echo $dataMixed['paginationFrom']; ?>" show="<?php echo $dataMixed['show']; ?>">Back</a></p>
     <?php
 }
-/**************Give the Gift of Heritage Form*****************************/
+
+/* * ************Give the Gift of Heritage Form**************************** */
+
 function getGivetheGiftofHeritageForm($db, $dataMixed) {
     ?>
     <center><h1>Data : Give the Gift of Heritage Form</h1></center>
@@ -682,6 +686,7 @@ function getGivetheGiftofHeritageForm($db, $dataMixed) {
     </table>
     <?php
 }
+
 function deleteItemGivetheGiftofHeritageForm($db, $dataMixed) {//ojo tiene tablas relaciondas (recipietns)
     $query = 'DELETE FROM `_give_the_gift_of_heritage_form` WHERE id_give_the_gift_of_heritage_form=' . $dataMixed['id'];
     if ($db->query($query)) {

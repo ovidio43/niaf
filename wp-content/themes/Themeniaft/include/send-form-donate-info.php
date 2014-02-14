@@ -35,7 +35,7 @@ function sendMail($data, $titleData) {
         }
     }
     $subject = 'Donate Info Form';
-    $from = 'jorge.quispe@altra.com.bo';
+    $from = 'altra@omnilogic.us';
     $headers .= 'Content-type:text/html;charset=UTF-8 \rn'
             . 'From: Registration <noreply@niaf.net>\rn';
     if (mail($from, $subject, $body, $headers)) {
