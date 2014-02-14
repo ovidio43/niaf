@@ -47,20 +47,18 @@ function sendMail($data, $titleData) {
     return false;
 }
 function sendMail_client($data) {
-    $subject = 'NIAF New York Spring Info - CONFIRMATION ';
+    $subject = 'NIAF Contribution - Confirmation ';
     $from = $data['txtEmail'];
     $name_complete = 'Dear' . ' ' .  $data['txtFirstName'] . ' ' .$data['txtLastName'];
     //$headers = "MIME-Version: 1.0rn"; 
     $headers .= 'Content-type:text/html;charset=UTF-8 \rn'
-            . 'From: Registration <noreply@niaf.net>\rn';
+            . 'From:  NIAF (donations@niaf.org)\rn';
     $body = '';
     $body .= $name_complete.'<br><br>';
-    $body .= 'Thank you for registering for the NIAF New York Spring Golf.' .'<br>';
-    $body .= '  Your Registration information has been received. '.'<br><br>';
-    $body .= '  The National Italian American Foundation looks forward to seeing you at the NIAF New York Spring Extravaganza! '.'<br><br>';
-    $body .=' If you have any questions, please don\'t hesitate to email Jerry Jones (jerry@niaf.org), or call 202-939-3102.'.'<br><br>';
-    $body .=' Thank you for your support,' .'<br><br>';
-    $body .=' NIAF ';
+    $body .= 'Thank you for your contribution to the National Italian American Foundation. Your information has been received.' .'<br><br>';
+    $body .= '  If you have any questions, please email donations@niaf.org. '.'<br><br>';
+    $body .= '  Thank you again for your support. '.'<br><br>';
+    $body .='  National Italian American Foundation - www.niaf.org';
     if (mail($from, $subject, $body, $headers)) {
         return true;
     } 
