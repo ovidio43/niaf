@@ -39,10 +39,10 @@ function sendMail($data, $titleData) {
             }
         }
     }
-    $subject = 'New York Gala Registration';
-    $from = 'jorge.quispe@altra.com.bo';
-    $headers .= 'Content-type:text/html;charset=UTF-8 \rn'
-            . 'From: Registration <noreply@niaf.net>\rn';
+    $subject = ' NIAF NEW YORK SPRING GALA - NEW REGISTRATION';
+    $from = 'altra@omnilogic.us';
+    $headers .= 'Content-type:text/html;charset=UTF-8'. "\r\n"
+            . 'From: NIAF <information@niaf.org>'."\r\n";
     if (mail($from, $subject, $body, $headers)) {
         if (sendMail_client($data)){
             return true;    
@@ -55,14 +55,14 @@ function sendMail_client($data) {
     $subject = 'NIAF New York Spring gala - CONFIRMATION ';
     $from = $data['txtEmail'];
     $name_complete = 'Dear' . ' ' .  $data['txtFirstName'] . ' ' .$data['txtLastName'];
-    $headers .= 'Content-type:text/html;charset=UTF-8 \rn'
-            . 'From: Registration <noreply@niaf.net>\rn';
+    $headers .= 'Content-type:text/html;charset=UTF-8'. "\r\n"
+            . 'From: NIAF <information@niaf.org>'. "\r\n";
     $body = '';
     $body .= $name_complete.'<br><br>';
     $body .= 'Thank you for registering for the NIAF New York Spring Golf.' .'<br>';
     $body .= '  Your Registration information has been received. '.'<br><br>';
     $body .= '  The National Italian American Foundation looks forward to seeing you at the NIAF New York Spring Extravaganza! '.'<br><br>';
-    $body .=' If you have any questions, please don\'t hesitate to email Jerry Jones (jerry@niaf.org), or call 202-939-3102.'.'<br><br>';
+    $body .=' If you have any questions, please don\'t hesitate to email Jerry Jones (<a href="mailto:jerry@niaf.org">jerry@niaf.org</a>), or call 202-939-3102.'.'<br><br>';
     $body .=' Thank you for your support,' .'<br><br>';
     $body .=' NIAF ';
     if (mail($from, $subject, $body, $headers)) {

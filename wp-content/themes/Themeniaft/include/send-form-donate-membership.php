@@ -34,10 +34,10 @@ function sendMail($data, $titleData) {
             }
         }
     }
-    $subject = 'Give the gift of heritage form';
-    $from = 'jorge.quispe@altra.com.bo';
-    $headers .= 'Content-type:text/html;charset=UTF-8 \rn'
-            . 'From: Registration <noreply@niaf.net>\rn';
+    $subject = ' give a Gift Membership - NEW REGISTRATION';
+    $from = 'websitemembership@niaf.org, altra@omnilogic.us';
+    $headers .= 'Content-type:text/html;charset=UTF-8'. "\r\n"
+            . 'From: NIAF <websitemembership@niaf.org>'. "\r\n";
     if (mail($from, $subject, $body, $headers)) {
         if (sendMail_client($data)){
             return true;    
@@ -47,17 +47,15 @@ function sendMail($data, $titleData) {
     return false;
 }
 function sendMail_client($data) {
-    $subject = 'NIAF New York Spring Menbership - CONFIRMATION ';
+    $subject = ' give a Gift Membership - CONFIRMATION ';
     $from = $data['txtEmail'];
     $name_complete = 'Dear' . ' ' .  $data['txtFirstName'] . ' ' .$data['txtLastName'];
-    $headers .= 'Content-type:text/html;charset=UTF-8 \rn'
-            . 'From: Registration <noreply@niaf.net>\rn';
+    $headers .= 'Content-type:text/html;charset=UTF-8 '. "\r\n"
+            . 'From: NIAF <websitemembership@niaf.org>'. "\r\n";
     $body = '';
     $body .= $name_complete.'<br><br>';
-    $body .= 'Thank you for registering for the NIAF New York Spring Golf.' .'<br>';
+    $body .= 'Thank you for registering give a Gift Membership.' .'<br>';
     $body .= '  Your Registration information has been received. '.'<br><br>';
-    $body .= '  The National Italian American Foundation looks forward to seeing you at the NIAF New York Spring Extravaganza! '.'<br><br>';
-    $body .=' If you have any questions, please don\'t hesitate to email Jerry Jones (jerry@niaf.org), or call 202-939-3102.'.'<br><br>';
     $body .=' Thank you for your support,' .'<br><br>';
     $body .=' NIAF ';
     if (mail($from, $subject, $body, $headers)) {
