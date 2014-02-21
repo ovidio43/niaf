@@ -34,23 +34,40 @@ function sendMail($data, $titleData) {
             }
         }
     }
-    $subject = 'Donate Info Form';
-    $from = 'jorge.quispe@altra.com.bo';
-    $headers .= 'Content-type:text/html;charset=UTF-8 \rn'
-            . 'From: Registration <noreply@niaf.net>\rn';
+    $subject = 'NIAF Contribution - NEW REGISTRATION';
+    $from = 'altra@omnilogic.us';
+    $headers .= 'Content-type:text/html;charset=UTF-8'. "\r\n"
+            . 'From: NIAF <donations@niaf.org>'. "\r\n";
+    if (mail($from, $subject, $body, $headers)) {
+        if (sendMail_client($data)){
+            return true;    
+        }
+        return false;
+    } 
+    return false;
+}
+function sendMail_client($data) {
+    $subject = 'NIAF Contribution - Confirmation ';
+    $from = $data['txtEmail'];
+    $name_complete = 'Dear' . ' ' .  $data['txtFirstName'] . ' ' .$data['txtLastName']; 
+    $headers .= 'Content-type:text/html;charset=UTF-8'. "\r\n"
+            . 'From:  NIAF (donations@niaf.org)'. "\r\n";
+    $body = '';
+    $body .= $name_complete.'<br><br>';
+    $body .= 'Thank you for your contribution to the National Italian American Foundation. Your information has been received.' .'<br><br>';
+    $body .= '  If you have any questions, please email <a href="mailto:donations@niaf.org">donations@niaf.org</a>. '.'<br><br>';
+    $body .= '  Thank you again for your support. '.'<br><br>';
+    $body .='  National Italian American Foundation - <a href="http://www.niaf.org">www.niaf.org</a>';
     if (mail($from, $subject, $body, $headers)) {
         return true;
-    } else {
-        return false;
-    }
+    } 
+    return false;
 }
-
 function insertIntoDb($data) {
     $categoryDonation = '';
     foreach ($data['categoryDonation'] as $value) {
         $categoryDonation.=$value . ' , ';
     }
-
     $date = date('Y-m-d H:i:s');
     $query = "INSERT INTO `_donate_info_form`(`txtFirstName`, `txtLastName`, `txtSpouse`, `txtOrganization`, "
             . "`txtTitle`, `strWorkAddr`, `txtAddress1`, `txtAddress2`, `txtCity`, `txtState`, `txtZip`, "

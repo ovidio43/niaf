@@ -14,16 +14,18 @@
                 txtZip: {required: true, number: true},
                 txtEmail: {required: true, email: true},
                 nummemberships: {required: true},
-                txtHomePhone: {numeric: true},
-                txtWorkPhone: {numeric: true},
+                txtHomePhone: {number: true},
+                txtWorkPhone: {number: true},
             }
         });
     });
 </script>
 <form method="post" action="" id="ss-form" >
+    <div class="row-input">
+        Complete the form below to contribute to the NIAF.  All information is securely submitted using encryption.  Please note that fields with a 
+        <span class="required"><b>*</b></span> are required!   
+    </div>
 
-    Complete the form below to contribute to the NIAF.  All information is securely submitted using encryption.  Please note that fields with a 
-    <span class="required"><b>*</b></span> are required!
     <div class="row-input">
         <div class="midinput">
             <span>First Name <span class="required">*</span></span>
@@ -104,9 +106,9 @@
         </div>
     </div>		
     <div class="row-input">
-        <div class="biginput">
-            <span >Gift Memberships</span>&nbsp;             
-            <select name="nummemberships" id="nummemberships" size="1" onchange="verifynummemberships(this)">
+        <div class="midinput">
+            <span >Gift Memberships<span class="required">*</span></span></span>&nbsp;             
+            <select name="nummemberships" id="nummemberships" >
                 <?php
                 for ($i = 0; $i < 6; $i++) {
                     $selected = '';
@@ -114,11 +116,11 @@
                         $selected = 'selected';
                     }
                     ?>
-                    <option value="<?php echo $i; ?>" <?php echo $selected; ?>><?php echo $i; ?></option>
+                    <option value="<?php echo $i == 0 ? '' : $i; ?>" <?php echo $selected; ?>><?php echo $i; ?></option>
                     <?php
                 }
                 ?>                
-            </select><span>Recipient(s)<span class="required">*</span></span>
+            </select>Recipient(s)
         </div>
     </div>
 

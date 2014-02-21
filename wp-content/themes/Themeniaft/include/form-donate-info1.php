@@ -169,12 +169,7 @@
                     <?php
                 }
                 ?>  
-                <input type="checkbox" id="cat-all">All<br>                
-                <script type="text/javascript">
-                    jQuery(document).ready(function() {
-
-                    });
-                </script>
+                <input type="checkbox" id="cat-all">All<br>                            
             </div>
         </div>
         <div class="row-input">
