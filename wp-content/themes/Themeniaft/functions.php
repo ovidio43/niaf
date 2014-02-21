@@ -5,6 +5,8 @@ require_once (get_template_directory() . '/lib/ezSQL-master/mysqli/ez_sql_mysqli
 require_once (get_template_directory() . '/customgalery.php');
 //require_once (get_template_directory().'/formulariosSalesforce/_SF_validation_user2.php') ; 
 
+
+
 /* cutomized functions for theme niaft */
 register_nav_menu('Primary', __('Main Menu', 'themeNiaft'));
 register_nav_menu('Secondary', __('Footer Menu', 'themeNiaft'));
@@ -92,6 +94,7 @@ class LoginFormWidget extends WP_Widget {
                 ?>
                 <div class="loginform-btb-wrap"> 
                     <?php
+                    echo $current_user->user_level;
                     if ($current_user->ID == null) {
 //                        setcookie("first_name", "", 1);
 //                        setcookie("last_name", "", 1);
