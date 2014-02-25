@@ -6,6 +6,74 @@ require_once (get_template_directory() . '/customgalery.php');
 //require_once (get_template_directory().'/formulariosSalesforce/_SF_validation_user2.php') ; 
 
 
+add_action('init', 'setup_niafevents_post');
+function setup_niafevents_post() {
+
+    $capabilities = array(
+     'publish_posts' => 'publish_niaf_event',
+     'edit_posts' => 'edit_niaf_event',
+     'edit_others_posts' => 'edit_others_niaf_event',
+     'delete_posts' => 'delete_niaf_event',
+     'delete_others_posts' => 'delete_others_niaf_event',
+     'read_private_posts' => 'read_private_niaf_event',
+     'edit_post' => 'edit_niaf_event',
+     'delete_post' => 'delete_niaf_event',
+     'read_post' => 'read_niaf_event'
+    );
+
+    $labels = array(
+     'name' => 'Niaf Events Entries',
+     'singular_name' => 'Niaf Events Entry',
+     'menu_name' => 'Niaf Events Entries',
+     'add_new' => 'Add New',
+     'add_new_item' => 'Add New Niaf Events Entry',
+     'edit' => 'Edit entry',
+     'edit_item' => 'Edit Niaf Events Entry',
+     'new_item' => 'New Niaf Events Entry',
+     'view' => 'View Niaf Events Entry',
+     'view_item' => 'View Niaf Events Entry',
+     'search_items' => 'Search Niaf Events Entries',
+     'not_found' => 'No Niaf Events Entries Found',
+     'not_found_in_trash' => 'No Niaf Events Entries Found in Trash',
+     'parent' => 'Parent Niaf Events Entry',);
+
+    register_post_type('niaf_event', array(
+         'label' => 'Niaf Events Entries',
+         'description' => '',
+         'public' => true,
+         'show_ui' => true,
+         'show_in_menu' => true,
+         'capability_type' => 'niaf_event',
+         'capabilities'=>$capabilities,
+         'hierarchical' => false,
+         'rewrite' => array('slug' => ''),
+         'query_var' => true,
+         'supports' => array('title','thumbnail','editor'),
+         'labels' => $labels,
+         )
+    );
+
+        flush_rewrite_rules(false);
+
+        /********************** CUSTOM ROLE *****************************/
+    add_role('niaf_event_author', 'Niaf Events Helper', array (
+         'publish_niaf_event' => true,
+         'edit_niaf_event' => true,
+         'edit_others_niaf_event' => true,
+         'delete_niaf_event' => true,
+         'delete_others_niaf_event' => true,
+         'read_private_niaf_event' => true,
+         'edit_niaf_event' => true,
+         'delete_niaf_event' => true,
+         'read_niaf_event' => true,
+         // more standard capabilities here
+        'read' => true,
+
+        )
+
+    );
+}
+
 
 /* cutomized functions for theme niaft */
 register_nav_menu('Primary', __('Main Menu', 'themeNiaft'));
