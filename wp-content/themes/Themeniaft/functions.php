@@ -162,7 +162,7 @@ class LoginFormWidget extends WP_Widget {
                 ?>
                 <div class="loginform-btb-wrap"> 
                     <?php
-                    echo $current_user->user_level;
+                    
                     if ($current_user->ID == null) {
 //                        setcookie("first_name", "", 1);
 //                        setcookie("last_name", "", 1);
