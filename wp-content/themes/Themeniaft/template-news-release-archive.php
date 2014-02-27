@@ -26,24 +26,23 @@ get_header(); ?>
           $args=array(
               'post_type' => 'niaf_event',
               'post_status' => 'publish',
-              'orderby' => 'date',
+              'meta_key' => 'date_niaf_event_publish',
+              'orderby' => 'meta_value', 
               'order' => 'DESC',
-              'posts_per_page'=>-1,
+              'posts_per_page'=>-1,              
               'meta_query' => array(
-                array(
-                    'key'   => 'date_niaf_event_publish',
-                    'compare' => '>=',
-                    'value'   => $today,
-                )
-              )          
+                  array(
+                      'key' => 'date_niaf_event_publish',
+                      'value' => strtotime(date('Ymd')),
+                      'type' => 'NUMERIC',
+                      'compare' => '<='
+                  )                             
+              )
             );          
           $myposts = new WP_Query( $args );
           if ( $myposts->have_posts() ) : ?>
               <?php while ( $myposts->have_posts() ) : $myposts->the_post(); 
-                   echo date('Ymd')."<br>";
-                    echo get_field('date_niaf_event_publish');
               ?> 
-
                   <?php get_template_part( 'content', 'taxonomy' ); ?>
               <?php endwhile;?>
 
