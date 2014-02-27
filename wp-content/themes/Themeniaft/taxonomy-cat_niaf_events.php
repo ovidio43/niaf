@@ -20,7 +20,7 @@ get_header(); ?>
                     </h1>
                   </header>                     
               <?php while ( have_posts() ) : the_post(); ?>                         
-                  <?php get_template_part( 'content', 'category' ); ?>
+                  <?php get_template_part( 'content', 'taxonomy' ); ?>
               <?php endwhile;?>
 
           <?php wp_reset_query(); 

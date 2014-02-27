@@ -46,7 +46,7 @@ function setup_niafevents_post() {
          'capability_type' => 'niaf_event',
          'capabilities'=>$capabilities,
          'hierarchical' => false,
-         'rewrite' => array('slug' => ''),
+         'rewrite' => array('slug' => 'niaf_event'),
          'query_var' => true,
          'supports' => array('title','thumbnail','editor'),
          'labels' => $labels,
