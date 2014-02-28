@@ -10,6 +10,8 @@ get_header(); ?>
 <div class="main-container">
   <div class="main clearfix">
       <div class="primary ">
+          <?php 
+          if ( have_posts() ) : ?>      
           <?php while ( have_posts() ) : the_post(); ?> 
                 <header class="entry-header">
                   <h1 class="entry-title">
@@ -19,25 +21,26 @@ get_header(); ?>
                   </h1>
                 </header> 
                 <?php the_content();?>       
-          <?php endwhile;?>
+          <?php   endwhile; wp_reset_postdata();?>
+          <?php 
+          endif;
+          ?>          
           <?php
-          wp_reset_query(); 
           $today = strtotime(date('Ymd'));
           $args=array(
               'post_type' => 'niaf_event',
               'post_status' => 'publish',
               'meta_key' => 'date_niaf_event_publish',
               'orderby' => 'meta_value', 
-              'order' => 'DESC',
-              'posts_per_page'=>-1,              
-              'meta_query' => array(
-                  array(
-                      'key' => 'date_niaf_event_publish',
-                      'value' => strtotime(date('Ymd')),
-                      'type' => 'NUMERIC',
-                      'compare' => '<='
-                  )                             
-              )
+              'order' => 'ASC',
+              'offset' => 0,
+              'posts_per_page'=>-1,
+              'date_query' => array(
+                array(
+                  'year'      => date('Y'),
+                  'compare'   => '<',
+                )
+              )            
             );          
           $myposts = new WP_Query( $args );
           if ( $myposts->have_posts() ) : ?>

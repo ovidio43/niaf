@@ -18,7 +18,7 @@ get_header(); ?>
                     ?>
                     </h1>
                   </header> 
-                  <?php the_content();?>       
+                  <?php $content=get_the_content();?>       
           <?php endwhile;?>
           <?php
           wp_reset_query(); 
@@ -26,18 +26,11 @@ get_header(); ?>
           $args=array(
               'post_type' => 'niaf_event',
               'post_status' => 'publish',
+              'year' => date('Y'),
               'meta_key' => 'date_niaf_event_publish',
               'orderby' => 'meta_value',               
-              'order' => 'ASC',
-              'posts_per_page'=>-1,
-              'meta_query' => array(
-                  array(
-                      'key' => 'date_niaf_event_publish',
-                      'value' => strtotime(date('Ymd')),
-                      'type' => 'NUMERIC',
-                      'compare' => '>='
-                  )                             
-              )            
+              'order' => 'DESC',
+              'posts_per_page'=>-1
             );          
           $myposts = new WP_Query( $args );
           if ( $myposts->have_posts() ) : ?>   
@@ -52,6 +45,9 @@ get_header(); ?>
           <?php wp_reset_query(); 
             endif;
           ?>  
+
+                  <?php echo $content;?>       
+        
       </div>
       <aside class="sidebar">
           <?php get_sidebar(); ?>
