@@ -47,7 +47,7 @@ global $current_user;
 <!--div id="preloader">
   <div id="status">&nbsp;</div>
 </div-->
-<div id="main-wrapper" class="wrapper shadow-box bg-white main-container-full" rel="<?php echo $redirect;?>" >
+<div id="main-wrapper" class="wrapper shadow-box bg-white main-container-full" rel="http://niaf.net/my-niaf/" >
 	<header class="header-container" rel="<?php bloginfo('url'); ?>">
         <a href="<?php echo esc_url( home_url( '/' ) ); ?>" id="logo"><img src="<?php echo get_template_directory_uri();?>/img/logo.png"> </a>
         <div class="header-title">THE NATIONAL ITALIAN AMERICAN FOUNDATION</div>
