@@ -1,6 +1,6 @@
 <?php
 /**
- * Template name: golf reg form
+ * Template name: bracco scholarship application form
  *
  * @package WordPress
  * @subpackage themeniaft
@@ -36,4 +36,4 @@ get_header();
         </aside>
     </div> <!-- #main -->
 </div> <!-- #main-container -->
-<?php get_footer(); ?>
+<?php get_footer(); 

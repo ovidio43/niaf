@@ -14,274 +14,307 @@
     });
 </script>
 <form name="regform" id="regform" action="" method="post">
+
     <div class="row-input">
         <div class="biginput">
-            Welcome to the 4th Annual NIAF Golf Tournament Registration Form. <b>Please Reserve </b>Your Spots Today! <br><br>
-            &nbsp;&nbsp;<u>Please Note:</u><br><br>
-            &nbsp;&nbsp; - Fields with a red <span class="required">*</span> are <span class="required"><b>Required</b></span> <br><br>
-            &nbsp;&nbsp;- All forms are <u>securely</u> submitted using encryption
+            <span class="red">*</span> How did you hear about the NIAF/Bracco Foundation Scholarship? 
+            <input type="text" name="question1" >
+        </div>
+    </div> 
+    <div class="row-input">
+        <div class="midinput">
+            <span class="red">*</span> First Name:<br>
+            <input type="text" name="firstName">
+        </div>
+        <div class="midinput">
+            Middle Name:<br>
+            <input type="text" name="middleName">
         </div>
     </div>
     <div class="row-input">
-        <div class="biginput">
-            <b>Golf Packages:</b>
-        </div>
-    </div>
-
-    <div class="row-input">
         <div class="midinput">
-            <select name="numcorporatestandards" size="1" class="select-Packages" amount="2500">
-                <option value="0" selected="">0</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-            </select>                           
-            <b>Standard Level Sponsorship - $2,500</b><br> 
-            <ul>    
-                <li>Includes Golf Foursome package</li>
-                <li>Company Listing on NIAF Website</li>
-                <li>Four (4) Rat Pack Live dinner and show tickets</li>
-                <li>Printed acknowledgement on event day material</li>   
-            </ul>                           
-
+            <span class="red">*</span>Last Name:<br>
+            <input type="text" name="lastName">
         </div>
         <div class="midinput">
-            <b>$</b>&nbsp;<input type="text" readonly="" value="0.00" size="9" id="dollarcorporatestandard" name="dollarcorporatestandard" class="sub-amount">
-        </div>        
-    </div>
-    <div class="row-input">
-        <div class="midinput">
-            <select name="numcorporatepremiums" size="1" class="select-Packages" amount="5000">
-                <option value="0" selected="">0</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-            </select>                           
-            <b>Premium Level Sponsorship - $5,000</b> 
-            <ul>            
-                <li>Includes Golf Foursome package </li>
-                <li>Company Listing on NIAF Website</li>
-                <li>Printed and verbal acknowledgement on event day</li>
-                <li>Eight (8) Rat Pack Live dinner and show tickets</li>
-                <li>Recognition in the NIAF E-Newsletter</li>
-            </ul>
-
-        </div>
-        <div class="midinput">
-            <b>$</b>&nbsp;<input type="text" readonly="" value="0.00" size="9" id="dollarcorporatepremium" name="dollarcorporatepremium" class="sub-amount">      
-        </div>
-    </div>
-
-    <div class="row-input">
-        <div class="midinput">        
-            <select name="numcorporatetitles" size="1" class="select-Packages" amount="10000">
-                <option value="0" selected="">0</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-            </select>                           
-            <b>Title Level Sponsorship - $10,000</b>                 
-            <ul>
-                <li>Includes Golf Foursome package </li>
-                <li>Company Listing on NIAF Website</li>
-                <li>Verbal acknowledgement on event day</li>
-                <li>Twenty (20) Rat Pack Live dinner and show tickets</li>
-                <li>Company name listed on all event printed material and press releases</li>
-                <li>Advertisement and recognition  in the NIAF E-Newsletter</li>
-                <li>Full page ad in one issue of NIAF Ambassador Magazine</li>
-            </ul>
-
-        </div>
-        <div class="midinput">
-            <b>$</b>&nbsp;<input type="text" readonly="" value="0.00" size="9" id="dollarcorporatetitle" name="dollarcorporatetitle" class="sub-amount">
-        </div>
-    </div>
-    <div class="row-input">        
-        <div class="biginput">      
-            <?php
-            for ($i = 0; $i < 40; $i++) {
-                echo '&nbsp;';
-            }
-            ?><b>TOTAL REMITTED $</b>
-            <!--<input type="hidden" name="dollartotal" size="9" maxlength="9" value="0.00">--> 
-            <input type="text" name="x_amount"  id="x_amount" readonly="" size="9" maxlength="9" value="" class="sub-amount">    
-        </div>
-    </div>              
-
-    <div class="row-input">
-        <div class="biginput">      
-            <b><u>Please enter the golfer names:</u></b>
-        </div>
-    </div>
-
-    <div class="row-input">
-        <div class="midinput">
-            <span>Golfer 1 </span>
-            <input type="text" value="" size="60" maxlength="100" name="golfer1" id="golfer1">
-        </div>
-        <div class="midinput">
-            <span>Golfer 2</span>
-            <input type="text" value="" size="60" maxlength="100" name="golfer2" id="golfer2">  
-        </div>
-    </div>  
-
-    <div class="row-input">
-        <div class="midinput">
-            <span>Golfer 3</span>
-            <input type="text" value="" size="60" maxlength="100" name="golfer3" id="golfer3">
-        </div>
-        <div class="midinput">
-            <span>Golfer 4</span>
-            <input type="text" value="" size="60" maxlength="100" name="golfer4" id="golfer4">
-        </div>
-    </div>  
-    <hr noshade="1">
-    <div class="row-input">
-        <div class="biginput">        
-            <b><u>Please complete below</u></b>
-        </div>
-    </div>
-
-    <div class="row-input">
-        <div class="midinput">
-            <span class="required">*</span>&nbsp; Salutation:
-            <select name="Salutation" value="Select Salutation" size="1">
-                <option value="Mr.">Mr.</option>
-                <option value="Mrs.">Mrs.</option>
-                <option value="Mr. and Mrs.">Mr. and Mrs.</option>
-                <option value="Ms.">Ms.</option>
-                <option value="Dr.">Dr.</option>
-                <option value="Hon.">Hon.</option>
-                <option value="Rev.">Rev.</option>
-                <option value="Sen.">Sen.</option>
+            <span class="red">*</span>Gender:<br>
+            <select name="gender">
+                <option value="">SELECT</option>	
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
             </select>
         </div>
-        <div class="midinput">
-            <span class="required">*</span>&nbsp; First Name:
-            <input type="text" name="x_first_name" size="50" maxlength="50" value="">
-        </div>
     </div>
     <div class="row-input">
         <div class="midinput">
-            <span class="required">*</span>&nbsp; Last Name:
-            <input type="text" name="x_last_name" size="50" maxlength="75" value="">
+            <span class="red">*</span>Address:<br>
+            <input type="text" name="address">
         </div>
-        <div class="midinput">
-            Firm/Organization: 
-            <input type="text" name="txtOrganization" size="50" maxlength="75" value="">
-        </div>
-    </div>  
-
-    <div class="row-input">
-        <div class="midinput">
-            <span class="required">*</span>&nbsp;Address:
-            <input type="text" name="x_address" size="50" maxlength="60" value="">
-        </div>
-        <div class="midinput">
+        <div class="midinput">   
             <br>
-            <input type="text" name="txtAddress2" size="50" maxlength="60" value="">
+            <input type="text" name="address1">
         </div>
-    </div>  
-
+    </div>
     <div class="row-input">
         <div class="midinput">
-            <span class="required">*</span>&nbsp;City:
-            <input type="text" name="x_city" size="25" maxlength="40" value="">
+            <span class="red">*</span>City:<br>
+            <input type="text" name="city">
         </div>
-        <div class="midinput">
-            <span type="text" class="required">*</span>&nbsp;State Abbreviation: &nbsp;&nbsp;<i>example: DC</i>
-            <input type="text" name="x_state" size="2" maxlength="2" value="">
-
+        <div class="midinput">            
+            <span class="red">*</span>State Abbreviation:<br>
+            <input maxlength="2" size="2" name="state">
         </div>
-    </div>  
-
+    </div>
     <div class="row-input">
         <div class="midinput">
-            <span class="required">*</span>*&nbsp;Zip Code:
-            <input type="text" name="x_zip" size="10" maxlength="10" value="">
+            <span class="red">*</span>Zip Code:<br>
+            <input type="text" name="zipCode">
         </div>
-        <div class="midinput">
-            Home Phone:<i>&nbsp;&nbsp;&nbsp;&nbsp;example: 202-387-0600</i>
-            <input type="text" name="txtHomePhone" size="12" maxlength="12" value="">
+        <div class="midinput">            
+            <span class="red">*</span>Phone Number:<br>
+            <input value="" name="phineNumber">
         </div>
-    </div>  
-
+    </div>
     <div class="row-input">
         <div class="midinput">
-            Business Phone:&nbsp;&nbsp;<i>example: 202-387-0800</i>
-            <input type="text" name="txtBizPhone" size="12" maxlength="12" value="">
+            <span class="red">*</span> E-mail Address:<br>
+            <input type="text" name="email">
         </div>
-        <div class="midinput">
-            <span class="required">*</span>*&nbsp;Email Address:&nbsp;&nbsp;<i>example: johndoe@aol.com</i>
-            <input type="text" name="txtEmail" size="30" maxlength="30" value="">
+        <div class="midinput">            
+            <span class="red">*</span>Confirm E-mail Address:<br>
+            <input type="text" name="confirmEmail">
         </div>
     </div>
     <div class="row-input">
         <div class="biginput">
-            <font color="blue"><u><b>Payment Method</b></u></font>
-        </div>
-    </div>
-    <div class="row-input">
-        <div class="midinput">
-            <span>Credit Card:</span>
-            <select name="x_card_type" size="1">
-                <option value="">Select</option>
-                <option value="0">Visa</option>
-                <option value="1">MasterCard</option>
-                <option value="2">American Express</option>
-            </select>                   
-        </div>
-        <div class="midinput">
-            Credit Card Number:
-            <input type="text" name="x_card_num" size="16" maxlength="16" value="">
-        </div>
-    </div>
-    <div class="row-input">
-        <div class="midinput">
-            Credit Card Expiration Month:
-            <select name="x_expiration_month" value="Select Month" size="1">
-                <option value="">Select</option>
-                <option value="01">1 - Jan</option>
-                <option value="02">2 - Feb</option>
-                <option value="03">3 - Mar</option>
-                <option value="04">4 - Apr</option>
-                <option value="05">5 - May</option>
-                <option value="06">6 - Jun</option>
-                <option value="07">7 - Jul</option>
-                <option value="08">8 - Aug</option>
-                <option value="09">9 - Sep</option>
-                <option value="10">10 - Oct</option>
-                <option value="11">11 - Nov</option>
-                <option value="12">12 - Dec</option>
-            </select>                  
-        </div>
-        <div class="midinput">
-            Credit Card Expiration Year:
-            <select name="x_expiration_year" size="1">
-                <option value="" selected="">Select</option>
-                <option value="2014">2014</option>                  
-                <option value="2015">2015</option>              
-                <option value="2016">2016</option>              
-                <option value="2017">2017</option>  
-                <option value="2018">2018</option>                                          
+            <span class="red">*</span>Date of Birth:
+            <select name="month">
+                <option value="">MONTH</option>	
+                <option value="January">January</option>
+                <option value="February">February</option>
+                <option value="March">March</option>
+                <option value="April">April</option>
+                <option value="May">May</option>
+                <option value="June">June</option>
+                <option value="July">July</option>
+                <option value="August">August</option>
+                <option value="September">September</option>
+                <option value="October">October</option>
+                <option value="November">November</option>
+                <option value="December">December</option>																																								
+            </select>
+            <select name="day">
+                <option value="">DAY</option>	
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+                <option value="30">30</option>
+                <option value="31">31</option>																																																								
+            </select>
+            <select name="year">
+                <option value="">YEAR</option>			
+                <option value="1994">1996</option>		
+                <option value="1994">1995</option>		
+                <option value="1994">1994</option>		
+                <option value="1993">1993</option>						
+                <option value="1992">1992</option>										
+                <option value="1991">1991</option>																
+                <option value="1990">1990</option>		
+                <option value="1989">1989</option>		
+                <option value="1988">1988</option>		
+                <option value="1987">1987</option>		
+                <option value="1986">1986</option>		
+                <option value="1985">1985</option>		
+                <option value="1984">1984</option>		
+                <option value="1983">1983</option>		
+                <option value="1982">1982</option>		
+                <option value="1981">1981</option>		
+                <option value="1980">1980</option>		
+                <option value="1979">1979</option>		
+                <option value="1978">1978</option>		                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                						
             </select>
         </div>
     </div>
-
     <div class="row-input">
-        <div class="biginput">   
-            <center>
-                <input type="hidden" name="send" value="true">
-                <input type="submit" value="SUBMIT">
-                <input type="reset" value="RESET"> 
-            </center>
+        <div class="midinput">
+            <span class="red">*</span>Place of Birth:<br>
+            <input type="text" name="placeBirth">
+        </div>    
+    </div>
+    <div class="row-input">
+        <div class="biginput">
+            Parent/Guardian Information:<br>             
+        </div>    
+    </div>
+    <div class="row-input">
+        <div class="bigbiginput">
+            <span class="red">*</span>Parent/Guardian Name:<br>
+            <input type="text" name="parentGuardanName">
         </div>
     </div>
-<
+    <div class="row-input">
+        <div class="midinput">
+            <span class="red">*</span>Address:<br>
+            <input type="text" name="">
+        </div>      
+        <div class="midinput">            
+            <input type="text" name="">
+        </div>      
+    </div>
+    <div class="row-input">
+        <div class="midinput">
+            <span class="red">*</span>City:<br>
+            <input type="text" name="">
+        </div>
+        <div class="midinput">            
+            <span class="red">*</span>State Abbreviation:<br>
+            <input maxlength="2" size="2" name="txtState">
+        </div>
+    </div>
+    <div class="row-input">
+        <div class="midinput">
+            <span class="red">*</span>Zip Code:<br>
+            <input type="text" name="">
+        </div>
+        <div class="midinput">            
+            <span class="red">*</span>Phone:<br>
+            <input value="" name="">
+        </div>
+    </div>
+    <div class="row-input">
+        <div class="midinput">
+            <span class="red">*</span> Father of Italian Descent?<br>
+            <select size="1" name="fatheritalian">
+                <option value="">SELECT</option>	
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>																																								
+            </select>
+        </div>
+        <div class="midinput">   
+            <span class="red">*</span> Mother of Italian Descent?<br>
+            <select size="1" value="Select" name="motheritalian">
+                <option value="">SELECT</option>	
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>																																								
+            </select>
+        </div>
+    </div>
+    <div class="row-input">
+        <div class="midinput">
+            <span class="red">*</span> Select the region(s) where your ancestors are from. (To select multiple regions, press the Cntrl key as you click the regions)<br>
+            <select size="10" name="regions" multiple="">	
+                <option value="Abruzzo">Abruzzo</option>
+                <option value="Aosta Valley">Aosta Valley</option>
+                <option value="Basilicata">Basilicata</option>
+                <option value="Calabria">Calabria</option>
+                <option value="Campania">Campania</option>
+                <option value="Emilia-Romagna">Emilia-Romagna</option>
+                <option value="Friuli-Venezia Giulia">Friuli-Venezia Giulia</option>
+                <option value="Lazio">Lazio</option>
+                <option value="Liguria">Liguria</option>
+                <option value="Lombardy">Lombardy</option>
+                <option value="Marche">Marche</option>
+                <option value="Molise">Molise</option>
+                <option value="Piedmont">Piedmont</option>
+                <option value="Puglia">Puglia</option>								
+                <option value="Sardinia">Sardinia</option>
+                <option value="Sicily">Sicily</option>
+                <option value="Trentino-South Tyrol">Trentino-South Tyrol</option>
+                <option value="Tuscany">Tuscany</option>
+                <option value="Umbria">Umbria</option>
+                <option value="Veneto">Veneto</option>
+                <option value="Unknown">Unknown</option>																																																																																																																								
+            </select>
+        </div>
+        <div class="midinput">   
+            (Optional) Enter more specific information (cities, etc...)<br>
+            <input value="" name="">
+        </div>
+    </div>
+    <div class="row-input">
+        <div class="biginput">
+            Academic Information:<br>             
+        </div>    
+    </div>
+    <div class="row-input">
+        <div class="midinput">
+            <span class="red">*</span>Name of school:<br>
+            <input type="" name="">
+        </div>
+        <div class="midinput">   
+            <span class="red">*</span>State abbreviation of school:<br>
+            <input value="" maxlength="2" size="2" name="">
+        </div>
+    </div>
+    <div class="row-input">
+        <div class="midinput">
+            <span class="red">*</span>Major:<br>
+            <input type="" name="">
+        </div>
+        <div class="midinput">   
+            <span class="red">*</span>Degree/Qualifications (PhD/MD/MSc):<br>
+            <input type="text" name="">
+        </div>
+    </div>
+    <div class="row-input">
+        <div class="midinput">
+            <span class="red">*</span>Year of Graduation:<br>
+            <input value="" maxlength="4" size="4" name="">
+        </div>
+        <div class="midinput">   
+            <span class="red">*</span>Overall GPA:<br>
+            <input type="text" maxlength="5" size="5" name="">
+        </div>
+    </div>
+    <div class="row-input">
+        <div class="midinput">
+            <span class="red">*</span>Have you participated in any NIAF programs or activities in the past, including winning a NIAF scholarship?<br>
+            <select size="1" value="Select" name="participateniafprograms">
+                <option value="">SELECT</option>	
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>																																								
+            </select>
+        </div>
+        <div class="midinput">   
+            If yes, list the program(s) and year(s).<br>
+            <input type="text" name="">
+        </div>
+    </div>
+    <div class="row-input">
+        <div class="biginput">
+            Academic Information:<br>             
+        </div>    
+    </div>
+    <div class="row-input">
+        <div class="biginput">
+            <span class="red">*</span>Describe key aspects of your original scientific research. (No less than 650 words) <br>
+            <textarea  name=""></textarea>
+        </div>     
+    </div>
 </form>
