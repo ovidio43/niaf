@@ -1,25 +1,52 @@
-<style type="text/css">
-    .sub-amount{
-        width: auto !important;        
-    }
-</style>
+
 <script type="text/javascript">
     jQuery(document).ready(function() {
-
         jQuery('#regform').validate({
             rules: {
-                x_amount: {required: true},
+                question1: {required: true},
+                firstName: {required: true},
+                lastName: {required: true},
+                gender: {required: true},
+                address: {required: true},
+                city: {required: true},
+                state: {required: true},
+                zipCode: {required: true},
+                phoneNumber: {required: true},
+                email: {required: true},
+                confirmEmail: {required: true},
+                month1: {required: true},
+                day1: {required: true},
+                year1: {required: true},
+                placeBirth: {required: true},
+                parentGuardanName: {required: true},
+                parentAddress: {required: true},
+                parentCity: {required: true},
+                parentState: {required: true},
+                parentZipCode: {required: true},
+                parentPhone: {required: true},
+                fatherItalian: {required: true},
+                motherItalian: {required: true},
+                'regions[]': {required: true},
+                academicNameSchool: {required: true},
+                academicState: {required: true},
+                major: {required: true},
+                degreeQualifications: {required: true},
+                yearGraduation: {required: true},
+                overall: {required: true},
+                participateNiafPrograms: {required: true},
+                describeKeyAspects: {required: true}
             }
         });
     });
 </script>
-<form name="regform" id="regform" action="" method="post">
+<form id="regform" action="" method="post">
 
     <div class="row-input">
         <div class="biginput">
             <span class="red">*</span> How did you hear about the NIAF/Bracco Foundation Scholarship? 
             <input type="text" name="question1" >
         </div>
+        <a href="form-golf_reg.php"></a>
     </div> 
     <div class="row-input">
         <div class="midinput">
@@ -72,7 +99,7 @@
         </div>
         <div class="midinput">            
             <span class="red">*</span>Phone Number:<br>
-            <input value="" name="phineNumber">
+            <input value="" name="phoneNumber">
         </div>
     </div>
     <div class="row-input">
@@ -88,7 +115,7 @@
     <div class="row-input">
         <div class="biginput">
             <span class="red">*</span>Date of Birth:
-            <select name="month">
+            <select name="month1">
                 <option value="">MONTH</option>	
                 <option value="January">January</option>
                 <option value="February">February</option>
@@ -103,7 +130,7 @@
                 <option value="November">November</option>
                 <option value="December">December</option>																																								
             </select>
-            <select name="day">
+            <select name="day1">
                 <option value="">DAY</option>	
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -137,7 +164,7 @@
                 <option value="30">30</option>
                 <option value="31">31</option>																																																								
             </select>
-            <select name="year">
+            <select name="year1">
                 <option value="">YEAR</option>			
                 <option value="1994">1996</option>		
                 <option value="1994">1995</option>		
@@ -181,36 +208,37 @@
     <div class="row-input">
         <div class="midinput">
             <span class="red">*</span>Address:<br>
-            <input type="text" name="">
+            <input type="text" name="parentAddress">
         </div>      
-        <div class="midinput">            
-            <input type="text" name="">
+        <div class="midinput"> 
+            <br>
+            <input type="text" name="parentAddress1">
         </div>      
     </div>
     <div class="row-input">
         <div class="midinput">
             <span class="red">*</span>City:<br>
-            <input type="text" name="">
+            <input type="text" name="parentCity">
         </div>
         <div class="midinput">            
             <span class="red">*</span>State Abbreviation:<br>
-            <input maxlength="2" size="2" name="txtState">
+            <input maxlength="2" size="2" name="parentState">
         </div>
     </div>
     <div class="row-input">
         <div class="midinput">
             <span class="red">*</span>Zip Code:<br>
-            <input type="text" name="">
+            <input type="text" name="parentZipCode">
         </div>
         <div class="midinput">            
             <span class="red">*</span>Phone:<br>
-            <input value="" name="">
+            <input value="" name="parentPhone">
         </div>
     </div>
     <div class="row-input">
         <div class="midinput">
             <span class="red">*</span> Father of Italian Descent?<br>
-            <select size="1" name="fatheritalian">
+            <select size="1" name="fatherItalian">
                 <option value="">SELECT</option>	
                 <option value="Yes">Yes</option>
                 <option value="No">No</option>																																								
@@ -218,7 +246,7 @@
         </div>
         <div class="midinput">   
             <span class="red">*</span> Mother of Italian Descent?<br>
-            <select size="1" value="Select" name="motheritalian">
+            <select size="1" value="Select" name="motherItalian">
                 <option value="">SELECT</option>	
                 <option value="Yes">Yes</option>
                 <option value="No">No</option>																																								
@@ -228,7 +256,7 @@
     <div class="row-input">
         <div class="midinput">
             <span class="red">*</span> Select the region(s) where your ancestors are from. (To select multiple regions, press the Cntrl key as you click the regions)<br>
-            <select size="10" name="regions" multiple="">	
+            <select size="10" name="regions[]" multiple="">	
                 <option value="Abruzzo">Abruzzo</option>
                 <option value="Aosta Valley">Aosta Valley</option>
                 <option value="Basilicata">Basilicata</option>
@@ -254,7 +282,7 @@
         </div>
         <div class="midinput">   
             (Optional) Enter more specific information (cities, etc...)<br>
-            <input value="" name="">
+            <input value="" name="specificInformation">
         </div>
     </div>
     <div class="row-input">
@@ -265,56 +293,63 @@
     <div class="row-input">
         <div class="midinput">
             <span class="red">*</span>Name of school:<br>
-            <input type="" name="">
+            <input type="" name="academicNameSchool">
         </div>
         <div class="midinput">   
             <span class="red">*</span>State abbreviation of school:<br>
-            <input value="" maxlength="2" size="2" name="">
+            <input value="" maxlength="2" size="2" name="academicState">
         </div>
     </div>
     <div class="row-input">
         <div class="midinput">
             <span class="red">*</span>Major:<br>
-            <input type="" name="">
+            <input type="" name="major">
         </div>
         <div class="midinput">   
             <span class="red">*</span>Degree/Qualifications (PhD/MD/MSc):<br>
-            <input type="text" name="">
+            <input type="text" name="degreeQualifications">
         </div>
     </div>
     <div class="row-input">
         <div class="midinput">
             <span class="red">*</span>Year of Graduation:<br>
-            <input value="" maxlength="4" size="4" name="">
+            <input value="" maxlength="4" size="4" name="yearGraduation">
         </div>
         <div class="midinput">   
             <span class="red">*</span>Overall GPA:<br>
-            <input type="text" maxlength="5" size="5" name="">
+            <input type="text" maxlength="5" size="5" name="overall">
         </div>
     </div>
     <div class="row-input">
         <div class="midinput">
             <span class="red">*</span>Have you participated in any NIAF programs or activities in the past, including winning a NIAF scholarship?<br>
-            <select size="1" value="Select" name="participateniafprograms">
+            <select size="1" value="Select" name="participateNiafPrograms">
                 <option value="">SELECT</option>	
                 <option value="Yes">Yes</option>
                 <option value="No">No</option>																																								
             </select>
         </div>
+    </div>
+    <div class="row-input">
         <div class="midinput">   
             If yes, list the program(s) and year(s).<br>
-            <input type="text" name="">
+            <input type="text" name="participateNiafProgramsWhen">
         </div>
     </div>
     <div class="row-input">
         <div class="biginput">
-            Academic Information:<br>             
+            Essay Question:<br>             
         </div>    
     </div>
     <div class="row-input">
         <div class="biginput">
             <span class="red">*</span>Describe key aspects of your original scientific research. (No less than 650 words) <br>
-            <textarea  name=""></textarea>
+            <textarea  name="describeKeyAspects"></textarea>
         </div>     
     </div>
+    <div class="row-input">
+        <input type="submit" value="SUBMIT" name="submit">
+        <button id="reset">RESET</button>
+    </div>
+
 </form>

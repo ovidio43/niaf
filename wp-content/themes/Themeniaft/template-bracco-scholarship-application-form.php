@@ -21,10 +21,10 @@ get_header();
                     <?php endwhile; // end of the loop. ?>
                     <div class="wrap-form">
                         <?php
-                        if (!isset($_POST['submit'])) {
+                        if ($_POST['submit']=='') {
                             require_once (get_template_directory() . '/include/form-bracco-scholarship-application-form.php');
                         } else {
-                            require_once (get_template_directory() . '/include/send-form-golf_reg.php');
+                            require_once (get_template_directory() . '/include/send-bracco-scholarship-application-form.php');
                         }                        
                         ?>
                     </div>
