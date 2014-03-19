@@ -16,7 +16,7 @@ require_once (get_template_directory() . '/formulariosSalesforce/_SF_config.php'
 		$mySforceConnection->login(USERNAME, PASSWORD.SECURITY_TOKEN);
 
 		//EXTRACTING WEBSITE_LOGIN__C OF SALESFORCE
-		$query = "SELECT Website_Login__c FROM contact WHERE email = '$mail'";
+		$query = "SELECT Website_Password__c FROM contact WHERE email = '$mail'";
 		$response = $mySforceConnection->query($query);
 
 		foreach ($response->records as $record) {
