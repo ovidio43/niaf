@@ -71,13 +71,20 @@ function sendBasicMail($data, $dataTitle) {
 
 function insertToTable($data) {
     $date = date('Y-m-d');
+    $region = '';
+    $count = count($data['regions']);
+    $i = 0;
+    for ($i = 0; $i < $count; $i++) {
+        $region.= $data['regions'][$i] . ', ';
+    }
+
     $query = "INSERT INTO `bracco_scholarship_application_form`"
             . "(`question1`, `firstName`, `middleName`, `lastName`, `gender`,"
             . " `address`, `address1`, `city`, `state`, "
             . "`zipCode`, `phoneNumber`, `email`, `confirmEmail`, "
             . "`month`, `day`, `year`, `placeBirth`,"
             . " `parentGuardanName`, `parentAddress`, `parentAddress1`, `parentCity`,"
-            . " `checkAddressSame`, `parentState`, `parentZipCode`, `parentPhone`, "
+            . " `parentState`, `parentZipCode`, `parentPhone`, "
             . "`fatherItalian`, `motherItalian`, `regions`, `specificInformation`,"
             . " `academicNameSchool`, `academicState`, `major`, `degreeQualifications`, "
             . "`yearGraduation`, `overall`, `participateNiafPrograms`, `participateNiafProgramsWhen`, "
@@ -87,11 +94,12 @@ function insertToTable($data) {
             . "'$data[zipCode]','$data[phoneNumber]','$data[email]','$data[confirmEmail]',"
             . "'$data[month1]','$data[day1]','$data[year1]','$data[placeBirth]',"
             . "'$data[parentGuardanName]','$data[parentAddress]','$data[parentAddress1]','$data[parentCity]',"
-            . "'$data[checkAddressSame]','$data[parentState]','$data[parentZipCode]','$data[parentPhone]',"
-            . "'$data[fatherItalian]','$data[motherItalian]','$data[regions]','$data[specificInformation]',"
+            . "'$data[parentState]','$data[parentZipCode]','$data[parentPhone]',"
+            . "'$data[fatherItalian]','$data[motherItalian]','$region','$data[specificInformation]',"
             . "'$data[academicNameSchool]','$data[academicState]','$data[major]','$data[degreeQualifications]',"
             . "'$data[yearGraduation]','$data[overall]','$data[participateNiafPrograms]','$data[participateNiafProgramsWhen]',"
             . "'$data[describeKeyAspects]','$date')";
+
     $db = new ezSQL_mysqli();
     $db->query($query);    
 }

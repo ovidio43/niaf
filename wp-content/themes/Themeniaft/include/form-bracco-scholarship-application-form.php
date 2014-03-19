@@ -11,9 +11,9 @@
                 city: {required: true},
                 state: {required: true},
                 zipCode: {required: true},
-                phoneNumber: {required: true},
-                email: {required: true},
-                confirmEmail: {required: true},
+                phoneNumber: {required: true,number:true},
+                email: {required: true,email:true},
+                confirmEmail: {required: true,email:true,equalTo: "#email"},
                 month1: {required: true},
                 day1: {required: true},
                 year1: {required: true},
@@ -23,7 +23,7 @@
                 parentCity: {required: true},
                 parentState: {required: true},
                 parentZipCode: {required: true},
-                parentPhone: {required: true},
+                parentPhone: {required: true,number:true},
                 fatherItalian: {required: true},
                 motherItalian: {required: true},
                 'regions[]': {required: true},
@@ -105,7 +105,7 @@
     <div class="row-input">
         <div class="midinput">
             <span class="red">*</span> E-mail Address:<br>
-            <input type="text" name="email">
+            <input type="text" name="email" id="email">
         </div>
         <div class="midinput">            
             <span class="red">*</span>Confirm E-mail Address:<br>
@@ -349,7 +349,7 @@
     </div>
     <div class="row-input">
         <input type="submit" value="SUBMIT" name="submit">
-        <button id="reset">RESET</button>
+        <!--<button id="reset">RESET</button>-->
     </div>
 
 </form>
