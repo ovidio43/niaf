@@ -23,7 +23,6 @@ if ($form == 'New York Gala Registration') {
             getDetailNewYorkGalaRegistration($db, $dataMixed);
             break;
     }
-
 } elseif ($form == 'Golf Registration Form') {
     $dataMixed['table_name'] = '_golf_reg_form';
     $dataMixed['colspan'] = '13';
@@ -77,6 +76,24 @@ if ($form == 'New York Gala Registration') {
             break;
         case 'get_detail':
             getDetailGivetheGiftofHeritageForm($db, $dataMixed);
+            break;
+    }
+} elseif ($form == 'Bracco Scholarship Application Form') {
+    $dataMixed['table_name'] = 'bracco_scholarship_application_form';
+    $dataMixed['colspan'] = '12';
+    switch ($action) {
+        case 'delete':
+            if (deleteBraccoScholarshipApplicationForm($db, $dataMixed)) {
+                echo 'ok';
+            } else {
+                echo 'error';
+            }
+            break;
+        case 'get_form':
+            getBraccoScholarshipApplicationForm($db, $dataMixed);
+            break;
+        case 'get_detail':
+            getDetailBraccoScholarshipApplicationForm($db, $dataMixed);
             break;
     }
 }
@@ -821,6 +838,251 @@ function getDetailGivetheGiftofHeritageForm($db, $dataMixed) {
                 <td align="right"><strong>Step 3 : Zip </strong></td>
                 <td><?php echo $row->x_zip; ?></td>                    
             </tr>                                        
+        </tbody>
+    </table>
+    <p><a href="#" class="link-back" paginationFrom="<?php echo $dataMixed['paginationFrom']; ?>" show="<?php echo $dataMixed['show']; ?>">Back</a></p>
+    <?php
+}
+
+/* * ************Bracco Scholarship Application Form**************************** */
+
+function getBraccoScholarshipApplicationForm($db, $dataMixed) {
+    ?>
+    <center><h1>Data : Bracco Scholarship Application Form</h1></center>
+    <table border="1" cellspacing="0" cellpadding="3" align="center">
+        <thead>
+            <tr>                
+                <th>First Name</th>
+                <th>Middle Name</th>                                
+                <th>Last Name</th>                                                
+                <th>Gender</th>                                                
+                <th>Address 1</th>            
+                <th>City</th>
+                <th>State</th>
+                <th>Zip</th>
+                <th>Phone Number</th>
+                <th>Email</th>                
+                <th>Date</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            $query = 'select * from  ' . $dataMixed['table_name'] . ' ORDER BY date DESC LIMIT ' . $dataMixed['paginationFrom'] . ',' . $dataMixed['show'];
+            $results = $db->get_results($query);
+            if ($results) {
+                foreach ($results as $row) {
+                    ?>
+                    <tr>                         
+                        <td><?php echo $row->firstName; ?></td>                                                                                   
+                        <td><?php echo $row->middleName; ?></td>                                                                                   
+                        <td><?php echo $row->lastName; ?></td>                                                                                   
+                        <td><?php echo $row->gender; ?></td>                                                                                   
+                        <td><?php echo $row->address; ?></td>                                                                                   
+                        <td><?php echo $row->city; ?></td>                                                                                   
+                        <td><?php echo $row->state; ?></td>                                                                                   
+                        <td><?php echo $row->zipCode; ?></td>                                                                                   
+                        <td><?php echo $row->phoneNumber; ?></td>                                                                                   
+                        <td><?php echo $row->email; ?></td>                                                                                   
+                        <td><?php echo $row->date; ?></td>                                                                                   
+                        <td>
+                            <a href="<?php echo $row->id; ?>" class="view-detail" paginationFrom="<?php echo $dataMixed['paginationFrom']; ?>" show="<?php echo $dataMixed['show']; ?>" >View Detail</a>
+                            <a  href="<?php echo $row->id; ?>" class="del-item">Delete</a>
+                        </td>                                        
+                    </tr>          
+                    <?php
+                }
+
+                $db->debug($db->query('select *  from ' . $dataMixed['table_name']));
+                paginationItems($db, $dataMixed);
+            } else {
+                ?>
+                <tr>
+                    <td colspan="12">No records found.</td>
+                </tr>
+                <?php
+            }
+            ?>       
+        </tbody>
+    </table>
+    <?php
+}
+
+function deleteBraccoScholarshipApplicationForm($db, $dataMixed) {
+    $query = 'DELETE FROM `' . $dataMixed['table_name'] . '` WHERE id=' . $dataMixed['id'];
+    if ($db->query($query)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function getDetailBraccoScholarshipApplicationForm($db, $dataMixed) {
+    ?>
+    <h1>Detail Item - Bracco Scholarship Application Form</h1>
+    <table cellpadding="3" align="center">        
+        <tbody>
+            <?php
+            $query = 'SELECT * FROM `' . $dataMixed['table_name'] . '` WHERE id=' . $dataMixed['id'];
+            $row = $db->get_row($query);
+            ?>            
+            <tr>
+                <td align="right"><strong>ID</strong></td>
+                <td><?php echo $dataMixed['id']; ?></td>     
+            </tr>            
+            <tr>
+                <td align="right"><strong>How did you hear about the NIAF/Bracco Foundation Scholarship? </strong></td>
+                <td><?php echo $row->question1; ?></td>                    
+            </tr>            
+            <tr>
+                <td align="right"><strong>First Name</strong></td>
+                <td><?php echo $row->firstName; ?></td>                    
+            </tr>            
+            <tr>
+                <td align="right"><strong>Middle Name</strong></td>
+                <td><?php echo $row->middleName; ?></td>                    
+            </tr>            
+            <tr>
+                <td align="right"><strong>Last Name</strong></td>
+                <td><?php echo $row->lastName; ?></td>                    
+            </tr>            
+            <tr>
+                <td align="right"><strong>Gender</strong></td>
+                <td><?php echo $row->gender; ?></td>                    
+            </tr>            
+            <tr>
+                <td align="right"><strong>Address</strong></td>
+                <td><?php echo $row->address; ?></td>                    
+            </tr>                               
+            <tr>
+                <td align="right"><strong>Address 2</strong></td>
+                <td><?php echo $row->address1; ?></td>                    
+            </tr>            
+            <tr>
+                <td align="right"><strong>City</strong></td>
+                <td><?php echo $row->city; ?></td>                    
+            </tr>            
+            <tr>
+                <td align="right"><strong>State</strong></td>
+                <td><?php echo $row->state; ?></td>                    
+            </tr>            
+            <tr>
+                <td align="right"><strong>Zip Code</strong></td>
+                <td><?php echo $row->zipCode; ?></td>                    
+            </tr>                                        
+            <tr>
+                <td align="right"><strong>Phone Number</strong></td>
+                <td><?php echo $row->phoneNumber; ?></td>                    
+            </tr>                                        
+            <tr>
+                <td align="right"><strong>Email</strong></td>
+                <td><?php echo $row->email; ?></td>                    
+            </tr>                                        
+            <tr>
+                <td align="right"><strong>Confirm Email</strong></td>
+                <td><?php echo $row->confirmEmail; ?></td>                    
+            </tr>                                        
+            <tr>
+                <td align="right"><strong>Month</strong></td>
+                <td><?php echo $row->month; ?></td>                    
+            </tr>                                        
+            <tr>
+                <td align="right"><strong>Day</strong></td>
+                <td><?php echo $row->day; ?></td>                    
+            </tr>                                        
+            <tr>
+                <td align="right"><strong>Year</strong></td>
+                <td><?php echo $row->year; ?></td>                    
+            </tr>                                        
+            <tr>
+                <td align="right"><strong>Place of Birth</strong></td>
+                <td><?php echo $row->placeBirth; ?></td>                    
+            </tr>                                        
+            <tr>
+                <td align="right"><strong>Parent/Guardian Name</strong></td>
+                <td><?php echo $row->parentGuardanName; ?></td>                    
+            </tr>                                                                                      
+            <tr>
+                <td align="right"><strong>Parent: Address</strong></td>
+                <td><?php echo $row->parentAddress; ?></td>                    
+            </tr>                                        
+            <tr>
+                <td align="right"><strong>Parent: Address 2</strong></td>
+                <td><?php echo $row->parentAddress1; ?></td>                    
+            </tr>                                        
+            <tr>
+                <td align="right"><strong>Parent : City</strong></td>
+                <td><?php echo $row->parentCity; ?></td>                    
+            </tr>                                                                                          
+            <tr>
+                <td align="right"><strong>Parent : State</strong></td>
+                <td><?php echo $row->parentState; ?></td>                    
+            </tr>                                        
+            <tr>
+                <td align="right"><strong>Parent :  Zip Code</strong></td>
+                <td><?php echo $row->parentZipCode; ?></td>                    
+            </tr>                                        
+            <tr>
+                <td align="right"><strong>Parent : Phone</strong></td>
+                <td><?php echo $row->parentPhone; ?></td>                    
+            </tr>                                        
+            <tr>
+                <td align="right"><strong>Father of Italian Descent?</strong></td>
+                <td><?php echo $row->fatherItalian; ?></td>                    
+            </tr>                                        
+            <tr>
+                <td align="right"><strong>Mother of Italian Descent?</strong></td>
+                <td><?php echo $row->motherItalian; ?></td>                    
+            </tr>                                        
+            <tr>
+                <td align="right" width="40%"><strong>Select the region(s) where your ancestors are from. (To select multiple regions, press the Cntrl key as you click the regions)</strong></td>
+                <td><?php echo $row->regions; ?></td>                    
+            </tr>                                        
+            <tr>
+                <td align="right"><strong>(Optional) Enter more specific information (cities, etc...)</strong></td>
+                <td><?php echo $row->specificInformation; ?></td>                    
+            </tr>                                        
+            <tr>
+                <td align="right"><strong>Name of school</strong></td>
+                <td><?php echo $row->academicNameSchool; ?></td>                    
+            </tr>                                        
+            <tr>
+                <td align="right"><strong>State abbreviation of school</strong></td>
+                <td><?php echo $row->academicState; ?></td>                    
+            </tr> 
+            <tr>
+                <td align="right"><strong>Major</strong></td>
+                <td><?php echo $row->major; ?></td>                    
+            </tr> 
+            <tr>
+                <td align="right"><strong>Degree/Qualifications (PhD/MD/MSc)</strong></td>
+                <td><?php echo $row->degreeQualifications; ?></td>                    
+            </tr> 
+            <tr>
+                <td align="right"><strong>Year of Graduation</strong></td>
+                <td><?php echo $row->yearGraduation; ?></td>                    
+            </tr> 
+            <tr>
+                <td align="right"><strong>Overall GPA</strong></td>
+                <td><?php echo $row->overall; ?></td>                    
+            </tr> 
+            <tr>
+                <td align="right"><strong>Have you participated in any NIAF programs or activities in the past, including winning a NIAF scholarship?</strong></td>
+                <td><?php echo $row->participateNiafPrograms; ?></td>                    
+            </tr> 
+            <tr>
+                <td align="right"><strong>If yes, list the program(s) and year(s)</strong></td>
+                <td><?php echo $row->participateNiafProgramsWhen; ?></td>                    
+            </tr> 
+            <tr>
+                <td align="right"><strong>Describe key aspects of your original scientific research. (No less than 650 words) </strong></td>
+                <td><?php echo $row->describeKeyAspects; ?></td>                    
+            </tr> 
+            <tr>
+                <td align="right"><strong>Date</strong></td>
+                <td><?php echo $row->date; ?></td>                    
+            </tr> 
+
         </tbody>
     </table>
     <p><a href="#" class="link-back" paginationFrom="<?php echo $dataMixed['paginationFrom']; ?>" show="<?php echo $dataMixed['show']; ?>">Back</a></p>
