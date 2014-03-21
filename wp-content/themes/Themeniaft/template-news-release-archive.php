@@ -28,21 +28,22 @@ get_header();
                             the_title();
                             ?>
                             <form id="formFilter" action="" method="get" style="float: right;font-size: 15px;padding: 10px;">
-                                <label for="filter">Filter : </label><select name="filter" id="filter" >
-                                    <?php
-                                    $year = Array('2013', '2012');
-                                    foreach ($year as $value) {
-                                        if ($_GET['filter'] == $value) {
-                                            ?>
-                                            <option value="<?php echo $value; ?>" selected><?php echo $value; ?></option>
-                                            <?php
-                                        } else {
-                                            ?>
-                                            <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
-                                            <?php
-                                        }
-                                    }
-                                    ?>                                    
+                                <label for="filter">Filter by year: </label><select name="filter" id="filter" >      
+                                <?php 
+                                $qYears = "SELECT DISTINCT YEAR(post_date) FROM $wpdb->posts WHERE post_status = 'publish' AND post_type = 'niaf_event' ORDER BY post_date DESC";
+                                $years = $wpdb->get_col($qYears);
+                                foreach($years as $year) : 
+                                  if ($_GET['filter'] == $year) {
+                                    $select="selected";
+                                  }else{
+                                    $select="";
+                                  }
+                                  if($_GET['filter']=="" && $year==date('Y')-1){
+                                    $select="selected";
+                                  }
+                                  ?>
+                                  <option value="<?php echo $year; ?>" <?php echo $select;?>><?php echo $year; ?></option>
+                                <?php endforeach; ?>                                                                 
                                 </select>
                             </form>
                         </h1>
@@ -57,15 +58,15 @@ get_header();
             endif;
             ?>          
             <?php
-            $y = $_GET['filter'];
-            if (date('Y') == $y) {
-                $y = (date('y') - 1);
+            if ($_GET['filter'] == "") {
+                $y = (date('Y') - 1);
+            }else{
+              $y = $_GET['filter'];
             }
             $today = strtotime(date('Ymd'));
             $args = array(
                 'post_type' => 'niaf_event',
                 'post_status' => 'publish',
-                'year' => $y,
                 'meta_key' => 'date_niaf_event_publish',
                 'orderby' => 'meta_value',
                 'order' => 'ASC',
@@ -73,8 +74,8 @@ get_header();
                 'posts_per_page' => -1,
                 'date_query' => array(
                     array(
-                        'year' => date('Y'),
-                        'compare' => '<',
+                        'year' => $y,
+                        'compare' => '=',
                     )
                 )
             );
