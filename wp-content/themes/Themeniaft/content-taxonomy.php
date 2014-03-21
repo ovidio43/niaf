@@ -19,5 +19,5 @@
 		<div class="entry-content">
 
 			<hr>
-		</div><!-- .entry-content -->
-	</article><!-- #post -->
+		</div>
+	</article>
