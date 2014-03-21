@@ -242,7 +242,7 @@ class LoginFormWidget extends WP_Widget {
                             </span>
                         </div>
                         <br>					
-                        <b>Member Area Sections</b> 
+                        <!--b>Member Area Sections</b> 
                         <?php
                         $taxonomy = 'member-category';
                         $tax_terms = get_terms($taxonomy);
@@ -255,7 +255,7 @@ class LoginFormWidget extends WP_Widget {
                                 }
                             }
                             ?>
-                        </ul>
+                        </ul-->
 
                     </div>
                 <?php } ?>
