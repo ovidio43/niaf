@@ -27,30 +27,26 @@ get_header();
                             <?php
                             the_title();
                             ?>
-                            <form id="formFilter" action="" method="get" style="float: right;font-size: 15px;padding: 10px;">
-                                <label for="filter">Filter by year: </label><select name="filter" id="filter" >      
-                                <?php 
-                                $qYears = "SELECT DISTINCT YEAR(post_date) FROM $wpdb->posts WHERE post_status = 'publish' AND post_type = 'niaf_event' ORDER BY post_date DESC";
-                                $years = $wpdb->get_col($qYears);
-                                foreach($years as $year) : 
-                                  if ($_GET['filter'] == $year) {
-                                    $select="selected";
-                                  }else{
-                                    $select="";
-                                  }
-                                  if($_GET['filter']=="" && $year==date('Y')-1){
-                                    $select="selected";
-                                  }
-                                  ?>
-                                  <option value="<?php echo $year; ?>" <?php echo $select;?>><?php echo $year; ?></option>
-                                <?php endforeach; ?>                                                                 
-                                </select>
-                            </form>
                         </h1>
 
                     </header> 
+
+                    <?php if($_GET['filter']==""){ ?>
+                      <div class="filternews">
+                      <?php the_content();?>
+                        <ul>
+                          <?php 
+                          $qYears = "SELECT DISTINCT YEAR(post_date) FROM $wpdb->posts WHERE post_status = 'publish' AND post_type = 'niaf_event' ORDER BY post_date DESC";
+                          $years = $wpdb->get_col($qYears);
+                          foreach($years as $year) : 
+                            ?>
+                            <li>:. <a href="?filter=<?php echo $year; ?>"><?php echo $year; ?> News Release Archive </a></li>
+                          <?php endforeach; ?>  
+                          </ul>           
+                      </div>
+                    <?php }?>                    
                     <?php
-                    the_content();
+                    
                 endwhile;
                 wp_reset_postdata();
                 ?>
@@ -58,18 +54,18 @@ get_header();
             endif;
             ?>          
             <?php
-            if ($_GET['filter'] == "") {
-                $y = (date('Y') - 1);
-            }else{
-              $y = $_GET['filter'];
-            }
+        if($_GET['filter']!=""){?>
+        <br>
+          <a href="/news-release-archive/" class="backlink">View News Release Archive</a><br><br>
+            <?php $y = $_GET['filter'];
+
             $today = strtotime(date('Ymd'));
             $args = array(
                 'post_type' => 'niaf_event',
                 'post_status' => 'publish',
                 'meta_key' => 'date_niaf_event_publish',
                 'orderby' => 'meta_value',
-                'order' => 'ASC',
+                'order' => 'DESC',
                 'offset' => 0,
                 'posts_per_page' => -1,
                 'date_query' => array(
@@ -86,7 +82,9 @@ get_header();
                 endwhile;
                 wp_reset_query();
             endif;
-            ?>  
+          }
+            ?>
+
         </div>
         <aside class="sidebar">
             <?php get_sidebar(); ?>
