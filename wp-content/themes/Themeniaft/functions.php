@@ -223,7 +223,7 @@ class LoginFormWidget extends WP_Widget {
                             </script>-->
                         <?php // }
                         ?>
-
+                        <div id="myniaf-logo"><img src="<?php echo get_template_directory_uri();?>/img/my-NIAF-logo.png"></div>
                         <?php $page = get_page_by_path('change-password'); ?>
                         <div class="userlogued">
             <!--                            <span class="userdetail">Welcome<br>
