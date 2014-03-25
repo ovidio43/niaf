@@ -49,8 +49,9 @@ $titleData = Array(
 function performTransaction($data) {
     $post_url = "https://test.authorize.net/gateway/transact.dll";
     $post_values = array(
-        "x_login" => "3yzLVa8H8CN",
-        "x_tran_key" => "5tTJWc776FE7vj6d",
+        "x_login" => "45GmZ8fAp",//3yzLVa8H8CN
+        "x_tran_key" => "7g56h9W3nT3vH6X6",//5tTJWc776FE7vj6d
+        "x_test_request" => "FALSE",
         "x_version" => "3.1",
         "x_delim_data" => "TRUE",
         "x_delim_char" => "|",
@@ -66,7 +67,9 @@ function performTransaction($data) {
         "x_city" => $data['x_city'],
         "x_state" => $data['x_state'],
         "x_zip" => $data['x_zip'],
-        "x_card_type" => $data['x_card_type']
+        "x_card_type" => $data['x_card_type'],
+        "x_description" => "Donation",
+        "x_invoice_num" => "Donation"        
     );
 
     $post_string = "";
