@@ -26,7 +26,7 @@ foreach ($_POST as $key => $value) {
                 jQuery('#x_state').val(jQuery('#tempx_state').val());
                 jQuery('#x_zip').val(jQuery('#tempx_zip').val());                
             } else {
-                jQuery('.class="repeat"').val('');                
+                jQuery('.repeat').val('');                
             }
         });
     });
@@ -61,7 +61,7 @@ foreach ($_POST as $key => $value) {
         </div>
         <div class="midinput">
             <span>Card Number <span class="required">*</span></span>            				
-            <input type="text"  value="" name="x_card_num">
+            <input type="text"  value="" name="x_card_num" autocomplete="off" >
         </div>
     </div> 
 
@@ -88,7 +88,7 @@ foreach ($_POST as $key => $value) {
             <select name="x_expiration_year">
                 <?php
                 $j = 11;
-                for ($i = 2012; $i < 2020; $i++) {
+                for ($i = 2014; $i < 2020; $i++) {
                     $j++;
                     $selected = '';
                     if ($j == $_SESSION['x_expiration_year']) {

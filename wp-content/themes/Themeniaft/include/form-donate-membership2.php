@@ -225,7 +225,7 @@ for ($i = 1; $i <= $recip; $i++) {
             </div>
         </div>
         <div class="row-input">
-            <div class="midinput">
+            <div class="biginput">
                 <input type="radio" value="STU" <?php echo $_SESSION['level' . $i] == 'STU' ? 'checked' : ''; ?> name="level<?php echo $i; ?>"  class="gift-membership">
                 NIAF Student Membership - $25 <br>
                 <input type="radio" value="AS" <?php echo $_SESSION['level' . $i] == 'AS' ? 'checked' : ''; ?> name="level<?php echo $i; ?>" class="gift-membership" >
@@ -233,9 +233,9 @@ for ($i = 1; $i <= $recip; $i++) {
                 <input type="radio" value="NSM" <?php echo $_SESSION['level' . $i] == 'NSM' ? 'checked' : ''; ?> name="level<?php echo $i; ?>" class="gift-membership">
                 NIAF Sustaining Membership - $125 <br>
                 <input type="radio" value="NPM" <?php echo $_SESSION['level' . $i] == 'NPM' ? 'checked' : ''; ?> name="level<?php echo $i; ?>"  class="gift-membership">
-                NIAF Patron Membership - $250 
-            </div>
-            <div class="midinput">
+                NIAF Patron Membership - $250 <br>
+<!--            </div>
+            <div class="midinput">-->
                 <input type="radio" value="NCM" <?php echo $_SESSION['level' . $i] == 'NCM' ? 'checked' : ''; ?> name="level<?php echo $i; ?>"  class="gift-membership">
                 NIAF Council Membership - $500 <br>
                 <input type="radio" value="BCM" <?php echo $_SESSION['level' . $i] == 'BCM' ? 'checked' : ''; ?> name="level<?php echo $i; ?>"  >
@@ -244,8 +244,8 @@ for ($i = 1; $i <= $recip; $i++) {
                 Founder's Circle Membership - $2,500 <br>
                 <input type="radio" value="CCM" <?php echo $_SESSION['level' . $i] == 'CCM' ? 'checked' : ''; ?> name="level<?php echo $i; ?>"  class="gift-membership">
                 Chairman's Circle Membership - $5,000 
-                <input type="radio"  value="MSM" <?php echo $_SESSION['level' . $i] == 'MSM' ? 'checked' : ''; ?>  name="level<?php echo $i; ?>"  class="gift-membership">
-                Mazzei Society Membership - $10,000 
+<!--                <input type="radio"  value="MSM" <?php echo $_SESSION['level' . $i] == 'MSM' ? 'checked' : ''; ?>  name="level<?php echo $i; ?>"  class="gift-membership">
+                Mazzei Society Membership - $10,000 -->
             </div>
         </div>			
 
