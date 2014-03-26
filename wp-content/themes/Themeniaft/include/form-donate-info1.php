@@ -2,16 +2,27 @@
 <!--<form method="post" action="donate-2.asp" name="DonateInfo" onsubmit="return(checkit(this));">-->
 <script type="text/javascript">
     jQuery(document).ready(function() {
-        jQuery('#cat-all').on('click', function() {
+//        jQuery('#cat-all').on('click', function() {
+//            if (jQuery(this).is(':checked')) {
+//                jQuery('input.cat-don').prop('checked', true);
+//            } else {
+//                jQuery('input.cat-don').prop('checked', false);
+//            }
+//        });
+        jQuery('#in-memory').on('click', function() {
             if (jQuery(this).is(':checked')) {
-                jQuery('input.cat-don').prop('checked', true);
+                jQuery('#recipient-donation').show();
+                jQuery('#numgifts').addClass('required');
+                jQuery('#DonateAmt').addClass('required');
             } else {
-                jQuery('input.cat-don').prop('checked', false);
+                jQuery('#recipient-donation').hide();
+                jQuery('#numgifts').removeClass('required error');
+                jQuery('#DonateAmt').removeClass('required error');
             }
         });
         jQuery('.cat-don').on('click', function() {
             jQuery('#cat-all').prop('checked', false);
-        });
+        }); 
         jQuery('#ss-form').submit(function(e) {
             var don = 0;
             jQuery('.cat-don').each(function() {
@@ -34,11 +45,11 @@
                 txtAddress1: {required: true},
                 txtCity: {required: true},
                 txtState: {required: true},
-                numgifts: {required: true},
+//                numgifts: {required: true},
                 txtZip: {required: true, number: true},
                 txtEmail: {required: true, email: true},
-                "categoryDonation[]": {required: true},
-                DonateAmt: {required: true, number: true}
+                "categoryDonation[]": {required: true}
+//                DonateAmt: {required: true, number: true}
             }
         });
     });
@@ -135,7 +146,7 @@
                 <span>Category of Donation <span class="required">*</span></span>
             </div>
         </div>
-        <div class="row-input">
+    <div  class="row-input">
             <div class="midinput">
                 <?php
                 unset($data);
@@ -148,7 +159,7 @@
                         }
                     }
                     ?>
-                    <input type="checkbox" class="cat-don" name="categoryDonation[]" value="<?php echo $value; ?>" <?php echo $checked; ?> ><?php echo $value; ?><br>
+                    <input type="checkbox" <?php echo $value=='In Memory / In Honor Of'?'id="in-memory"':''; ?> class="cat-don" name="categoryDonation[]" value="<?php echo $value; ?>" <?php echo $checked; ?> ><?php echo $value; ?><br>
                     <?php
                 }
                 ?>
@@ -169,13 +180,13 @@
                     <?php
                 }
                 ?>  
-                <input type="checkbox" id="cat-all">All<br>                            
+                <!--<input type="checkbox" id="cat-all">All<br>-->                            
             </div>
         </div>
-        <div class="row-input">
+    <div id="recipient-donation" class="row-input" style="display: none">
             <div class="midinput">
                 <span>Recipient(s)</span>               
-                <select name="numgifts" id="numgifts" size="1" >
+                <select name="numgifts" id="numgifts" size="1" style="font-size: 14px;">
                     <?php
                     for ($i = 0; $i < 11; $i++) {
                         $selected = '';
@@ -191,7 +202,7 @@
             </div>
             <div class="midinput">
                 <span>Donation Amount <span class="required">*</span>  <b>$</b></span>				
-                <input type="text" name="DonateAmt" id="DonateAmt" value="<?php echo $_SESSION['DonateAmt']; ?>" size="10" maxlength="10" >
+                <input type="text" name="DonateAmt" id="DonateAmt" value="<?php echo $_SESSION['DonateAmt']; ?>" size="10" maxlength="10" style="font-size: 14px;">
             </div>
         </div>		
 

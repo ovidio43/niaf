@@ -1,143 +1,158 @@
-<!--<form method="post" action="donate-4.asp" name="DonateInfo" onsubmit="return(checkit(this));">-->
 <?php
 foreach ($_POST as $key => $value) {
     $_SESSION[$key] = $value;
 }
 ?>
-<!--<form method="post" action="" name="DonateInfo" onsubmit="return(checkit(this));">-->
 <script type="text/javascript">
     jQuery(document).ready(function() {
         jQuery('#ss-form').validate({
             rules: {
-                txtCardNumber: {required: true, number: true},
-                txtCCFirstName: {required: true},
-                txtCCLastName: {required: true},
-                txtCCAddress1: {required: true},
-                txtCCCity: {required: true},
-                txtCCState: {required: true},
-                txtCCZip: {required: true, number: true}
+                x_amount: {required: true},
+                x_card_num: {required: true, number: true},
+                x_first_name: {required: true},
+                x_last_name: {required: true},
+                x_address: {required: true},
+                x_city: {required: true},
+                x_state: {required: true},
+                x_zip: {required: true, number: true},
+            }
+        });
+        jQuery('#checkAddressSame').on('click', function() {
+            if (jQuery(this).is(':checked')) {                
+                jQuery('#x_first_name').val(jQuery('#tempx_first_name').val());
+                jQuery('#x_last_name').val(jQuery('#tempx_last_name').val());
+                jQuery('#x_address').val(jQuery('#tempx_address').val());
+                jQuery('#x_city').val(jQuery('#tempx_city').val());
+                jQuery('#x_state').val(jQuery('#tempx_state').val());
+                jQuery('#x_zip').val(jQuery('#tempx_zip').val());                
+            } else {
+                jQuery('.class="repeat"').val('');                
             }
         });
     });
 </script>
-<form method="post" action="" id="ss-form">
+
+
+
+<form id="ss-form" action="" method="post">   
     <div class="row-input">
         <div class="midinput">
-            <span>Entered Donation Amount <span class="required">*</span></span>
-            <font face="Verdana, Arial, Helvetica" size="2"> <b>$</b></font>				
-            <input type="text" name="DonateAmtConfirm" value="100" size="10" maxlength="10" readonly="">
+            <span>Entered Donation Amount <span class="required">*</span><b> $</b></span>            				
+            <input type="text" value="<?php echo $_SESSION['DonateAmt']; ?>"  readonly="" name="x_amount">
         </div>
+    </div>
+    <div class="row-input">
         <div class="midinput">		
             <span>Card Type <span class="required">*</span></span>
-            <select name="cboCardType" id="cboCardType" size="1">
+            <select size="1" id="cboCardType" name="x_card_type">
                 <?php
                 $data = Array('Visa', 'MasterCard', 'American Express');
                 foreach ($data as $value) {
                     $selected = '';
-                    if ($_SESSION['cboCardType'] == $value) {
+                    if ($value == $_SESSION['x_card_type']) {
                         $selected = 'selected';
                     }
                     ?>
-                    <option value="<?php echo $value; ?>" <?php echo $selected; ?>> <?php echo $value; ?></option>
+                    <option value="<?php echo $value; ?>" <?php echo $selected; ?>><?php echo $value; ?></option>
                     <?php
                 }
-                ?>
+                ?>                
             </select>
         </div>
-    </div>
+        <div class="midinput">
+            <span>Card Number <span class="required">*</span></span>            				
+            <input type="text"  value="" name="x_card_num">
+        </div>
+    </div> 
+
     <div class="row-input">
         <div class="midinput">
-            <span>Card Number <span class="required">*</span>  </span>
-            <input type="text" name="txtCardNumber" id="txtCardNumber" value="<?php echo $_SESSION['txtCardNumber']; ?>" size="18" maxlength="18">
-        </div>
-        <div class="midinput">		
-            <span>Expiration Month <span class="required">*</span></span>
-            <select name="cboCardMonth" id="cboCardMonth" size="1">
+            <span>Expiration Month <span class="required">*</span></span>  
+            <select name="x_expiration_month">
                 <?php
-                $data = Array('01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12');
-                foreach ($data as $value) {
+                $month = Array('01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12');
+                foreach ($month as $value) {
                     $selected = '';
-                    if ($_SESSION['cboCardMonth'] == $value) {
+                    if ($value == $_SESSION['x_expiration_month']) {
                         $selected = 'selected';
                     }
                     ?>
-                    <option value="<?php echo $value; ?>" <?php echo $selected; ?>> <?php echo $value; ?></option>
+                    <option value="<?php echo $value; ?>" <?php echo $selected; ?>><?php echo $value; ?></option>
                     <?php
                 }
-                ?>           
+                ?>                
             </select>
         </div>
-    </div>
-    <div class="row-input">
         <div class="midinput">
-            <span>Expiration Year <span class="required">*</span> </span>    
-            <select name="cboCardYear" id="cboCardYear" size="1">
+            <span>Expiration Year <span class="required">*</span></span>  
+            <select name="x_expiration_year">
                 <?php
+                $j = 11;
                 for ($i = 2012; $i < 2020; $i++) {
+                    $j++;
                     $selected = '';
-                    if ($_SESSION['cboCardYear'] == $i) {
+                    if ($j == $_SESSION['x_expiration_year']) {
                         $selected = 'selected';
                     }
-                    ?>
-                    <option value="<?php echo $i; ?>" <?php echo $selected; ?>><?php echo $i; ?></option>
+                    ?>;
+                    <option value="<?php echo $j; ?>" <?php echo $selected; ?>><?php echo $i; ?></option>
                     <?php
                 }
-                ?>											
+                ?>                
             </select>
         </div>
     </div>
+    <input type="hidden" id="tempx_first_name" value="<?php echo $_SESSION['txtFirstName']; ?>">
+    <input type="hidden" id="tempx_last_name" value="<?php echo $_SESSION['txtLastName']; ?>">
+    <input type="hidden" id="tempx_address" value="<?php echo $_SESSION['txtAddress1']; ?>">
+    <input type="hidden" id="tempx_city" value="<?php echo $_SESSION['txtCity']; ?>">
+    <input type="hidden" id="tempx_state" value="<?php echo $_SESSION['txtState']; ?>">
+    <input type="hidden" id="tempx_zip" value="<?php echo $_SESSION['txtZip']; ?>">
+    <div class="row-input">        
+        <input type="checkbox" name="checkAddressSame" id="checkAddressSame" >
+        <span>Check this box if the credit card billing address is the same as previously entered. If not, please complete the below </span>            				        
+    </div>  
     <div class="row-input">
-        <div class="biginput">
-            <input type="checkbox" value="yes" name="txtCCChkAddress" id="txtCCChkAddress">
-            <font face="verdana, arial, helvetica" size="1">Check this box if the credit card billing address is the same as previously entered.  If not, please complete the below</font>&nbsp;<br><br>
-        </div>
-    </div>	
-    <div class="row-input">
-        <div class="midinput">
+        <div class="midinput">    
             <span>First Name <span class="required">*</span></span> 
-            <input type="text" name="txtCCFirstName" id="txtCCFirstName" size="25" maxlength="32" value="<?php echo $_SESSION['txtCCFirstName']; ?>">
+            <input value="<?php echo $_SESSION['x_first_name']; ?>"  name="x_first_name" id="x_first_name" class="repeat">
         </div>
-        <div class="midinput">
-            <span>Last Name <span class="required">*</span></span>
-            <input type="text" name="txtCCLastName" id="txtCCLastName" size="25" maxlength="64" value="<?php echo $_SESSION['txtCCLastName']; ?>">
+        <div class="midinput">    
+            <span>Last Name <span class="required">*</span></span> 
+            <input value="<?php echo $_SESSION['x_last_name']; ?>"  name="x_last_name" id="x_last_name" class="repeat">
         </div>
-    </div>	
+    </div>  
+
     <div class="row-input">
-        <div class="midinput">
-            <span>Street <span class="required">*</span></span>
-            <input type="text" name="txtCCAddress1" id="txtCCAddress1" size="25" maxlength="100" value="<?php echo $_SESSION['txtCCAddress1']; ?>">
+        <div class="midinput">    
+            <span>Street  <span class="required">*</span></span> 
+            <input value="<?php echo $_SESSION['x_address']; ?>" name="x_address" id="x_address" class="repeat">
         </div>
-        <div class="midinput">
-            <span>City <span class="required">*</span> </span>
-            <input type="text" name="txtCCCity" id="txtCCCity" size="25" maxlength="40" value="<?php echo $_SESSION['txtCCCity']; ?>">
+        <div class="midinput">    
+            <span>City  <span class="required">*</span></span> 
+            <input value="<?php echo $_SESSION['x_city']; ?>" name="x_city" id="x_city" class="repeat">
         </div>
-    </div>	
+    </div>  
+
     <div class="row-input">
-        <div class="midinput">
-            <span>State <span class="required">*</span></span>
-            <input type="text" name="txtCCState" id="txtCCState" size="12" maxlength="12" value="<?php echo $_SESSION['txtCCState']; ?>">
+        <div class="midinput">    
+            <span>State  <span class="required">*</span></span> 
+            <input value="<?php echo $_SESSION['x_state']; ?>" name="x_state" id="x_state" class="repeat">
         </div>
-        <div class="midinput">
-            <span>Zip <span class="required">*</span></span>
-            <input type="text" name="txtCCZip" id="txtCCZip" size="10" maxlength="10" value="<?php echo $_SESSION['txtCCZip']; ?>">
+        <div class="midinput">    
+            <span>Zip  <span class="required">*</span></span> 
+            <input value="<?php echo $_SESSION['x_zip']; ?>" name="x_zip" id="x_zip" class="repeat">
         </div>
-    </div>
-    <div class="row-input">
-        <div class="biginput">	
-            <b><span class="required">*</span><font face="verdana, arial, helvetica" size="1"> 
-                Please review all the above information to make sure all fields are correct and click "submit" when finished or
-                "reset" to start over:</font></b>
-        </div>
-    </div>
+    </div> 
     <div class="row-input">
         <div class="biginput">	
             <button id="btn-previous" type="button">PREVIOUS</button>&nbsp; &nbsp; 
-            <input type="submit" name="submit" value="SUBMIT">&nbsp; &nbsp;
+            <input type="submit" value="SUBMIT">&nbsp; &nbsp;
             <button type="button" id="btn-reset">RESET</button>
             <input type="hidden" name="step" value="4">
         </div>
     </div>
 </form>
-<form method="post" action="?step-back=true" id="formBack">
-    <input type="hidden" name="step" value="2">         
+<form method="post" action="" id="formBack">
+    <input type="hidden" name="step" value="2">    
 </form>
