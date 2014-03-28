@@ -18,15 +18,15 @@ foreach ($_POST as $key => $value) {
             }
         });
         jQuery('#checkAddressSame').on('click', function() {
-            if (jQuery(this).is(':checked')) {                
+            if (jQuery(this).is(':checked')) {
                 jQuery('#x_first_name').val(jQuery('#tempx_first_name').val());
                 jQuery('#x_last_name').val(jQuery('#tempx_last_name').val());
                 jQuery('#x_address').val(jQuery('#tempx_address').val());
                 jQuery('#x_city').val(jQuery('#tempx_city').val());
                 jQuery('#x_state').val(jQuery('#tempx_state').val());
-                jQuery('#x_zip').val(jQuery('#tempx_zip').val());                
+                jQuery('#x_zip').val(jQuery('#tempx_zip').val());
             } else {
-                jQuery('.repeat').val('');                
+                jQuery('.repeat').val('');
             }
         });
     });
@@ -87,15 +87,15 @@ foreach ($_POST as $key => $value) {
             <span>Expiration Year <span class="required">*</span></span>  
             <select name="x_expiration_year">
                 <?php
-                $j = 11;
-                for ($i = 2014; $i < 2020; $i++) {
-                    $j++;
+                $y = date('Y');
+                $count = $y + 6;
+                for ($i = $y; $i < $count; $i++) {
                     $selected = '';
-                    if ($j == $_SESSION['x_expiration_year']) {
+                    if (substr($i, 2) == $_SESSION['x_expiration_year']) {
                         $selected = 'selected';
                     }
-                    ?>;
-                    <option value="<?php echo $j; ?>" <?php echo $selected; ?>><?php echo $i; ?></option>
+                    ?>
+                    <option value="<?php echo substr($i, 2); ?>" <?php echo $selected; ?>><?php echo $i; ?></option>
                     <?php
                 }
                 ?>                

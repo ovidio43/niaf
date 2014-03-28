@@ -1,6 +1,6 @@
 <?php
 
-require_once ('AUTHORIZE.NET.php'); 
+require_once ('AUTHORIZE.NET.php');
 $results = performTransaction($_POST);
 if ($results[3] == 'This transaction has been approved.') {
     if (sendMail($_POST, $titleData)) {
@@ -41,7 +41,7 @@ function insertIntoDb($data) {
             . "$data[select_dollarmemyouthprotickets],$data[dollarmemyouthprotickets],$data[select_dollaryouthprotickets],$data[dollaryouthprotickets],"
             . "$data[dollarcontribution],$data[x_amount],'0','$date')";
     $db = new ezSQL_mysqli();
-    $db->query($query);    
+    $db->query($query);
 }
 
 function sendMail($data, $titleData) {
@@ -58,38 +58,36 @@ function sendMail($data, $titleData) {
             }
         }
     }
-    $subject = 'Anniversary Gala Registration - NEW REGISTRATION';
-//    $from = 'altra@omnilogic.us';
-    $from = 'jorge.quispe@altra.com.bo';
+    $subject = '2013 Gala Registration ~ October 26, 2013';
+    $to = 'jerry@niaf.org';
+//    $to = 'jorge.quispe@altra.com.bo';
     $headers .= 'Content-type:text/html;charset=UTF-8' . "\r\n"
-            . 'From: NIAF <information@niaf.org>' . "\r\n";
-    if (mail($from, $subject, $body, $headers)) {
-//        if (sendMail_client($data)) {
-//            return true;
-//        } else {
-//            return false;
-//        }
-        return true;
+            . 'From: NIAF <gala@niaf.org>' . "\r\n";
+    if (mail($to, $subject, $body, $headers)) {
+        if (sendMail_client($data)) {
+            return true;
+        } else {
+            return false;
+        }
     } else {
         return false;
     }
 }
 
 function sendMail_client($data) {
-    $subject = 'NIAF New York Spring gala - CONFIRMATION ';
-    $from = $data['txtEmail'];
-    $name_complete = 'Dear' . ' ' . $data['txtFirstName'] . ' ' . $data['txtLastName'];
+    $subject = 'NIAF 2014 Gala Registration - Confirmation';
+    $to = $data['txtEmail'];
+    $name_complete = $data['Salutation'] . ' : ' . $data['txtFirstName'] . ' ' . $data['txtLastName'];
     $headers .= 'Content-type:text/html;charset=UTF-8' . "\r\n"
             . 'From: NIAF <information@niaf.org>' . "\r\n";
     $body = '';
-    $body .= $name_complete . '<br><br>';
-    $body .= 'Thank you for registering for the NIAF New York Spring Golf.' . '<br>';
-    $body .= '  Your Registration information has been received. ' . '<br><br>';
-    $body .= '  The National Italian American Foundation looks forward to seeing you at the NIAF New York Spring Extravaganza! ' . '<br><br>';
-    $body .=' If you have any questions, please don\'t hesitate to email Jerry Jones (<a href="mailto:jerry@niaf.org">jerry@niaf.org</a>), or call 202-939-3102.' . '<br><br>';
-    $body .=' Thank you for your support,' . '<br><br>';
-    $body .=' NIAF ';
-    if (mail($from, $subject, $body, $headers)) {
+    $body .= $name_complete . '<br><br>'
+            . 'Thank you for registering for NIAF\'s 39th Anniversary Gala in October.<br>
+	Your registration information has been received.<br>
+	If you have any questions, please email jerry@niaf.org or call 202-939-3102.<br>
+	 Thank you for your support and we look forward to sharing another memorable Gala with you!<br>
+	Jerry Jones';
+    if (mail($to, $subject, $body, $headers)) {
         return true;
     }
     return false;

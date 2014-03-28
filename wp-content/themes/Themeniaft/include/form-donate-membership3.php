@@ -96,12 +96,14 @@ foreach ($_POST as $key => $value) {
             <span>Expiration Year <b><span class="required">*</span></b> </span>    
             <select name="x_expiration_year" >
                 <?php
-                for ($i = 2014; $i < 2020; $i++) {
+                $y = date('Y');
+                $count = $y + 6;
+                for ($i = $y; $i < $count; $i++) {
                     $selected = '';
                     if ($i == $_SESSION['x_expiration_year']) {
                         $selected = 'selected';
                     }
-                    ?>
+                    ?>;
                     <option value="<?php echo $i; ?>" <?php echo $selected; ?>><?php echo $i; ?></option>
                     <?php
                 }
