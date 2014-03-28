@@ -59,7 +59,7 @@ function sendMail($data, $titleData) {
         }
     }
     $subject = '2013 Gala Registration ~ October 26, 2013';
-    $to = 'jerry@niaf.org';
+    $to = 'ckorin@niaf.org,billing@niaf.org';
 //    $to = 'jorge.quispe@altra.com.bo';
     $headers .= 'Content-type:text/html;charset=UTF-8' . "\r\n"
             . 'From: NIAF <gala@niaf.org>' . "\r\n";
