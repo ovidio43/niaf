@@ -43,14 +43,16 @@ $titleData = Array(
     "numgifts" => 'Recipient(s)',
     "DonateAmt" => 'Donation Amount',
     "checkAddressSame" => 'Check this box if the credit card billing address is the same as previously entered. If not, please complete the below',
-    
+    "txtMemberID"=>'NIAF Member ID'
 );
 
 function performTransaction($data) {
     $post_url = "https://test.authorize.net/gateway/transact.dll";
     $post_values = array(
-        "x_login" => "45GmZ8fAp",//3yzLVa8H8CN
-        "x_tran_key" => "7g56h9W3nT3vH6X6",//5tTJWc776FE7vj6d
+//        "x_login" => "45GmZ8fAp",//3yzLVa8H8CN
+        "x_login" => "3yzLVa8H8CN",//3yzLVa8H8CN
+//        "x_tran_key" => "7g56h9W3nT3vH6X6",//5tTJWc776FE7vj6d
+        "x_tran_key" => "5tTJWc776FE7vj6d",
         "x_test_request" => "FALSE",
         "x_version" => "3.1",
         "x_delim_data" => "TRUE",
