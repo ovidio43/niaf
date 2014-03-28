@@ -185,7 +185,7 @@
         <tr>
             <td>
                 <!--<select class="val" name="" id="" title="aka falta">-->
-                <select  name="" id="select_dollarnaifnetworking" name="select_dollarnaifnetworking" title="aka falta">
+                <select  id="select_dollarnaifnetworking" name="select_dollarnaifnetworking" title="aka falta">
                     <?php
                     for ($i = 0; $i < 21; $i++) {
                         ?>

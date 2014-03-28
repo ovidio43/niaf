@@ -1,8 +1,6 @@
 <?php
 
-require_once ('AUTHORIZE.NET.php');
- insertIntoDb($_POST);
- exit();
+require_once ('AUTHORIZE.NET.php'); 
 $results = performTransaction($_POST);
 if ($results[3] == 'This transaction has been approved.') {
     if (sendMail($_POST, $titleData)) {
@@ -42,10 +40,8 @@ function insertIntoDb($data) {
             . "$data[select_dollarmemstandard],$data[dollarmemstandard],$data[select_dollarstandard],$data[dollarstandard],"
             . "$data[select_dollarmemyouthprotickets],$data[dollarmemyouthprotickets],$data[select_dollaryouthprotickets],$data[dollaryouthprotickets],"
             . "$data[dollarcontribution],$data[x_amount],'0','$date')";
-    echo $query;
     $db = new ezSQL_mysqli();
-//    $db->query($query);
-//    $db->debug($db->query('select * from anniversary_gala_registration_form'));
+    $db->query($query);    
 }
 
 function sendMail($data, $titleData) {
