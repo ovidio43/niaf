@@ -161,6 +161,7 @@ foreach ($_POST as $key => $value) {
     </div>
     <div class="row-input">
         <div class="biginput">	
+            <input type="hidden" value="Donation Membership" name="x_description">
             <button id="btn-previous" type="button">PREVIOUS</button>&nbsp; &nbsp;            
             <input type="submit" value="SUBMIT">&nbsp; &nbsp;
             <input type="reset" name="reset" value="RESET">

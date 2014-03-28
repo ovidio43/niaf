@@ -85,8 +85,10 @@ function performTransaction($data) {
         "x_state" => $data['x_state'],
         "x_zip" => $data['x_zip'],
         "x_card_type" => $data['x_card_type'],
-        "x_description" => "Donation",
-        "x_invoice_num" => "Donation"        
+//        "x_description" => "Donation",
+        "x_description" => $data['x_description'],
+//        "x_invoice_num" => "Donation"        
+        "x_invoice_num" => $data['x_description']        
     );
 
     $post_string = "";

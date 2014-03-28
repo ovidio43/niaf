@@ -583,6 +583,7 @@
             <td>&nbsp;</td> 
             <td>
                 <br>
+                <input type="hidden" value="DC Gala" name="x_description">                
                 <input type="submit" value="SUBMIT" name="submit">&nbsp;&nbsp;&nbsp;
                 <button id="reset" type="button">RESET</button>        
             </td>
