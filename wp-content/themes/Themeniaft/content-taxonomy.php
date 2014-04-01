@@ -11,8 +11,11 @@
 	<article id="post-<?php the_ID(); ?>" <?php post_class('list_articles_news'); ?>>
 		<h3 class="entry-title">
 			<?php 
-			$date = DateTime::createFromFormat('Ymd', get_field('date_niaf_event_publish'));
-			echo $date->format('m/d/Y');
+			if (get_field('date_niaf_event_publish')!='') {
+				$date = DateTime::createFromFormat('Ymd', get_field('date_niaf_event_publish'));
+				echo $date->format('m/d/Y');
+			}
+
 			//the_field('date_niaf_event_publish');
 			?>
 			<br><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
