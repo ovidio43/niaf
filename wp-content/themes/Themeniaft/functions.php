@@ -76,6 +76,7 @@ function setup_niafevents_post() {
 
 
 /* cutomized functions for theme niaft */
+register_nav_menu('Scholarshipsnav', __('Scholarships Menu', 'themeNiaft'));
 register_nav_menu('Primary', __('Main Menu', 'themeNiaft'));
 register_nav_menu('Secondary', __('Footer Menu', 'themeNiaft'));
 register_nav_menu('social_menu', __('Social Menu', 'themeNiaft'));
@@ -107,13 +108,21 @@ add_filter('wp_title', 'themeNiaft_wp_title', 10, 2);
 function themeNiaft_widgets_init() {
 
     register_sidebar(array(
+        'name' => __('Scholarships Sidebar', 'themeNiaft'),
+        'id' => 'scholarships_sidebar',
+        'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+        'after_widget' => "</aside>",
+        'before_title' => '<h3 class="widget-title">',
+        'after_title' => '</h3>',
+    ));
+    register_sidebar(array(
         'name' => __('Main Sidebar', 'themeNiaft'),
         'id' => 'main_sidebar',
         'before_widget' => '<aside id="%1$s" class="widget %2$s">',
         'after_widget' => "</aside>",
         'before_title' => '<h3 class="widget-title">',
         'after_title' => '</h3>',
-    ));
+    ));    
 }
 
 add_action('widgets_init', 'themeNiaft_widgets_init');

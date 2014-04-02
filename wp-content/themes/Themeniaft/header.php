@@ -53,9 +53,15 @@ global $current_user;
         <div class="header-title">THE NATIONAL ITALIAN AMERICAN FOUNDATION</div>
         <nav class="header-nav">
             <?php 
+if (is_page_template('template-scholarships.php') ) {
+    $nav ="Scholarshipsnav";
+}else{
+    $nav="Primary";    
+}
+
 
 $defaults = array(
-    'theme_location'  => 'Primary',
+    'theme_location'  => $nav,
     'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>'
 );
 wp_nav_menu( $defaults );
