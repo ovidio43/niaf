@@ -46,7 +46,7 @@ function sendMail($data, $titleData) {
     $subject = '4th Annual NIAF Golf Tournament - NEW REGISTRATION';
     $from = 'altra@omnilogic.us';
     $headers .= 'Content-type:text/html;charset=UTF-8'. "\r\n"
-            . 'From: NIAF <noreply@niaf.net>'. "\r\n";
+            . 'From: NIAF <noreply@niaf.org>'. "\r\n";
     if (mail($from, $subject, $body, $headers)) {
        if (sendMail_client($data)){
             return true;    
@@ -61,7 +61,7 @@ function sendMail_client($data) {
     $from = $data['txtEmail'];
     $name_complete = 'Dear' . ' ' .  $data['x_first_name'] . ' ' .$data['x_last_name'];
     $headers .= 'Content-type:text/html;charset=UTF-8'. "\r\n"
-            . 'From: NIAF <noreply@niaf.net>'. "\r\n";
+            . 'From: NIAF <noreply@niaf.org>'. "\r\n";
     $body = '';
     $body .= $name_complete.'<br><br>';
     $body .= 'Thank you for registering for the 4th Annual NIAF Golf Tournament.' .'<br>';

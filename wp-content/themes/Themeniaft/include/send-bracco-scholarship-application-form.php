@@ -72,7 +72,7 @@ function sendBasicMailAdm($data) {
 //    $to = 'jorge.quispe@altra.com.bo';
     $to = 'ckorin@niaf.org,gmileti@niaf.org';
     $headers .= 'Content-type:text/html;charset=UTF-8' . "\r\n"
-            . 'From: NIAF <noreply@niaf.net>' . "\r\n";
+            . 'From: NIAF <noreply@niaf.org>' . "\r\n";
     mail($to, $subject, $body, $headers);
 }
 
