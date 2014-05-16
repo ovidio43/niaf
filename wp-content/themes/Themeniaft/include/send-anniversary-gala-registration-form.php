@@ -59,10 +59,10 @@ function sendMail($data, $titleData) {
         }
     }
     $subject = '2013 Gala Registration ~ October 26, 2013';
-    $to = 'ckorin@niaf.org,billing@niaf.org';
+    $to = 'gmileti@niaf.org, ckorin@niaf.org';
 //    $to = 'jorge.quispe@altra.com.bo';
     $headers .= 'Content-type:text/html;charset=UTF-8' . "\r\n"
-            . 'From: NIAF <gala@niaf.org>' . "\r\n";
+            . 'From: NIAF <info@niaf.org>' . "\r\n";
     if (mail($to, $subject, $body, $headers)) {
         if (sendMail_client($data)) {
             return true;
@@ -79,7 +79,7 @@ function sendMail_client($data) {
     $to = $data['txtEmail'];
     $name_complete = $data['Salutation'] . ' : ' . $data['txtFirstName'] . ' ' . $data['txtLastName'];
     $headers .= 'Content-type:text/html;charset=UTF-8' . "\r\n"
-            . 'From: NIAF <information@niaf.org>' . "\r\n";
+            . 'From: NIAF <info@niaf.org>' . "\r\n";
     $body = '';
     $body .= $name_complete . '<br><br>'
             . 'Thank you for registering for NIAF\'s 39th Anniversary Gala in October.<br>

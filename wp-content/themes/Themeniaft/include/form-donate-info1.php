@@ -14,10 +14,12 @@
                 jQuery('#recipient-donation').show();
                 jQuery('#numgifts').addClass('required');
                 jQuery('#DonateAmt').addClass('required');
+                jQuery('.cb-depend').prop('disabled',false);
             } else {
                 jQuery('#recipient-donation').hide();
                 jQuery('#numgifts').removeClass('required error');
                 jQuery('#DonateAmt').removeClass('required error');
+                jQuery('.cb-depend').prop('disabled',true);
             }
         });
         jQuery('.cat-don').on('click', function() {
@@ -149,6 +151,7 @@
     <div  class="row-input">
             <div class="midinput">
                 <?php
+                $c=1;
                 unset($data);
                 $data = Array('In Memory / In Honor Of', 'General');
                 foreach ($data as $value) {
@@ -159,8 +162,9 @@
                         }
                     }
                     ?>
-                    <input type="checkbox" <?php echo $value=='In Memory / In Honor Of'?'id="in-memory"':''; ?> class="cat-don" name="categoryDonation[]" value="<?php echo $value; ?>" <?php echo $checked; ?> ><?php echo $value; ?><br>
+                    <input type="checkbox" <?php echo $value=='In Memory / In Honor Of'?'id="in-memory"':''; ?> class="cat-don <?php echo $c>1?'cb-depend" disabled':'"';?> name="categoryDonation[]" value="<?php echo $value; ?>" <?php echo $checked; ?> ><?php echo $value; ?><br>
                     <?php
+                    $c++;
                 }
                 ?>
             </div>
@@ -176,7 +180,7 @@
                         }
                     }
                     ?>
-                    <input type="checkbox" class="cat-don" name="categoryDonation[]" value="<?php echo $value; ?>" <?php echo $checked; ?> ><?php echo $value; ?><br>
+                <input type="checkbox" disabled="" class="cat-don cb-depend" name="categoryDonation[]" value="<?php echo $value; ?>" <?php echo $checked; ?> ><?php echo $value; ?><br>
                     <?php
                 }
                 ?>  

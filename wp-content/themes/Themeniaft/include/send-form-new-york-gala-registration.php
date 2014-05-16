@@ -40,9 +40,9 @@ function sendMail($data, $titleData) {
         }
     }
     $subject = ' NIAF NEW YORK SPRING GALA - NEW REGISTRATION';
-    $from = 'altra@omnilogic.us';
+    $from = 'gmileti@niaf.org, ckorin@niaf.org';
     $headers .= 'Content-type:text/html;charset=UTF-8'. "\r\n"
-            . 'From: NIAF <information@niaf.org>'."\r\n";
+            . 'From: NIAF <info@niaf.org>'."\r\n";
     if (mail($from, $subject, $body, $headers)) {
         if (sendMail_client($data)){
             return true;    
@@ -56,7 +56,7 @@ function sendMail_client($data) {
     $from = $data['txtEmail'];
     $name_complete = 'Dear' . ' ' .  $data['txtFirstName'] . ' ' .$data['txtLastName'];
     $headers .= 'Content-type:text/html;charset=UTF-8'. "\r\n"
-            . 'From: NIAF <information@niaf.org>'. "\r\n";
+            . 'From: NIAF <info@niaf.org>'. "\r\n";
     $body = '';
     $body .= $name_complete.'<br><br>';
     $body .= 'Thank you for registering for the NIAF New York Spring Golf.' .'<br>';

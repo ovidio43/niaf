@@ -97,7 +97,7 @@
     </div>		
     <div class="row-input">
         <div class="midinput">
-            <span >E-mail<span class="required">*</span></span>&nbsp;
+            <span >E-mail<span class="required">*</span></span>
             <input type="text" name="txtEmail" id="txtEmail" size="25" maxlength="40" value="<?php echo $_SESSION['txtEmail']; ?>">&nbsp;
         </div>
         <div class="midinput">

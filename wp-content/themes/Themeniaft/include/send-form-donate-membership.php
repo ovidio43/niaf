@@ -35,9 +35,9 @@ function sendMail($data, $titleData) {
         }
     }
     $subject = ' give a Gift Membership - NEW REGISTRATION';
-    $from = 'websitemembership@niaf.org, altra@omnilogic.us';
+    $from = 'gmileti@niaf.org, ckorin@niaf.org';
     $headers .= 'Content-type:text/html;charset=UTF-8'. "\r\n"
-            . 'From: NIAF <websitemembership@niaf.org>'. "\r\n";
+            . 'From: NIAF <info@niaf.org>'. "\r\n";
     if (mail($from, $subject, $body, $headers)) {
         if (sendMail_client($data)){
             return true;    
@@ -51,7 +51,7 @@ function sendMail_client($data) {
     $from = $data['txtEmail'];
     $name_complete = 'Dear' . ' ' .  $data['txtFirstName'] . ' ' .$data['txtLastName'];
     $headers .= 'Content-type:text/html;charset=UTF-8 '. "\r\n"
-            . 'From: NIAF <websitemembership@niaf.org>'. "\r\n";
+            . 'From: NIAF <info@niaf.org>'. "\r\n";
     $body = '';
     $body .= $name_complete.'<br><br>';
     $body .= 'Thank you for registering give a Gift Membership.' .'<br>';

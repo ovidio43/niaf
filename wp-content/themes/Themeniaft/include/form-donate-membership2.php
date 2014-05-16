@@ -240,10 +240,10 @@ for ($i = 1; $i <= $recip; $i++) {
                 NIAF Council Membership - $500 <br>
                 <input type="radio" value="BCM" <?php echo $_SESSION['level' . $i] == 'BCM' ? 'checked' : ''; ?> name="level<?php echo $i; ?>"  >
                 NIAF Business Council Membership - $1,000 <br>
-                <input type="radio" value="FCM" <?php echo $_SESSION['level' . $i] == 'FCM' ? 'checked' : ''; ?> name="level<?php echo $i; ?>"  class="gift-membership">
+<!--                <input type="radio" value="FCM" <?php echo $_SESSION['level' . $i] == 'FCM' ? 'checked' : ''; ?> name="level<?php echo $i; ?>"  class="gift-membership">
                 Founder's Circle Membership - $2,500 <br>
                 <input type="radio" value="CCM" <?php echo $_SESSION['level' . $i] == 'CCM' ? 'checked' : ''; ?> name="level<?php echo $i; ?>"  class="gift-membership">
-                Chairman's Circle Membership - $5,000 
+                Chairman's Circle Membership - $5,000 -->
 <!--                <input type="radio"  value="MSM" <?php echo $_SESSION['level' . $i] == 'MSM' ? 'checked' : ''; ?>  name="level<?php echo $i; ?>"  class="gift-membership">
                 Mazzei Society Membership - $10,000 -->
             </div>

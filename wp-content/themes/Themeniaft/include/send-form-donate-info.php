@@ -34,10 +34,10 @@ function sendMail($data, $titleData) {
             }
         }
     }
-    $subject = 'NIAF Contribution - NEW REGISTRATION';
-    $from = 'altra@omnilogic.us';
+    $subject = 'Donate Info Form';
+    $from = 'gmileti@niaf.org, ckorin@niaf.org';
     $headers .= 'Content-type:text/html;charset=UTF-8'. "\r\n"
-            . 'From: NIAF <donations@niaf.org>'. "\r\n";
+            . 'From: NIAF <info@niaf.org>'. "\r\n";
     if (mail($from, $subject, $body, $headers)) {
         if (sendMail_client($data)){
             return true;    
@@ -51,7 +51,7 @@ function sendMail_client($data) {
     $from = $data['txtEmail'];
     $name_complete = 'Dear' . ' ' .  $data['txtFirstName'] . ' ' .$data['txtLastName']; 
     $headers .= 'Content-type:text/html;charset=UTF-8'. "\r\n"
-            . 'From:  NIAF (donations@niaf.org)'. "\r\n";
+            . 'From:  NIAF (info@niaf.org)'. "\r\n";
     $body = '';
     $body .= $name_complete.'<br><br>';
     $body .= 'Thank you for your contribution to the National Italian American Foundation. Your information has been received.' .'<br><br>';

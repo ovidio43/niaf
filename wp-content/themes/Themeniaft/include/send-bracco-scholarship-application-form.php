@@ -70,9 +70,9 @@ function sendBasicMailAdm($data) {
     $subject = 'Bracco Foundation Scholarship - New Applicant';
 
 //    $to = 'jorge.quispe@altra.com.bo';
-    $to = 'ckorin@niaf.org,gmileti@niaf.org';
+    $to = 'gmileti@niaf.org, ckorin@niaf.org';
     $headers .= 'Content-type:text/html;charset=UTF-8' . "\r\n"
-            . 'From: NIAF <noreply@niaf.org>' . "\r\n";
+            . 'From: NIAF <info@niaf.org>' . "\r\n";
     mail($to, $subject, $body, $headers);
 }
 
@@ -102,7 +102,7 @@ function sendBasicMailClient($data) {
     $to = $data['email'];
 //    $to = 'jorge.quispe@altra.com.bo';
     $headers .= 'Content-type:text/html;charset=UTF-8' . "\r\n"
-            . 'From: NIAF <gmileti@niaf.org>' . "\r\n";
+            . 'From: NIAF <info@niaf.org>' . "\r\n";
     mail($to, $subject, $body, $headers);
 }
 
