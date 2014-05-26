@@ -23,6 +23,15 @@ if ($results[3] == 'This transaction has been approved.') {
 }
 
 function sendMail($data, $titleData) {
+    $mail = new PHPMailer();
+    $mail->IsSMTP();
+//    $mail->SMTPDebug = 2;
+    $mail->SMTPAuth = true;
+    $mail->Host = "east.exch025.serverdata.net";
+    $mail->SMTPSecure = "tls";
+    $mail->Port = 465;
+    $mail->Username = "info@niaf.org";
+    $mail->Password = "D3v3l0p3r2014";
     $body = '';
     foreach ($data as $key => $value) {
         if (!isIn($key) && $key != '') {
@@ -34,35 +43,37 @@ function sendMail($data, $titleData) {
             }
         }
     }
-    $subject = 'Donate Info Form';
-    $from = 'gmileti@niaf.org, ckorin@niaf.org';
-    $headers .= 'Content-type:text/html;charset=UTF-8'. "\r\n"
-            . 'From: NIAF <info@niaf.org>'. "\r\n";
-    if (mail($from, $subject, $body, $headers)) {
-        if (sendMail_client($data)){
-            return true;    
-        }
+
+    $mail->SetFrom("info@niaf.org", "NIAF");
+    $mail->Subject = "Donate Info Form";
+    $mail->MsgHTML($body);
+    $mail->AddAddress("ckorin@niaf.org", "C. Korin");
+    $mail->AddAddress("gmileti@niaf.org", "G. Mileti");
+    if (!$mail->Send()) {
         return false;
-    } 
-    return false;
-}
-function sendMail_client($data) {
-    $subject = 'NIAF Contribution - Confirmation ';
-    $from = $data['txtEmail'];
-    $name_complete = 'Dear' . ' ' .  $data['txtFirstName'] . ' ' .$data['txtLastName']; 
-    $headers .= 'Content-type:text/html;charset=UTF-8'. "\r\n"
-            . 'From:  NIAF (info@niaf.org)'. "\r\n";
-    $body = '';
-    $body .= $name_complete.'<br><br>';
-    $body .= 'Thank you for your contribution to the National Italian American Foundation. Your information has been received.' .'<br><br>';
-    $body .= '  If you have any questions, please email <a href="mailto:donations@niaf.org">donations@niaf.org</a>. '.'<br><br>';
-    $body .= '  Thank you again for your support. '.'<br><br>';
-    $body .='  National Italian American Foundation - <a href="http://www.niaf.org">www.niaf.org</a>';
-    if (mail($from, $subject, $body, $headers)) {
+    } else {
+        $mail->Subject = "NIAF Contribution - Confirmation";
+        $body = sendMail_client($data);
+        $mail->MsgHTML($body);
+        $mail->AddAddress($data['txtEmail'], "info test client");
+        if (!$mail->Send()) {
+            return false;
+        }
         return true;
-    } 
-    return false;
+    }
 }
+
+function sendMail_client($data) {
+    $name_complete = 'Dear' . ' ' . $data['txtFirstName'] . ' ' . $data['txtLastName'];
+    $body = '';
+    $body .= $name_complete . '<br><br>';
+    $body .= 'Thank you for your contribution to the National Italian American Foundation. Your information has been received.' . '<br><br>';
+    $body .= '  If you have any questions, please email <a href="mailto:donations@niaf.org">donations@niaf.org</a>. ' . '<br><br>';
+    $body .= '  Thank you again for your support. ' . '<br><br>';
+    $body .='  National Italian American Foundation - <a href="http://www.niaf.org">www.niaf.org</a>';
+    return $body;
+}
+
 function insertIntoDb($data) {
     $categoryDonation = '';
     foreach ($data['categoryDonation'] as $value) {

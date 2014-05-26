@@ -63,7 +63,7 @@
 </script>
 <form name="regform" id="regform" action="" method="post">
     <table width="100%" style="border:1px outset #36b;padding:1em;background-color:white;">
-        <tr>
+<!--        <tr>
             <td colspan="3">Option A: Package Deals</td>
         </tr>
         <tr>
@@ -184,7 +184,7 @@
         </tr>
         <tr>
             <td>
-                <!--<select class="val" name="" id="" title="aka falta">-->
+                <select class="val" name="" id="" title="aka falta">
                 <select  id="select_dollarnaifnetworking" name="select_dollarnaifnetworking" title="aka falta">
                     <?php
                     for ($i = 0; $i < 21; $i++) {
@@ -203,7 +203,7 @@
 
         <tr>
             <td>
-                <!--<select class="val" size="1" name="numwinetasting" title="75">-->
+                <select class="val" size="1" name="numwinetasting" title="75">
                 <select size="1" name="select_dollarwinetasting" title="75">
                     <option selected="" value="0">0</option>
                 </select>								
@@ -380,7 +380,94 @@
                 Non-Member Gala Ticket(s) @ $250 each (Under 30)               
             </td>
             <td><b>$</b>&nbsp;<input type="text" readonly class="result"  name="dollaryouthprotickets" size="7" value="0"></td>
+        </tr>	-->
+        <!--------------------comienzo de nueva seccion------------------------->
+        <tr>
+            <td colspan="3">
+                <b>ADVANCE REGISTRATION<br>
+                NIAF's 39th Anniversary Gala on October 25, 2014<br>
+                Washington Hilton<br>
+                Washington, D.C.<br></b>
+            </td>            
+        </tr>
+        <tr>
+            <td colspan="3">Please reserve: (a full table includes 10 seats)</td>            
+        </tr>
+        <tr>
+            <td>
+                <select class="val" name="select_firsttworow" id="" title="2000">
+                    <?php
+                    for ($i = 0; $i < 21; $i++) {
+                        ?>
+                        <option value="<?php echo $i; ?>"><?php echo $i; ?></option>  
+                        <?php
+                    }
+                    ?>
+                </select>						
+            </td>
+            <td>
+                <b>First Two Rows</b> Dinner Ticket(s) @ <strike>$2,500</strike> each 
+                <b>($2,000 each prior to July 1)</b>
+            </td>
+            <td><b>$</b>&nbsp;<input type="text" readonly class="result"  name="firsttworow" value="0" size="5"></td>
         </tr>	
+        <tr>
+            <td>
+                <select class="val" name="select_premierseatingdinner" id="" title="850">
+                    <?php
+                    for ($i = 0; $i < 21; $i++) {
+                        ?>
+                        <option value="<?php echo $i; ?>"><?php echo $i; ?></option>  
+                        <?php
+                    }
+                    ?>
+                </select>						
+            </td>
+            <td>
+                <b>Premier</b> Seating Dinner Ticket(s) @ <strike>$1,000</strike> each 
+                <b>($850 each prior to July 1)</b>
+            </td>
+            <td><b>$</b>&nbsp;<input type="text" readonly class="result"  name="premierseatingdinner" value="0" size="5"></td>
+        </tr>	
+        <tr>
+            <td>
+                <select class="val" name="select_preferredseatingdinner" id="" title="500">
+                    <?php
+                    for ($i = 0; $i < 21; $i++) {
+                        ?>
+                        <option value="<?php echo $i; ?>"><?php echo $i; ?></option>  
+                        <?php
+                    }
+                    ?>
+                </select>						
+            </td>
+            <td>
+                <b>Preferred</b> Seating Dinner Ticket(s) @ <strike>$600</strike> each 
+                <b>($500 each prior to July 1)</b>
+            </td>
+            <td><b>$</b>&nbsp;<input type="text" readonly class="result"  name="preferredseatingdinner" value="0" size="5"></td>
+        </tr>	
+        <tr>
+            <td>
+                <select class="val" name="select_standardseatingdinner" id="" title="350">
+                    <?php
+                    for ($i = 0; $i < 21; $i++) {
+                        ?>
+                        <option value="<?php echo $i; ?>"><?php echo $i; ?></option>  
+                        <?php
+                    }
+                    ?>
+                </select>						
+            </td>
+            <td>
+                <b>Standard</b> Seating Dinner Ticket(s) @ <strike>$400</strike> each 
+                <b>($350 each prior to July 1)</b>
+            </td>
+            <td><b>$</b>&nbsp;<input type="text" readonly class="result"  name="standardseatingdinner" value="0" size="5"></td>
+        </tr>	
+
+
+        <!------------------------------------------------------------------------->
         <tr>
             <td colspan="3">&nbsp;</td>
         </tr>
@@ -521,21 +608,21 @@
         </tr>
     </table>
 
-    <table cellspacing="0" cellpadding="0" border="0">
+    <table cellspacing="0" cellpadding="5" border="0">
         <tr>
             <td colspan="2">
                 <br>
                 <input type="checkbox" id="txtCCChkAddress" name="txtCCChkAddress" value="1">
-                <font size="1" face="verdana, arial, helvetica">Check this box if the credit card billing address is the same as previously entered.  If not, please complete the below</font>&nbsp;<br><br>
+                Check this box if the credit card billing address is the same as previously entered.  If not, please complete the below&nbsp;<br><br>
             </td>
         </tr>
         <tr>          
             <td width="30%">
-                <font size="1" face="verdana, arial, helvetica">First Name </font>
+                First Name 
                 <font color="red">*</font>
             </td>
             <td>
-                <font size="1" face="verdana, arial, helvetica">Last Name</font>
+                Last Name
                 <font color="red">*</font>
             </td>
         </tr>
@@ -549,7 +636,7 @@
         </tr>
         <tr>
             <td>
-                <font size="1" face="verdana, arial, helvetica">Street</font>
+                Street
                 <font color="red">*</font>
             </td>            
         </tr>
@@ -560,13 +647,13 @@
         </tr>
         <tr>
             <td>
-                <font size="1" face="verdana, arial, helvetica">City </font>
+                City 
                 <font color="red">*</font>
             </td>
             <td>
-                <font size="1" face="verdana, arial, helvetica">State</font>
+                State
                 <font color="red">*</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <font size="1" face="verdana, arial, helvetica">Zip</font><font color="red">*</font>
+                Zip<font color="red">*</font>
                 <font size="1" face="verdana, arial, helvetica">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>
             </td>
         </tr>

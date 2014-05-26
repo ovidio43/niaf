@@ -23,6 +23,15 @@ if ($results[3] == 'This transaction has been approved.') {
 }
 
 function sendMail($data, $titleData) {
+    $mail = new PHPMailer();
+    $mail->IsSMTP();
+//    $mail->SMTPDebug = 2;
+    $mail->SMTPAuth = true;
+    $mail->Host = "east.exch025.serverdata.net";
+    $mail->SMTPSecure = "tls";
+    $mail->Port = 465;
+    $mail->Username = "info@niaf.org";
+    $mail->Password = "D3v3l0p3r2014";
     $body = '';
     foreach ($data as $key => $value) {
         if (!isIn($key) && $key != '') {
@@ -34,36 +43,39 @@ function sendMail($data, $titleData) {
             }
         }
     }
-    $subject = ' give a Gift Membership - NEW REGISTRATION';
-    $from = 'gmileti@niaf.org, ckorin@niaf.org';
-    $headers .= 'Content-type:text/html;charset=UTF-8'. "\r\n"
-            . 'From: NIAF <info@niaf.org>'. "\r\n";
-    if (mail($from, $subject, $body, $headers)) {
-        if (sendMail_client($data)){
-            return true;    
-        }
+
+    $mail->SetFrom("info@niaf.org", "NIAF");
+    $mail->Subject = "give a Gift Membership - NEW REGISTRATION";
+    $mail->MsgHTML($body);
+    $mail->AddAddress("ckorin@niaf.org", "C. Korin");
+    $mail->AddAddress("gmileti@niaf.org", "G. Mileti");
+
+    if (!$mail->Send()) {
         return false;
-    } 
-    return false;
-}
-function sendMail_client($data) {
-    $subject = ' give a Gift Membership - CONFIRMATION ';
-    $from = $data['txtEmail'];
-    $name_complete = 'Dear' . ' ' .  $data['txtFirstName'] . ' ' .$data['txtLastName'];
-    $headers .= 'Content-type:text/html;charset=UTF-8 '. "\r\n"
-            . 'From: NIAF <info@niaf.org>'. "\r\n";
-    $body = '';
-    $body .= $name_complete.'<br><br>';
-    $body .= 'Thank you for registering give a Gift Membership.' .'<br>';
-    $body .= '  Your Registration information has been received. '.'<br><br>';
-    $body .=' Thank you for your support,' .'<br><br>';
-    $body .=' NIAF ';
-    if (mail($from, $subject, $body, $headers)) {
+    } else {
+        $mail->Subject = "give a Gift Membership - CONFIRMATION";
+        $body = sendMail_client($data);
+        $mail->MsgHTML($body);
+        $mail->AddAddress($data['txtEmail'], "info test client");
+        if (!$mail->Send()) {
+            return false;
+        }
         return true;
-    } 
-    return false;
+    }
 }
-function insertIntoDb($data) {   
+
+function sendMail_client($data) {
+    $name_complete = 'Dear' . ' ' . $data['txtFirstName'] . ' ' . $data['txtLastName'];
+    $body = '';
+    $body .= $name_complete . '<br><br>';
+    $body .= 'Thank you for registering give a Gift Membership.' . '<br>';
+    $body .= '  Your Registration information has been received. ' . '<br><br>';
+    $body .=' Thank you for your support,' . '<br><br>';
+    $body .=' NIAF ';
+    return $body;
+}
+
+function insertIntoDb($data) {
     $date = date('Y-m-d H:i:s');
     $query = "INSERT INTO `_give_the_gift_of_heritage_form`(`txtFirstName`, `txtLastName`, `txtSpouse`, `txtOrganization`,"
             . " `txtTitle`, `strWorkAddr`, `txtAddress1`, `txtAddress2`, `txtCity`, `txtState`, `txtZip`, "

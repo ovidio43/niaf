@@ -1246,9 +1246,9 @@ function getDetailAnniversaryGalaRegistrationForm($db, $dataMixed) {
         </tr>    
     </tbody>
     </table>
-<hr>
+    <hr>
     <table cellpadding="3" align="center" width="100%" >        
-        <tbody>                 
+    <!--        <tbody>                 
             <tr>
                 <td colspan="3">Option A: Package Deals</td>
             </tr>
@@ -1467,6 +1467,65 @@ function getDetailAnniversaryGalaRegistrationForm($db, $dataMixed) {
         <td align="right" colspan="2"><font color="blue"><b>TOTAL REMITTED $</b><font></font></font></td>
         <td><b><?php echo $row->x_amount; ?></b></td>					
     </tr>	
+    </tbody>-->
+        <tbody>
+            <tr>
+                <td colspan="3">
+                    <b>ADVANCE REGISTRATION<br>
+                        NIAF's 39th Anniversary Gala on October 25, 2014<br>
+                        Washington Hilton<br>
+                        Washington, D.C.<br></b>
+                </td>            
+            </tr>
+            <tr>
+                <td colspan="3">Please reserve: (a full table includes 10 seats)</td>            
+            </tr>
+            <tr>
+                <td><?php echo $row->select_firsttworow; ?></td>
+                <td>
+                    <b>First Two Rows</b> Dinner Ticket(s) @ <strike>$2,500</strike> each 
+        <b>($2,000 each prior to July 1)</b>
+    </td>
+    <td><b>$</b>&nbsp;<?php echo $row->firsttworow; ?></td>
+    </tr>	
+    <tr>
+        <td><?php echo $row->select_premierseatingdinner; ?></td>         
+        <td>
+            <b>Premier</b> Seating Dinner Ticket(s) @ <strike>$1,000</strike> each 
+    <b>($850 each prior to July 1)</b>
+    </td>
+    <td><b>$</b>&nbsp;<?php echo $row->premierseatingdinner; ?></td>
+    </tr>	
+    <tr>
+        <td><?php echo $row->select_preferredseatingdinner; ?></td>           
+        <td>
+            <b>Preferred</b> Seating Dinner Ticket(s) @ <strike>$600</strike> each 
+    <b>($500 each prior to July 1)</b>
+    </td>
+    <td><b>$</b>&nbsp;<?php echo $row->preferredseatingdinner; ?></td>
+    </tr>	
+    <tr>
+        <td><?php echo $row->select_standardseatingdinner; ?></td>               
+        <td>
+            <b>Standard</b> Seating Dinner Ticket(s) @ <strike>$400</strike> each 
+    <b>($350 each prior to July 1)</b>
+    </td>
+    <td><b>$</b>&nbsp;<?php echo $row->standardseatingdinner; ?></td>
+    </tr>	
+    <tr>
+        <td>&nbsp;</td>
+        <td>
+            <font color="blue">I am unable to attend, but would like to contribute to the NIAF Education &amp; Scholarship Program.</font>						
+        </td>
+        <td><b>$ <?php echo $row->dollarcontribution; ?></b></td>
+    </tr>			
+    <tr>
+        <td colspan="3">&nbsp;</td>
+    </tr>
+    <tr>            
+        <td align="right" colspan="2"><font color="blue"><b>TOTAL REMITTED $</b><font></font></font></td>
+        <td><b><?php echo $row->x_amount; ?></b></td>					
+    </tr>
     </tbody>
     </table>
     <p><a href="#" class="link-back" paginationFrom="<?php echo $dataMixed['paginationFrom']; ?>" show="<?php echo $dataMixed['show']; ?>">Back</a></p>

@@ -22,11 +22,13 @@ $send = $_POST['send'];
                     <?php endwhile; // end of the loop. ?>
                     <div class="wrap-form">
                         <?php
+                        require_once (get_template_directory() . '/PHPMailer/PHPMailerAutoload.php');
                         if ($send != 'true') {
                             require_once (get_template_directory() . '/include/form-golf_reg.php');
                         } else {
                             require_once (get_template_directory() . '/include/send-form-golf_reg.php');
-                        }                        
+//                            require_once (get_template_directory() . '/include/testmail.php');
+                        }
                         ?>
                     </div>
                 </div><!-- .entry-content -->

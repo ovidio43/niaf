@@ -28,6 +28,15 @@ function insertIntoDb($data) {
 }
 
 function sendMail($data, $titleData) {
+    $mail = new PHPMailer();
+    $mail->IsSMTP();
+//    $mail->SMTPDebug = 2;
+    $mail->SMTPAuth = true;
+    $mail->Host = "east.exch025.serverdata.net";
+    $mail->SMTPSecure = "tls";
+    $mail->Port = 465;
+    $mail->Username = "info@niaf.org";
+    $mail->Password = "D3v3l0p3r2014";
     $body = '';
     foreach ($data as $key => $value) {
         if (!isIn($key) && $key != '') {
@@ -39,34 +48,35 @@ function sendMail($data, $titleData) {
             }
         }
     }
-    $subject = ' NIAF NEW YORK SPRING GALA - NEW REGISTRATION';
-    $from = 'gmileti@niaf.org, ckorin@niaf.org';
-    $headers .= 'Content-type:text/html;charset=UTF-8'. "\r\n"
-            . 'From: NIAF <info@niaf.org>'."\r\n";
-    if (mail($from, $subject, $body, $headers)) {
-        if (sendMail_client($data)){
-            return true;    
-        }
+    $mail->SetFrom("info@niaf.org", "NIAF");
+    $mail->Subject = "NIAF NEW YORK SPRING GALA - NEW REGISTRATION";
+    $mail->MsgHTML($body);
+    $mail->AddAddress("ckorin@niaf.org", "C. Korin");
+    $mail->AddAddress("gmileti@niaf.org", "G. Mileti");
+    if (!$mail->Send()) {
         return false;
-    } 
-    return false;
-}
-function sendMail_client($data) {
-    $subject = 'NIAF New York Spring gala - CONFIRMATION ';
-    $from = $data['txtEmail'];
-    $name_complete = 'Dear' . ' ' .  $data['txtFirstName'] . ' ' .$data['txtLastName'];
-    $headers .= 'Content-type:text/html;charset=UTF-8'. "\r\n"
-            . 'From: NIAF <info@niaf.org>'. "\r\n";
-    $body = '';
-    $body .= $name_complete.'<br><br>';
-    $body .= 'Thank you for registering for the NIAF New York Spring Golf.' .'<br>';
-    $body .= '  Your Registration information has been received. '.'<br><br>';
-    $body .= '  The National Italian American Foundation looks forward to seeing you at the NIAF New York Spring Extravaganza! '.'<br><br>';
-    $body .=' If you have any questions, please don\'t hesitate to email Jerry Jones (<a href="mailto:jerry@niaf.org">jerry@niaf.org</a>), or call 202-939-3102.'.'<br><br>';
-    $body .=' Thank you for your support,' .'<br><br>';
-    $body .=' NIAF ';
-    if (mail($from, $subject, $body, $headers)) {
+    } else {
+        $mail->Subject = "NIAF New York Spring gala - CONFIRMATION";
+        $body = sendMail_client($data);
+        $mail->MsgHTML($body);
+        $mail->AddAddress($data['txtEmail'], "info test client");
+        if (!$mail->Send()) {
+            return false;
+        }
         return true;
     }
-    return false;
+
+}
+
+function sendMail_client($data) {
+    $name_complete = 'Dear' . ' ' . $data['txtFirstName'] . ' ' . $data['txtLastName'];
+    $body = '';
+    $body .= $name_complete . '<br><br>';
+    $body .= 'Thank you for registering for the NIAF New York Spring Golf.' . '<br>';
+    $body .= '  Your Registration information has been received. ' . '<br><br>';
+    $body .= '  The National Italian American Foundation looks forward to seeing you at the NIAF New York Spring Extravaganza! ' . '<br><br>';
+    $body .=' If you have any questions, please don\'t hesitate to email Jerry Jones (<a href="mailto:jerry@niaf.org">jerry@niaf.org</a>), or call 202-939-3102.' . '<br><br>';
+    $body .=' Thank you for your support,' . '<br><br>';
+    $body .=' NIAF ';
+    return $body;
 }

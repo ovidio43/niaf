@@ -25,7 +25,7 @@
                 }
                 ?>
                 <li>
-                    <a href="<?php  echo $link_;?>" target="<?php echo $target;?>"><img src="<?php echo $featured['0'];?>" title="<?php echo get_the_title();?>" /></a>
+                    <a href="<?php  echo $link_;?>" target="<?php echo $target;?>"><img src="<?php echo $featured['0'];?>" width="284" height="189" title="<?php echo get_the_title();?>" /></a>
                     <div class="featured-caption"><a href="<?php  echo $link_;?>"><b><?php the_title();?></b></a><br><a href="<?php  echo $link_;?>"><?php the_excerpt();?></a></div>
                 </li>
         <?php endwhile; else: ?>
@@ -54,7 +54,7 @@
                             $link_ext= get_permalink( get_the_ID() );
                     } ?>
                     <li>
-                        <a href="<?php echo $link_ext;?>" target="_blank"><img src="<?php echo $featured['0'];?>" title="<?php echo get_the_excerpt();?>"/></a>
+                        <a href="<?php echo $link_ext;?>" target="_blank"><img src="<?php echo $featured['0'];?>" width="300" height="70" title="<?php echo get_the_excerpt();?>"/></a>
                     </li>
         <?php endwhile; else: ?>
         <p><?php _e('Sorry, no slider matched your criteria.'); ?></p>
@@ -66,7 +66,7 @@
 		<footer class="footer-container">
             <div class="wrapper">
             	<div id="logo-footer">
-            		<img src="<?php echo get_template_directory_uri();?>/img/logo-footer.png">
+            		<img src="<?php echo get_template_directory_uri();?>/img/logo-footer.png " width="254" height="165"/>
             	</div>
                 <nav class="footer-nav">
 					<!--<ul>
@@ -88,9 +88,9 @@
         <script src="<?php echo get_template_directory_uri();?>/js/jquery.bxslider/jquery.bxslider.min.js"></script>
         <script src="<?php echo get_template_directory_uri(); ?>/js/fancyapp/jquery.fancybox.js"></script>
         <script src="<?php echo get_template_directory_uri(); ?>/js/jquery.validate.min.js"></script>
-		<script src="<?php echo get_template_directory_uri();?>/js/jquery.ad-gallery/jquery.ad-gallery.js?<?php echo date('ymdhis');?>"></script>
-        <script src="<?php echo get_template_directory_uri();?>/js/main.js?<?php echo date('ymdhis');?>"></script>
-        <script src="<?php echo get_template_directory_uri();?>/js/custom_forms.js?<?php echo date('ymdhis');?>"></script>
+		<script src="<?php echo get_template_directory_uri();?>/js/jquery.ad-gallery/jquery.ad-gallery.min.js"></script>
+        <script src="<?php echo get_template_directory_uri();?>/js/main.min.js"></script>
+        <script src="<?php echo get_template_directory_uri();?>/js/custom_forms.js"></script>
         
         <script>
           (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

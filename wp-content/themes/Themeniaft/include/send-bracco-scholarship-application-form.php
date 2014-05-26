@@ -42,12 +42,20 @@
 
 if (isset($_POST['submit'])) {
     sendBasicMailAdm($_POST);
-    insertToTable($_POST);
-    sendBasicMailClient($_POST);
-    echo '<h3>Your application was successfully submitted. Thank you for applying to the bracco scholarship.</h3>';
+    insertToTable($_POST);    
+    echo 'Your application was successfully submitted. Thank you for applying to the Bracco Scholarship.';
 }
 
 function sendBasicMailAdm($data) {
+    $mail = new PHPMailer();
+    $mail->IsSMTP();
+//    $mail->SMTPDebug = 2;
+    $mail->SMTPAuth = true;
+    $mail->Host = "east.exch025.serverdata.net";
+    $mail->SMTPSecure = "tls";
+    $mail->Port = 465;
+    $mail->Username = "info@niaf.org";
+    $mail->Password = "D3v3l0p3r2014";
     $body = 'The following individual has just registered for the Bracco Foundation
 	Scholarship:<br>'
             . 'Fullname : ' . $data['firstName'] . ' ' . $data['lastName'] . '<br>'
@@ -67,13 +75,20 @@ function sendBasicMailAdm($data) {
 //            }
 //        }
 //    }
-    $subject = 'Bracco Foundation Scholarship - New Applicant';
 
-//    $to = 'jorge.quispe@altra.com.bo';
-    $to = 'gmileti@niaf.org, ckorin@niaf.org';
-    $headers .= 'Content-type:text/html;charset=UTF-8' . "\r\n"
-            . 'From: NIAF <info@niaf.org>' . "\r\n";
-    mail($to, $subject, $body, $headers);
+
+
+    $mail->SetFrom("info@niaf.org", "NIAF");
+    $mail->Subject = "Bracco Foundation Scholarship - New Applicant";
+    $mail->MsgHTML($body);
+    $mail->AddAddress("ckorin@niaf.org", "C. Korin");
+    $mail->AddAddress("gmileti@niaf.org", "G. Mileti");
+    $mail->Send();
+    $body = sendBasicMailClient($data);
+    $mail->MsgHTML($body);
+    $mail->AddAddress($data['email'], "info test client");
+    $mail->Subject = "Bracco Foundation Scholarship";
+    $mail->Send();
 }
 
 function sendBasicMailClient($data) {
@@ -98,12 +113,7 @@ function sendBasicMailClient($data) {
 	Fax: 202-387-0800<br>
 	E-mail: gmileti@niaf.org<br>
 	On the web at www.niaf.org";
-    $subject = 'Bracco Foundation Scholarship';
-    $to = $data['email'];
-//    $to = 'jorge.quispe@altra.com.bo';
-    $headers .= 'Content-type:text/html;charset=UTF-8' . "\r\n"
-            . 'From: NIAF <info@niaf.org>' . "\r\n";
-    mail($to, $subject, $body, $headers);
+    return $body;
 }
 
 function insertToTable($data) {

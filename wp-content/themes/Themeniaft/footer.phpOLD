@@ -6,20 +6,26 @@
         $args=array(
           'post_type' => $type,
           'post_status' => 'publish',
-          'orderby' => 'date',
-          'order' => 'ASC',
-          'posts_per_page'=>5);                                 
+          'orderby' => 'rand',
+          'posts_per_page'=>-1);                                 
         $myposts = new WP_Query( $args );
          if ( $myposts->have_posts() ) : 
             while ( $myposts->have_posts() ) : 
                 $myposts->the_post(); 
-                $featured = wp_get_attachment_image_src(get_post_thumbnail_id(get_the_ID()),'medium',false);   
+                $featured = wp_get_attachment_image_src(get_post_thumbnail_id(get_the_ID()),'image-featured',false);  
+                $target_link = get_post_meta(get_the_ID(), 'wpcf-target_link', true); 
                 $link_ = get_post_meta(get_the_ID(), 'wpcf-link-external-page', true);
                 if($link_==''){
                     $link_= get_permalink( get_the_ID() );
-                }        ?>
+                } 
+                if($target_link==1){
+                    $target ="_blank";
+                }else{
+                    $target ="_self";
+                }
+                ?>
                 <li>
-                    <a href="<?php  echo $link_;?>"><img src="<?php echo $featured['0'];?>" title="<?php echo get_the_title();?>" /></a>
+                    <a href="<?php  echo $link_;?>" target="<?php echo $target;?>"><img src="<?php echo $featured['0'];?>" title="<?php echo get_the_title();?>" /></a>
                     <div class="featured-caption"><a href="<?php  echo $link_;?>"><b><?php the_title();?></b></a><br><a href="<?php  echo $link_;?>"><?php the_excerpt();?></a></div>
                 </li>
         <?php endwhile; else: ?>
@@ -54,8 +60,9 @@
         <p><?php _e('Sorry, no slider matched your criteria.'); ?></p>
         <?php endif; ?>
         <?php wp_reset_query(); ?>
-</div>
-</div>		
+    </ul>
+</div>	
+</div>	
 		<footer class="footer-container">
             <div class="wrapper">
             	<div id="logo-footer">
@@ -83,7 +90,8 @@
         <script src="<?php echo get_template_directory_uri(); ?>/js/jquery.validate.min.js"></script>
 		<script src="<?php echo get_template_directory_uri();?>/js/jquery.ad-gallery/jquery.ad-gallery.js?<?php echo date('ymdhis');?>"></script>
         <script src="<?php echo get_template_directory_uri();?>/js/main.js?<?php echo date('ymdhis');?>"></script>
-
+        <script src="<?php echo get_template_directory_uri();?>/js/custom_forms.js?<?php echo date('ymdhis');?>"></script>
+        
         <script>
             var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
             (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];

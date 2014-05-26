@@ -39,7 +39,7 @@ get_header(); ?>
                                 <?php if($uri_external!=""){ ?>
                                 <a href="<?php echo $uri_external;?>" target="<?php echo $target?>">
                                 <?php }?>
-                                <img src="<?php echo $featured['0'];?>" title="<?php echo get_the_title().' '.get_the_excerpt();?>" />
+                                <img src="<?php echo $featured['0']; ?>" width="650" height="390" title="<?php echo get_the_title().' '.get_the_excerpt();?>" />
                                 <?php if($uri_external!=""){ ?>
                                 </a>
                                 <?php }?>
@@ -95,7 +95,7 @@ get_header(); ?>
                                 }?>										
     							<article class="box">
                                     <div class="wrap-img">
-    									<a href="<?php echo $link_external;?>" target="<?php echo $target;?>"><img src="<?php echo $imageFeatured;?>" title="<?php echo $resumText;?>"></a>
+    									<a href="<?php echo $link_external;?>" target="<?php echo $target;?>"><img src="<?php echo $imageFeatured;?>" width="290" height="147" title="<?php echo $resumText;?>"></a>
     									<a href="<?php echo $link_external;?>" target="<?php echo $target;?>"><span><?php echo $titleText;?></span></a></div>
     									<a href="<?php echo $link_external;?>" target="<?php echo $target;?>"><?php echo $resumText;?></a>
                                 </article>

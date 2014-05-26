@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once (get_template_directory() . '/PHPMailer/PHPMailerAutoload.php');
 require_once (get_template_directory() . '/lib/ezSQL-master/shared/ez_sql_core.php');
 require_once (get_template_directory() . '/lib/ezSQL-master/mysqli/ez_sql_mysqli.php');
 require_once (get_template_directory() . '/customgalery.php');
@@ -7,73 +8,71 @@ require_once (get_template_directory() . '/customgalery.php');
 
 
 add_action('init', 'setup_niafevents_post');
+
 function setup_niafevents_post() {
 
     $capabilities = array(
-     'publish_posts' => 'publish_niaf_event',
-     'edit_posts' => 'edit_niaf_event',
-     'edit_others_posts' => 'edit_others_niaf_event',
-     'delete_posts' => 'delete_niaf_event',
-     'delete_others_posts' => 'delete_others_niaf_event',
-     'read_private_posts' => 'read_private_niaf_event',
-     'edit_post' => 'edit_niaf_event',
-     'delete_post' => 'delete_niaf_event',
-     'read_post' => 'read_niaf_event'
+        'publish_posts' => 'publish_niaf_event',
+        'edit_posts' => 'edit_niaf_event',
+        'edit_others_posts' => 'edit_others_niaf_event',
+        'delete_posts' => 'delete_niaf_event',
+        'delete_others_posts' => 'delete_others_niaf_event',
+        'read_private_posts' => 'read_private_niaf_event',
+        'edit_post' => 'edit_niaf_event',
+        'delete_post' => 'delete_niaf_event',
+        'read_post' => 'read_niaf_event'
     );
 
     $labels = array(
-     'name' => 'Niaf Events Entries',
-     'singular_name' => 'Niaf Events Entry',
-     'menu_name' => 'Niaf Events Entries',
-     'add_new' => 'Add New',
-     'add_new_item' => 'Add New Niaf Events Entry',
-     'edit' => 'Edit entry',
-     'edit_item' => 'Edit Niaf Events Entry',
-     'new_item' => 'New Niaf Events Entry',
-     'view' => 'View Niaf Events Entry',
-     'view_item' => 'View Niaf Events Entry',
-     'search_items' => 'Search Niaf Events Entries',
-     'not_found' => 'No Niaf Events Entries Found',
-     'not_found_in_trash' => 'No Niaf Events Entries Found in Trash',
-     'parent' => 'Parent Niaf Events Entry',);
+        'name' => 'Niaf Events Entries',
+        'singular_name' => 'Niaf Events Entry',
+        'menu_name' => 'Niaf Events Entries',
+        'add_new' => 'Add New',
+        'add_new_item' => 'Add New Niaf Events Entry',
+        'edit' => 'Edit entry',
+        'edit_item' => 'Edit Niaf Events Entry',
+        'new_item' => 'New Niaf Events Entry',
+        'view' => 'View Niaf Events Entry',
+        'view_item' => 'View Niaf Events Entry',
+        'search_items' => 'Search Niaf Events Entries',
+        'not_found' => 'No Niaf Events Entries Found',
+        'not_found_in_trash' => 'No Niaf Events Entries Found in Trash',
+        'parent' => 'Parent Niaf Events Entry',);
 
     register_post_type('niaf_event', array(
-         'label' => 'Niaf Events Entries',
-         'description' => '',
-         'public' => true,
-         'show_ui' => true,
-         'show_in_menu' => true,
-         'capability_type' => 'niaf_event',
-         'capabilities'=>$capabilities,
-         'hierarchical' => false,
-         'rewrite' => array('slug' => 'niaf_event'),
-         'query_var' => true,
-         'supports' => array('title','thumbnail','editor'),
-         'labels' => $labels,
-         )
+        'label' => 'Niaf Events Entries',
+        'description' => '',
+        'public' => true,
+        'show_ui' => true,
+        'show_in_menu' => true,
+        'capability_type' => 'niaf_event',
+        'capabilities' => $capabilities,
+        'hierarchical' => false,
+        'rewrite' => array('slug' => 'niaf_event'),
+        'query_var' => true,
+        'supports' => array('title', 'thumbnail', 'editor'),
+        'labels' => $labels,
+            )
     );
 
-        flush_rewrite_rules(false);
+    flush_rewrite_rules(false);
 
-        /********************** CUSTOM ROLE *****************************/
-    add_role('niaf_event_author', 'Niaf Events Helper', array (
-         'publish_niaf_event' => true,
-         'edit_niaf_event' => true,
-         'edit_others_niaf_event' => true,
-         'delete_niaf_event' => true,
-         'delete_others_niaf_event' => true,
-         'read_private_niaf_event' => true,
-         'edit_niaf_event' => true,
-         'delete_niaf_event' => true,
-         'read_niaf_event' => true,
-         // more standard capabilities here
+    /*     * ******************** CUSTOM ROLE **************************** */
+    add_role('niaf_event_author', 'Niaf Events Helper', array(
+        'publish_niaf_event' => true,
+        'edit_niaf_event' => true,
+        'edit_others_niaf_event' => true,
+        'delete_niaf_event' => true,
+        'delete_others_niaf_event' => true,
+        'read_private_niaf_event' => true,
+        'edit_niaf_event' => true,
+        'delete_niaf_event' => true,
+        'read_niaf_event' => true,
+        // more standard capabilities here
         'read' => true,
-
-        )
-
+            )
     );
 }
-
 
 /* cutomized functions for theme niaft */
 register_nav_menu('Scholarshipsnav', __('Scholarships Menu', 'themeNiaft'));
@@ -122,7 +121,7 @@ function themeNiaft_widgets_init() {
         'after_widget' => "</aside>",
         'before_title' => '<h3 class="widget-title">',
         'after_title' => '</h3>',
-    ));    
+    ));
 }
 
 add_action('widgets_init', 'themeNiaft_widgets_init');
@@ -171,7 +170,6 @@ class LoginFormWidget extends WP_Widget {
                 ?>
                 <div class="loginform-btb-wrap"> 
                     <?php
-                    
                     if ($current_user->ID == null) {
 //                        setcookie("first_name", "", 1);
 //                        setcookie("last_name", "", 1);
@@ -198,7 +196,7 @@ class LoginFormWidget extends WP_Widget {
 
                         <input class="text" type="text" name="website_login" id="website_login" value="Password">
                         <?php $pageforgot = get_page_by_path('forgot-your-password'); ?>
-                        <span><a href="<?php echo get_permalink($pageforgot->ID); ?>">Forgot your password?</a></span><br><br>
+                        <span><a href="<?php echo get_permalink($pageforgot->ID); ?>">First time login or forgot password?</a></span><br><br>
                         <!--span><input type="radio" name="remember" id="remember"><label for="remember">Remember me</label> </span><br-->
                         <input class="button btb_blue gradient" id="submit" type="submit" value="Sign In">	
                         <span id="msg"></span>
@@ -232,7 +230,7 @@ class LoginFormWidget extends WP_Widget {
                             </script>-->
                         <?php // }
                         ?>
-                        <div id="myniaf-logo"><a href="/my-niaf/"> <img src="<?php echo get_template_directory_uri();?>/img/my-NIAF-logo.png"></a></div>
+                        <div id="myniaf-logo"><a href="/my-niaf/"> <img src="<?php echo get_template_directory_uri(); ?>/img/my-NIAF-logo.png"></a></div>
                         <?php $page = get_page_by_path('change-password'); ?>
                         <div class="userlogued">
             <!--                            <span class="userdetail">Welcome<br>
@@ -257,13 +255,13 @@ class LoginFormWidget extends WP_Widget {
                         $tax_terms = get_terms($taxonomy);
                         ?>
                         <ul class="member-category">
-                            <?php
-                            foreach ($tax_terms as $tax_term) {
-                                if (getCountPost($tax_term->slug) > 0) {
-                                    echo '<li>' . '<a href="' . esc_attr(get_term_link($tax_term, $taxonomy)) . '" title="' . sprintf(__("View all posts in %s"), $tax_term->name) . '" ' . '>' . $tax_term->name . '</a></li>';
-                                }
+                        <?php
+                        foreach ($tax_terms as $tax_term) {
+                            if (getCountPost($tax_term->slug) > 0) {
+                                echo '<li>' . '<a href="' . esc_attr(get_term_link($tax_term, $taxonomy)) . '" title="' . sprintf(__("View all posts in %s"), $tax_term->name) . '" ' . '>' . $tax_term->name . '</a></li>';
                             }
-                            ?>
+                        }
+                        ?>
                         </ul-->
 
                     </div>

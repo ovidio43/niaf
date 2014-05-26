@@ -55,7 +55,7 @@ get_header();
             ?>          
             <?php
         if($_GET['filter']!=""){?>
-        <br>
+        <br><br>
           <a href="/news-release-archive/" class="backlink">View News Release Archive</a><br><br>
             <?php $y = $_GET['filter'];
 

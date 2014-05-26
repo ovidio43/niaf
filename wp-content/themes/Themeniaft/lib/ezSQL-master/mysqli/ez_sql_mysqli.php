@@ -45,7 +45,7 @@ class ezSQL_mysqli extends ezSQLcore {
      *  same time as initialising the ezSQL_mysqli class
      */
 
-    function ezSQL_mysqli($dbuser = 'niafnet_udbniaf', $dbpassword = 'KC#CAzHlC#y_', $dbname = 'niafnet_niaf', $dbhost = 'localhost', $encoding = '') {
+    function ezSQL_mysqli($dbuser = 'niaf_orgus', $dbpassword = '.d*Hi6Z?QG8L', $dbname = 'niaf_dborg', $dbhost = 'localhost', $encoding = '') {
         $this->dbuser = $dbuser;
         $this->dbpassword = $dbpassword;
         $this->dbname = $dbname;

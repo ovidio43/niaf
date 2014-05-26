@@ -29,46 +29,57 @@ function insertIntoDb($data) {
 }
 
 function sendMail($data, $titleData) {
+
+    $mail = new PHPMailer();
+    $mail->IsSMTP();
+//    $mail->SMTPDebug = 2;
+    $mail->SMTPAuth = true;
+    $mail->Host = "east.exch025.serverdata.net";
+    $mail->SMTPSecure = "tls";
+    $mail->Port = 465;
+    $mail->Username = "info@niaf.org";
+    $mail->Password = "D3v3l0p3r2014";
+
     $body = '';
     foreach ($data as $key => $value) {
         $body.='<b>' . $titleData[$key] . ' : </b>';
         if (is_array($value)) {
-            $body.= formatArray($value);                
+            $body.= formatArray($value);
         } else {
-            if($titleData[$key]=="Card Number"){
+            if ($titleData[$key] == "Card Number") {
                 $body.="********* <br>";
-            }else{
-                $body.=$value . '<br>';               
+            } else {
+                $body.=$value . '<br>';
             }
         }
     }
-    $subject = '4th Annual NIAF Golf Tournament - NEW REGISTRATION';
-    $from = 'gmileti@niaf.org, ckorin@niaf.org';
-    $headers .= 'Content-type:text/html;charset=UTF-8'. "\r\n"
-            . 'From: NIAF <info@niaf.org>'. "\r\n";
-    if (mail($from, $subject, $body, $headers)) {
-       if (sendMail_client($data)){
-            return true;    
-        }
+
+    $mail->SetFrom("info@niaf.org", "NIAF");
+    $mail->Subject = "4th Annual NIAF Golf Tournament - NEW REGISTRATION";
+    $mail->MsgHTML($body);
+//    $mail->AddAddress("info@niaf.org", "info test");
+    $mail->AddAddress("ckorin@niaf.org", "C. Korin");
+    $mail->AddAddress("gmileti@niaf.org", "G. Mileti");
+    if (!$mail->Send()) {
         return false;
-    } 
-    return false;
+    } else {
+        $body = sendMail_client($data);
+        $mail->MsgHTML($body);
+        $mail->AddAddress($data['txtEmail'], "info test client");
+        if (!$mail->Send()) {
+            return false;
+        }
+        return true;
+    }
 }
 
 function sendMail_client($data) {
-    $subject = '4th Annual NIAF Golf Tournament - CONFIRMATION';
-    $from = $data['txtEmail'];
-    $name_complete = 'Dear' . ' ' .  $data['x_first_name'] . ' ' .$data['x_last_name'];
-    $headers .= 'Content-type:text/html;charset=UTF-8'. "\r\n"
-            . 'From: NIAF <info@niaf.org>'. "\r\n";
+    $name_complete = 'Dear' . ' ' . $data['x_first_name'] . ' ' . $data['x_last_name'];
     $body = '';
-    $body .= $name_complete.'<br><br>';
-    $body .= 'Thank you for registering for the 4th Annual NIAF Golf Tournament.' .'<br>';
-    $body .= '  Your Registration information has been received. '.'<br><br>';
-    $body .=' Thank you for your support,' .'<br><br>';
+    $body .= $name_complete . '<br><br>';
+    $body .= 'Thank you for registering for the 4th Annual NIAF Golf Tournament.' . '<br>';
+    $body .= '  Your Registration information has been received. ' . '<br><br>';
+    $body .=' Thank you for your support,' . '<br><br>';
     $body .=' NIAF ';
-    if (mail($from, $subject, $body, $headers)) {
-        return true;
-    }
-    return false;
+    return $body;
 }
