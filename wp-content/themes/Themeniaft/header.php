@@ -1,4 +1,23 @@
 <?php
+/**if($_SERVER['HTTPS']!="on"){
+
+    if(is_page('join-us')){
+        $redirect= "https://www.niaf.org/join-us/"; 
+    }
+    if(is_page('donate-info-form')){
+        $redirect= "https://www.niaf.org/donate-info-form/"; 
+    }
+    if(is_page('give-the-gift-of-heritage-form')){
+        $redirect= "https://www.niaf.org/support/give-the-gift-of-heritage-form/"; 
+    }
+    if(is_page('bracco-scholarship-application-form')){
+        $redirect= "https://www.niaf.org/programs/bracco-foundation-scholarship/bracco-scholarship-application-form/"; 
+    }
+    if(is_page('anniversary-gala-registration-form')){
+        $redirect= "https://niaf.org/anniversary-gala-registration-form/"; 
+    }                
+    header("Location:$redirect");   
+}*/
 /**
  * The Header for our theme.
  *
@@ -47,10 +66,10 @@ global $current_user;
 <!--div id="preloader">
   <div id="status">&nbsp;</div>
 </div-->
-<div id="main-wrapper" class="wrapper shadow-box bg-white main-container-full" rel="http://niaf.org/my-niaf/" >
+<div id="main-wrapper" class="wrapper shadow-box bg-white main-container-full" rel="https://niaf.org/my-niaf/" >
 	<header class="header-container" rel="<?php bloginfo('url'); ?>">
         <a href="<?php echo esc_url( home_url( '/' ) ); ?>" id="logo"><img src="<?php echo get_template_directory_uri();?>/img/logo.png" width="122" height="122"> </a>
-        <div class="header-title"> The <strong>NATIONAL ITALIAN AMERICAN FOUNDATION</strong></div>
+        <div class="header-title"><span>The</span> NATIONAL ITALIAN AMERICAN FOUNDATION</div>
         <nav class="header-nav">
             <?php 
 if (is_page_template('template-scholarships.php') ) {

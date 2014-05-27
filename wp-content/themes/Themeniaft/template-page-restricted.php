@@ -19,14 +19,17 @@ get_currentuserinfo();
                         $title = get_the_title();
                         $content = get_the_content();
                         $content2 = htmlspecialchars_decode(get_field('content_area_restricted'));
-                    endwhile;?>
+                        endwhile;
+                    ?>
                         <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
                             <header class="entry-header">
                                 <h1 class="entry-title"><?php echo $title; ?></h1>
                             </header>
                             <div class="entry-content">
                                 <?php echo $content; ?>
-                                <?php $args = array(
+                                <?php 
+                                if(is_page('my-niaf')){
+                                $args = array(
                                     'post_type' => 'news_my_niaf',
                                     'post_status' => 'publish',
                                     'order' => 'DESC',
@@ -42,8 +45,9 @@ get_currentuserinfo();
                                     <?php endwhile; ?>
                                     <a href="/news_my_niaf/">View previous announcements</a>&gt;&gt;
                                     <p style="text-align: center;">___________________________________________</p>
-                                <?php endif; ?>                                 
-                                <?php if(is_page('my-niaf')){ 
+                                <?php endif; ?>
+
+                                <?php 
                                     echo $content2;
                                 }?>                                
                             </div><!-- .entry-content -->
@@ -72,7 +76,7 @@ get_currentuserinfo();
                                  ?></p>
                                 <?php }else{
 
-                                    _e('<br><img src="http://niaf.org/wp-content/uploads/2014/03/my-NIAF-logo.png" align="right">
+                                    _e('<br><img src="http://www.niaf.org/wp-content/uploads/2014/03/my-NIAF-logo.png" align="right">
 									My NIAF is an area of the website that is reserved exclusively for NIAF members.  If you are a current member, please proceed to log in on the right.
 									<br>
 									<br>
