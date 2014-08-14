@@ -19,3 +19,6 @@
 [26-Feb-2014 12:32:08 America/New_York] PHP Fatal error:  Call to undefined function get_header() in /home/niafnet/public_html/wp-content/themes/Themeniaft/index.php on line 10
 [26-Feb-2014 12:32:12 America/New_York] PHP Fatal error:  Call to undefined function get_header() in /home/niafnet/public_html/wp-content/themes/Themeniaft/index.php on line 10
 [30-Mar-2014 19:57:18 America/New_York] PHP Fatal error:  Call to undefined function get_header() in /home/niafnet/public_html/wp-content/themes/Themeniaft/index.php on line 10
+[24-May-2014 18:41:17 America/New_York] PHP Fatal error:  Call to undefined function get_header() in /home/niaf/public_html/wp-content/themes/Themeniaft/index.php on line 10
+[25-May-2014 04:06:01 America/New_York] PHP Fatal error:  Call to undefined function get_header() in /home/niaf/public_html/wp-content/themes/Themeniaft/index.php on line 10
+[25-May-2014 11:06:41 America/New_York] PHP Fatal error:  Call to undefined function get_header() in /home/niaf/public_html/wp-content/themes/Themeniaft/index.php on line 10

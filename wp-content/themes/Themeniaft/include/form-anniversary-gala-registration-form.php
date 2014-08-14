@@ -381,7 +381,7 @@
             </td>
             <td><b>$</b>&nbsp;<input type="text" readonly class="result"  name="dollaryouthprotickets" size="7" value="0"></td>
         </tr>	-->
-        <!--------------------comienzo de nueva seccion------------------------->
+        <!-- ------------------comienzo de nueva seccion----------------------- -->
         <tr>
             <td colspan="3">
                 <b>ADVANCE REGISTRATION<br>
@@ -467,7 +467,7 @@
         </tr>	
 
 
-        <!------------------------------------------------------------------------->
+        <!-- --------------------------------------------------------------------- -->
         <tr>
             <td colspan="3">&nbsp;</td>
         </tr>
@@ -476,7 +476,7 @@
             <td>
                 <font color="blue">I am unable to attend, but would like to contribute to the NIAF Education &amp; Scholarship Program.</font>						
             </td>
-            <td ><b>$</b>&nbsp;<input type="text" readonly class="result" name="dollarcontribution" size="7" value="0"></td>
+            <td ><b>$</b>&nbsp;<input type="text" class="val result" name="dollarcontribution" size="7" value="0"></td>
         </tr>			
         <tr>
             <td colspan="3">&nbsp;</td>

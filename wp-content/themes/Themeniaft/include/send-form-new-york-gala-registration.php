@@ -3,7 +3,13 @@
 require_once ('AUTHORIZE.NET.php');
 $results = performTransaction($_POST);
 if ($results[3] == 'This transaction has been approved.') {
+    $_POST['authorizationCode'] = $results[50];
+    $_POST['cardType'] = $results[51];
+    $_POST['transactionData'] = $results[6];
     if (sendMail($_POST, $titleData)) {
+        unset($_POST['authorizationCode']);
+        unset($_POST['cardType']);
+        unset($_POST['transactionData']);
         insertIntoDb($_POST);
         echo 'Your response has been recorded.';
     } else {
@@ -56,16 +62,25 @@ function sendMail($data, $titleData) {
     if (!$mail->Send()) {
         return false;
     } else {
+        $mail = new PHPMailer();
+        $mail->IsSMTP();
+//    $mail->SMTPDebug = 2;
+        $mail->SMTPAuth = true;
+        $mail->Host = "east.exch025.serverdata.net";
+        $mail->SMTPSecure = "tls";
+        $mail->Port = 465;
+        $mail->Username = "info@niaf.org";
+        $mail->Password = "D3v3l0p3r2014";
         $mail->Subject = "NIAF New York Spring gala - CONFIRMATION";
         $body = sendMail_client($data);
         $mail->MsgHTML($body);
         $mail->AddAddress($data['txtEmail'], "info test client");
+        $mail->AddBCC("ckorin@niaf.org");
         if (!$mail->Send()) {
             return false;
         }
         return true;
     }
-
 }
 
 function sendMail_client($data) {

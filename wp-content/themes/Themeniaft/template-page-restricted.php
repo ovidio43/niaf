@@ -26,7 +26,9 @@ get_currentuserinfo();
                                 <h1 class="entry-title"><?php echo $title; ?></h1>
                             </header>
                             <div class="entry-content">
-                                <?php echo $content; ?>
+                                <?php 
+                                echo apply_filters( 'the_content', $content );
+                                ?>
                                 <?php 
                                 if(is_page('my-niaf')){
                                 $args = array(

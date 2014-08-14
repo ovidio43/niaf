@@ -42,7 +42,7 @@
 
 if (isset($_POST['submit'])) {
     sendBasicMailAdm($_POST);
-    insertToTable($_POST);    
+    insertToTable($_POST);
     echo 'Your application was successfully submitted. Thank you for applying to the Bracco Scholarship.';
 }
 
@@ -84,10 +84,20 @@ function sendBasicMailAdm($data) {
     $mail->AddAddress("ckorin@niaf.org", "C. Korin");
     $mail->AddAddress("gmileti@niaf.org", "G. Mileti");
     $mail->Send();
+
+    $mail = new PHPMailer();
+    $mail->IsSMTP();
+    $mail->SMTPAuth = true;
+    $mail->Host = "east.exch025.serverdata.net";
+    $mail->SMTPSecure = "tls";
+    $mail->Port = 465;
+    $mail->Username = "info@niaf.org";
+    $mail->Password = "D3v3l0p3r2014";
     $body = sendBasicMailClient($data);
     $mail->MsgHTML($body);
     $mail->AddAddress($data['email'], "info test client");
     $mail->Subject = "Bracco Foundation Scholarship";
+    $mail->AddBCC("ckorin@niaf.org");
     $mail->Send();
 }
 

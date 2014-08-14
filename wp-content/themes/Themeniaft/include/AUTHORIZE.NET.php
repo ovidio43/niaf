@@ -43,31 +43,35 @@ $titleData = Array(
     'numgifts' => 'Recipient(s)',
     'DonateAmt' => 'Donation Amount',
     'checkAddressSame' => 'Check this box if the credit card billing address is the same as previously entered. If not, please complete the below',
-    'txtMemberID'=>'NIAF Member ID',    
-    'select_dollarmemcasino'=>'($200 per person for NIAF Members)',
-    'select_dollarnongalapackage'=>'($250 per person for Non-NIAF Members)',    
-    'select_dollarmemcasino'=>'Member Ticket(s) @ $175',
-    'select_dollarnonmemcasino'=>'Non-Member Ticket(s) @ $200',
-    'select_dollarvipcasino'=>' VIP Ticket(s) @ $250',
-    'select_dollarnaifnetworking'=>'NIAF Networking Event(Open to all convention participants) (No Fee)',
-    'select_dollarwinetasting'=>'Wine Tasting and Luncheon @ $75 per person (SOLD OUT)',
-    'select_dollarmempremier'=>'Member Gala Ticket(s) @ $850 each ',
-    'select_dollarpremier'=>'Non-Member Gala Ticket(s) @ $1,000 each ',
-    'select_dollarmemprefer'=>'Member Gala Ticket(s) @ $500 each',
-    'select_dollarprefer'=>'Non-Member Gala Ticket(s) @ $600 each ',
-    'select_dollarmemstandard'=>'Member Gala Ticket(s) @ $350 each ',
-    'select_dollarstandard'=>'Non-Member Gala Ticket(s) @ $400 each',
-    'select_dollarmemyouthprotickets'=>'Member Gala Ticket(s) @ $200 each (Under 30)',
-    'select_dollaryouthprotickets'=>'Non-Member Gala Ticket(s) @ $250 each (Under 30) '    
+    'txtMemberID' => 'NIAF Member ID',
+    'select_dollarmemcasino' => '($200 per person for NIAF Members)',
+    'select_dollarnongalapackage' => '($250 per person for Non-NIAF Members)',
+    'select_dollarmemcasino' => 'Member Ticket(s) @ $175',
+    'select_dollarnonmemcasino' => 'Non-Member Ticket(s) @ $200',
+    'select_dollarvipcasino' => ' VIP Ticket(s) @ $250',
+    'select_dollarnaifnetworking' => 'NIAF Networking Event(Open to all convention participants) (No Fee)',
+    'select_dollarwinetasting' => 'Wine Tasting and Luncheon @ $75 per person (SOLD OUT)',
+    'select_dollarmempremier' => 'Member Gala Ticket(s) @ $850 each ',
+    'select_dollarpremier' => 'Non-Member Gala Ticket(s) @ $1,000 each ',
+    'select_dollarmemprefer' => 'Member Gala Ticket(s) @ $500 each',
+    'select_dollarprefer' => 'Non-Member Gala Ticket(s) @ $600 each ',
+    'select_dollarmemstandard' => 'Member Gala Ticket(s) @ $350 each ',
+    'select_dollarstandard' => 'Non-Member Gala Ticket(s) @ $400 each',
+    'select_dollarmemyouthprotickets' => 'Member Gala Ticket(s) @ $200 each (Under 30)',
+    'select_dollaryouthprotickets' => 'Non-Member Gala Ticket(s) @ $250 each (Under 30) ',
+    'authorizationCode'=>'Authorization Code',
+    'cardType'=>'Card Type',
+    'transactionData'=>'Transaction Data'    
 );
 
 function performTransaction($data) {
-    $post_url = "https://test.authorize.net/gateway/transact.dll";
+   // $post_url = "https://test.authorize.net/gateway/transact.dll"; //test
+    $post_url = "https://secure.authorize.net/gateway/transact.dll";//real
     $post_values = array(
-//        "x_login" => "45GmZ8fAp",//3yzLVa8H8CN
-        "x_login" => "3yzLVa8H8CN",//3yzLVa8H8CN
-//        "x_tran_key" => "7g56h9W3nT3vH6X6",//5tTJWc776FE7vj6d
-        "x_tran_key" => "5tTJWc776FE7vj6d",
+        "x_login" => "45GmZ8fAp",//real
+//        "x_login" => "3yzLVa8H8CN", //test
+        "x_tran_key" => "7g56h9W3nT3vH6X6",//real
+//        "x_tran_key" => "5tTJWc776FE7vj6d", //test
         "x_test_request" => "FALSE",
         "x_version" => "3.1",
         "x_delim_data" => "TRUE",
@@ -88,7 +92,7 @@ function performTransaction($data) {
 //        "x_description" => "Donation",
         "x_description" => $data['x_description'],
 //        "x_invoice_num" => "Donation"        
-        "x_invoice_num" => $data['x_description']        
+        "x_invoice_num" => $data['x_description']
     );
 
     $post_string = "";
@@ -107,8 +111,6 @@ function performTransaction($data) {
     $response_array = explode($post_values["x_delim_char"], $post_response);
     return $response_array;
 }
-
-
 
 function formatArray($array) {
     $content = '';

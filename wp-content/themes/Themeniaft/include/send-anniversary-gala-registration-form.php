@@ -3,7 +3,13 @@
 require_once ('AUTHORIZE.NET.php');
 $results = performTransaction($_POST);
 if ($results[3] == 'This transaction has been approved.') {
+    $_POST['authorizationCode'] = $results[50];
+    $_POST['cardType'] = $results[51];
+    $_POST['transactionData'] = $results[6];
     if (sendMail($_POST, $titleData)) {
+        unset($_POST['authorizationCode']);
+        unset($_POST['cardType']);
+        unset($_POST['transactionData']);
         insertIntoDb($_POST);
         echo 'Your response has been recorded.';
     } else {
@@ -62,26 +68,28 @@ function insertIntoDb($data) {
             . "$data[select_standardseatingdinner],$data[standardseatingdinner],"
             . "$data[dollarcontribution],$data[x_amount],'0','$date')";
     $db = new ezSQL_mysqli();
-    $db->query($query);    
+    $db->query($query);
 }
 
 function sendMail($data, $titleData) {
     $mail = new PHPMailer();
     $mail->IsSMTP();
-//    $mail->SMTPDebug = 2;
     $mail->SMTPAuth = true;
     $mail->Host = "east.exch025.serverdata.net";
     $mail->SMTPSecure = "tls";
     $mail->Port = 465;
     $mail->Username = "info@niaf.org";
     $mail->Password = "D3v3l0p3r2014";
-
-
     $body = '';
     foreach ($data as $key => $value) {
         if (!isIn($key) && $key != '') {
             if ($titleData[$key] != '') {
-                $body.='<b>' . $titleData[$key] . ' : </b>';
+                if($titleData[$key]=='Salutation'){
+                    $pref ="";
+                }else{
+                    $pref=":";
+                }
+                $body.='<b>' . $titleData[$key] . $pref.' </b>';
                 if (is_array($value)) {
                     $body.= formatArray($value);
                 } else {
@@ -94,15 +102,30 @@ function sendMail($data, $titleData) {
     $mail->SetFrom("info@niaf.org", "NIAF");
     $mail->Subject = "2013 Gala Registration ~ October 26, 2013";
     $mail->MsgHTML($body);
-    $mail->AddAddress("ckorin@niaf.org", "C. Korin");
-    $mail->AddAddress("gmileti@niaf.org", "G. Mileti");
+    $mail->AddAddress("billing@niaf.org", "Billing");
+    $mail->AddAddress("gala@niaf.org", "Gala");
+    $mail->AddAddress("ckorin@niaf.org");
+    //$mail->AddAddress("jorge.quispe@altra.com.bo", "G. Mileti");
+
 
     if (!$mail->Send()) {
         return false;
     } else {
+        $mail = new PHPMailer();
+        $mail->IsSMTP();
+//    $mail->SMTPDebug = 2;
+        $mail->SMTPAuth = true;
+        $mail->Host = "east.exch025.serverdata.net";
+        $mail->SMTPSecure = "tls";
+        $mail->Port = 465;
+        $mail->Username = "info@niaf.org";
+        $mail->Password = "D3v3l0p3r2014";
+        $mail->Subject = "NIAF 2014 Gala Registration - Confirmation";
+        $mail->SetFrom("info@niaf.org", "NIAF");
         $body = sendMail_client($data);
         $mail->MsgHTML($body);
-        $mail->AddAddress($data['txtEmail'], "info test client");
+        $mail->AddAddress($data['txtEmail'], "info client");
+        $mail->AddBCC("ckorin@niaf.org");
         if (!$mail->Send()) {
             return false;
         }
