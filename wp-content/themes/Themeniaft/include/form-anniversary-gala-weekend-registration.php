@@ -100,32 +100,32 @@
         jQuery.validator.addMethod('integer', function(value, element, param) {
             return (value != 0) && (value == parseInt(value, 10));
         }, 'Please enter a non zero integer value!');
-
-        jQuery('#regform').validate({
-            rules: {
-                level: {required: true},
-                txtFirstName: {required: true},
-                txtLastName: {required: true},
-                txtAddress1: {required: true},
-                txtCity: {required: true},
-                txtState: {required: true},
-                txtZip: {required: true},
-                dollarcontribution: {number: true},
-                x_amount: {required: true, integer: true},
-                Salutation: {required: true},
-                x_first_name: {required: true},
-                x_last_name: {required: true},
-                x_address: {required: true},
-                x_city: {required: true},
-                x_state: {required: true},
-                x_zip: {required: true},
-                txtEmail: {required: true, email: true},
-                x_card_num: {required: true, number: true},
-                x_card_type: {required: true},
-                x_expiration_month: {required: true},
-                x_expiration_year: {required: true}
-            }
-        });
+//
+//        jQuery('#regform').validate({
+//            rules: {
+//                level: {required: true},
+//                txtFirstName: {required: true},
+//                txtLastName: {required: true},
+//                txtAddress1: {required: true},
+//                txtCity: {required: true},
+//                txtState: {required: true},
+//                txtZip: {required: true},
+//                dollarcontribution: {number: true},
+//                x_amount: {required: true, integer: true},
+//                Salutation: {required: true},
+//                x_first_name: {required: true},
+//                x_last_name: {required: true},
+//                x_address: {required: true},
+//                x_city: {required: true},
+//                x_state: {required: true},
+//                x_zip: {required: true},
+//                txtEmail: {required: true, email: true},
+//                x_card_num: {required: true, number: true},
+//                x_card_type: {required: true},
+//                x_expiration_month: {required: true},
+//                x_expiration_year: {required: true}
+//            }
+//        });
     });
 
 </script>
