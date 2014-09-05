@@ -152,7 +152,7 @@
 
 			function renewal(){
 
-				alert("Congratulations your transaction was approved, and data has been updated successfully.");
+				alert("Congratulations, your transaction was approved and your data has been updated successfully.");
 
 				window.location.href='_form_contacts_niaf.php';
 
@@ -162,7 +162,7 @@
 
 			function update(){ 
 
-				alert("Contratulations your data are updated successfully.");
+				alert("Congratulations, your data updated successfully.");
 
 				window.location.href='_form_contacts_niaf.php';
 
@@ -372,7 +372,7 @@
 
 				<tr>
 
-					<th>Middle Name(or Initial):</th>
+					<th>Middle Name (or Initial):</th>
 
 					<td><input class="text" type="text" name="middle_name" value=""></td>
 

@@ -328,7 +328,7 @@
 	<!-- ALERT -->
 		<script>
 			function ok(){
-				alert("Congratulations, your data has been loaded correctly!!"); 
+				alert("Congratulations, your data has successfully loaded!"); 
 				return false;
 			}
 		</script>
@@ -450,7 +450,7 @@
 					<td><input class="text" type="text" name="first_name" value="<?php echo $arrayREQUERIDOS[1]?>"></td>
 				</tr> 
 				<tr>
-					<th>Middle Name(or Initial):</th>
+					<th>Middle Name (or Initial):</th>
 					<td><input class="text" type="text" name="middle_name" value="<?php echo $arrayREQUERIDOS[2]?>"></td>
 				</tr>
 				<tr>

@@ -21,11 +21,11 @@ get_header();
                     <?php endwhile; // end of the loop. ?>
                     <div class="wrap-form">
                         <?php
-                        if ($_POST['submit']=='') {
+                        if (!isset($_POST['submit'])) {
                             require_once (get_template_directory() . '/include/form-bracco-scholarship-application-form.php');
                         } else {
                             require_once (get_template_directory() . '/include/send-bracco-scholarship-application-form.php');
-                        }                        
+                        }
                         ?>
                     </div>
                 </div><!-- .entry-content -->
@@ -36,4 +36,5 @@ get_header();
         </aside>
     </div> <!-- #main -->
 </div> <!-- #main-container -->
-<?php get_footer(); 
+<?php
+get_footer();

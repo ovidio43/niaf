@@ -17,9 +17,12 @@ $datosSTYLE = "<style type='text/css'>
 					font-weight: bold;
 					color: #006;
 				}
+				h3 {
+					font-weight: bold;
+					color: #006;
+				}
 				</style>";
-$datosMESSAGE = $datosSTYLE."<h1>New Membership Application</h1><br>";
-$datosMESSAGE.= "<h2>Contact information: </h2>";
+$datosMESSAGE.= "<h3>Contact information: </h3>";
 $datosMESSAGE.= "<strong>Salutation: </strong>".$_SESSION['salutation']."<br>";
 $datosMESSAGE.= "<strong>First Name: </strong>".$_SESSION['first_name']."<br>";
 $datosMESSAGE.= "<strong>Middle Name: </strong>".$_SESSION['middle_name']."<br>";
@@ -38,21 +41,21 @@ $datosMESSAGE.= "<strong>work_telephone: </strong>".$_SESSION['work_telephone'].
 $datosMESSAGE.= "<strong>fax: </strong>".$_SESSION['fax']."<br>";
 $datosMESSAGE.= "<strong>Email: </strong>".$_SESSION['email_address']."<br>";
 
-$datosMESSAGE.= "<h2>Your Council Membership: </h2>";
+$datosMESSAGE.= "<h3>Your Council Membership: </h3>";
 $datosMESSAGE.= "<strong>Membership Level: </strong>".$_SESSION['councilACRONYMS']."<br>";
 $datosMESSAGE.= "<strong>Council: </strong>".$_SESSION['council']."<br>";
 
-$datosMESSAGE.= "<h2>Statistical Information: </h2>";
+$datosMESSAGE.= "<h3>Statistical Information: </h3>";
 $datosMESSAGE.= "<strong>Year of birth: </strong>".$_SESSION['year_of_birth']."<br>";
 $datosMESSAGE.= "<strong>Education received: </strong>".$_SESSION['education_received']."<br>";
 $datosMESSAGE.= "<strong>Household income: </strong>".$_SESSION['household_income']."<br>";
 $datosMESSAGE.= "<strong>Interest: </strong>".$_SESSION['interestCategories']."<br>";
 
-$datosMESSAGE.= "<h2>Payment Method: </h2>";
+$datosMESSAGE.= "<h3>Payment Method: </h3>";
 $datosMESSAGE.= "<strong>Membership Term: </strong>".$_SESSION['membership_term']."<br>";
 $datosMESSAGE.= "<strong>Total Payment: </strong>".$_SESSION['amount']."<br>";
 
-$datosMESSAGE.= "<h2>Transaction Data: </h2>";
+$datosMESSAGE.= "<h3>Transaction Data: </h3>";
 $datosMESSAGE.= "<strong>Card Type: </strong>".$cardType."<br>";
 $datosMESSAGE.= "<strong>Authorization Code: </strong>".$authorizationCode."<br>";
 $datosMESSAGE.= "<strong>Transaction ID: </strong>".$transactionId."<br>";

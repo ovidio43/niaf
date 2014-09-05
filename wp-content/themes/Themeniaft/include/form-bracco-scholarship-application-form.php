@@ -11,9 +11,9 @@
                 city: {required: true},
                 state: {required: true},
                 zipCode: {required: true},
-                phoneNumber: {required: true,number:true},
-                email: {required: true,email:true},
-                confirmEmail: {required: true,email:true,equalTo: "#email"},
+                phoneNumber: {required: true, number: true},
+                email: {required: true, email: true},
+                confirmEmail: {required: true, email: true, equalTo: "#email"},
                 month1: {required: true},
                 day1: {required: true},
                 year1: {required: true},
@@ -23,7 +23,7 @@
                 parentCity: {required: true},
                 parentState: {required: true},
                 parentZipCode: {required: true},
-                parentPhone: {required: true,number:true},
+                parentPhone: {required: true, number: true},
                 fatherItalian: {required: true},
                 motherItalian: {required: true},
                 'regions[]': {required: true},
@@ -196,7 +196,7 @@
     </div>
     <div class="row-input">
         <div class="biginput">
-            Parent/Guardian Information:<br>             
+            Parent/Guardian Information (This section for US citizens only):<br>             
         </div>    
     </div>
     <div class="row-input">
@@ -293,7 +293,7 @@
     <div class="row-input">
         <div class="midinput">
             <span class="red">*</span>Name of school:<br>
-            <input type="" name="academicNameSchool">
+            <input type="text" name="academicNameSchool">
         </div>
         <div class="midinput">   
             <span class="red">*</span>State abbreviation of school:<br>
@@ -303,7 +303,7 @@
     <div class="row-input">
         <div class="midinput">
             <span class="red">*</span>Major:<br>
-            <input type="" name="major">
+            <input type="text" name="major">
         </div>
         <div class="midinput">   
             <span class="red">*</span>Degree/Qualifications (PhD/MD/MSc):<br>
@@ -347,9 +347,84 @@
             <textarea  name="describeKeyAspects"></textarea>
         </div>     
     </div>
+    <!-- Captcha HTML Code -->
     <div class="row-input">
-        <input type="submit" value="SUBMIT" name="submit">
+        <div class="midinput">
+            <b>Type the characters you see in the image below</b>
+            <div class="captcha-box">
+                <img src="<?php echo get_template_directory_uri(); ?>/get_captcha.php" alt="" id="captcha" />
+            </div>
+            <div class="text-box">
+
+                <input name="captcha-code" type="text" id="captcha-code">
+            </div>
+            <div class="captcha-action">
+                <img src="<?php echo get_template_directory_uri(); ?>/refresh.jpg"  alt="" id="captcha-refresh" />
+            </div>
+            <input type="hidden" value="" id="aux">
+        </div>
+    </div>
+    <!------------------------------------->
+    <div class="row-input">
+        <input type="submit" name="submit" value="SUBMIT"  id="SubmitBullsEye">
         <!--<button id="reset">RESET</button>-->
     </div>
 
 </form>
+<script type="text/javascript">
+
+    jQuery(document).ready(function() {
+        // refresh captcha
+        jQuery('img#captcha-refresh').click(function() {
+            change_captcha();
+        });
+        jQuery('#captcha-code').focusout(function() {
+            var cod = jQuery('input#captcha-code').val();
+            var url = jQuery('body').attr('rel') + '/get_captcha.php';
+            query(url, cod);
+        });
+
+        jQuery("#SubmitBullsEye").mouseover(function() {
+            jQuery("#SubmitBullsEye").focus();
+        });
+        jQuery('#SubmitBullsEye').on('click', function() {
+            var cod = jQuery('input#captcha-code').val();
+            var url = jQuery('body').attr('rel') + '/get_captcha.php';
+            query(url, cod);
+            if (jQuery('#aux').val() != 'ok') {
+                alert('please Type the characters you see in the image captcha below or fill required fields');
+                change_captcha();
+                return false;
+            } else {
+//                jQuery("#regform").submit();
+                return true;
+            }
+        });
+
+
+        function query(url, cod) {
+            jQuery.ajax({
+                url: url,
+                data: {cod: cod},
+                type: "POST",
+                beforeSend: function() {
+                    //jQuery("#SubmitBullsEye").prop('disabled', true);
+//                    jQuery('#SubmitBullsEye').attr('disabled', true);
+                },
+                success: function(data) {
+                    if (data == 'ok') {
+                        jQuery('#aux').val(data);
+                    } else {
+                        jQuery('#aux').val('no');
+                    }
+                    //jQuery("#SubmitBullsEye").prop('disabled', false);
+//                    jQuery('#SubmitBullsEye').attr('disabled', false);
+                }
+            })
+        }
+        function change_captcha() {
+            document.getElementById('captcha').src = "<?php echo get_template_directory_uri(); ?>/get_captcha.php?rnd=" + Math.random();
+        }
+    });
+
+</script>  

@@ -6,13 +6,13 @@ foreach ($_POST as $key => $value) {
 $results = performTransaction($_SESSION);
 
 if ($results[3] == 'This transaction has been approved.') {
-    $_POST['authorizationCode'] = $results[50];
-    $_POST['cardType'] = $results[51];
-    $_POST['transactionData'] = $results[6];
+//    $_POST['authorizationCode'] = $results[50];
+//    $_POST['cardType'] = $results[51];
+//    $_POST['transactionData'] = $results[6];
     if (sendMail($_SESSION, $titleData)) {
-        unset($_POST['authorizationCode']);
-        unset($_POST['cardType']);
-        unset($_POST['transactionData']);
+//        unset($_POST['authorizationCode']);
+//        unset($_POST['cardType']);
+//        unset($_POST['transactionData']);
         insertIntoDb($_SESSION);
         echo 'Your response has been recorded.';
     } else {
@@ -53,8 +53,10 @@ function sendMail($data, $titleData) {
     $mail->SetFrom("info@niaf.org", "NIAF");
     $mail->Subject = "give a Gift Membership - NEW REGISTRATION";
     $mail->MsgHTML($body);
-    $mail->AddAddress("ckorin@niaf.org", "C. Korin");
-    $mail->AddAddress("gmileti@niaf.org", "G. Mileti");
+//    $mail->AddAddress("ckorin@niaf.org", "C. Korin");
+    $mail->AddAddress("member@niaf.org", "Member");
+//    $mail->AddAddress("gmileti@niaf.org", "G. Mileti");
+    $mail->AddAddress("billing@niaf.org", "Billing");
 
     if (!$mail->Send()) {
         return false;
@@ -67,10 +69,11 @@ function sendMail($data, $titleData) {
         $mail->Port = 465;
         $mail->Username = "info@niaf.org";
         $mail->Password = "D3v3l0p3r2014";
+        $mail->SetFrom("info@niaf.org", "NIAF");
         $mail->Subject = "give a Gift Membership - CONFIRMATION";
         $body = sendMail_client($data);
         $mail->MsgHTML($body);
-        $mail->AddAddress($data['txtEmail'], "info test client");
+        $mail->AddAddress($data['txtEmail'], $data['txtFirstName'] . ' ' . $data['txtLastName']);
         $mail->AddBCC("ckorin@niaf.org");
         if (!$mail->Send()) {
             return false;

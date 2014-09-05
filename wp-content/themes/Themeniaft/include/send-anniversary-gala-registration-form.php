@@ -100,20 +100,17 @@ function sendMail($data, $titleData) {
     }
 
     $mail->SetFrom("info@niaf.org", "NIAF");
-    $mail->Subject = "2013 Gala Registration ~ October 26, 2013";
+    $mail->Subject = "October Gala";
     $mail->MsgHTML($body);
     $mail->AddAddress("billing@niaf.org", "Billing");
     $mail->AddAddress("gala@niaf.org", "Gala");
     $mail->AddAddress("ckorin@niaf.org");
-    //$mail->AddAddress("jorge.quispe@altra.com.bo", "G. Mileti");
-
-
+//    $mail->AddAddress("jorge.quispe@altra.com.bo", "G. Mileti");
     if (!$mail->Send()) {
         return false;
     } else {
         $mail = new PHPMailer();
         $mail->IsSMTP();
-//    $mail->SMTPDebug = 2;
         $mail->SMTPAuth = true;
         $mail->Host = "east.exch025.serverdata.net";
         $mail->SMTPSecure = "tls";
@@ -134,13 +131,13 @@ function sendMail($data, $titleData) {
 }
 
 function sendMail_client($data) {
-    $name_complete = $data['Salutation'] . ' : ' . $data['txtFirstName'] . ' ' . $data['txtLastName'];
+    $name_complete = $data['Salutation'] . ' ' . $data['txtFirstName'] . ' ' . $data['txtLastName'];
     $body = '';
     $body .= $name_complete . '<br><br>'
             . 'Thank you for registering for NIAF\'s 39th Anniversary Gala in October.<br>
 	Your registration information has been received.<br>
 	If you have any questions, please email jerry@niaf.org or call 202-939-3102.<br>
-	 Thank you for your support and we look forward to sharing another memorable Gala with you!<br>
-	Jerry Jones';
+	 Thank you for your support and we look forward to sharing another memorable Gala with you!<br><br>
+	The National Italian American Foundation';
     return $body;
 }

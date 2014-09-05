@@ -24,11 +24,11 @@
 		<link rel="stylesheet" href="notification/themes/alertify.default.css" />
 		<script>
 			function error(){
-				alert("The email address you entered does not exist!!"); 
+				alert("The email address you entered does not exist!"); 
 				return false; 
 			}
 			function ok(){
-				alert("Congratulations your password has been sent correctly."); 
+				alert("Congratulations your password has been sent."); 
 				return false;
 			}
 		</script>

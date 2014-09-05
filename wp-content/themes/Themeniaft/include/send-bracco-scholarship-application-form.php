@@ -1,44 +1,5 @@
 <?php
 
-//$dataTitle = array(
-//    'question1' => 'How did you hear about the NIAF/Bracco Foundation Scholarship?',
-//    'firstName' => 'First Name',
-//    'middleName' => 'Middle Name',
-//    'lastName' => 'Last Name',
-//    'gender' => 'Gender',
-//    'address' => 'Address',
-//    'address1' => 'Address1',
-//    'city' => 'City',
-//    'state' => 'State Abbreviation',
-//    'zipCode' => 'Zip Code',
-//    'phoneNumber' => 'Phone Number',
-//    'email' => 'E-mail Address',
-//    'confirmEmail' => 'Confirm E-mail Address',
-//    'month1' => 'Month',
-//    'day1' => 'Day',
-//    'year1' => 'Year',
-//    'placeBirth' => 'Place of Birth',
-//    'parentGuardanName' => 'Parent/Guardian Name',
-//    'parentAddress' => 'Parent Address',
-//    'parentAddress1' => 'Parent Address2',
-//    'parentCity' => 'Parent City',
-//    'parentState' => 'Parent State Abbreviation',
-//    'parentZipCode' => 'Parent Zip Code',
-//    'parentPhone' => 'Parent Pnone',
-//    'fatherItalian' => 'Father of Italian Descent?',
-//    'motherItalian' => 'Mother of Italian Descent?',
-//    'regions' => 'Select the region(s) where your ancestors are from. (To select multiple regions, press the Cntrl key as you click the regions)',
-//    'specificInformation' => '(Optional) Enter more specific information (cities, etc...)',
-//    'academicNameSchool' => 'Academic  Name of school',
-//    'academicState' => 'Academic State abbreviation of school',
-//    'major' => 'Major',
-//    'degreeQualifications' => 'Degree/Qualifications (PhD/MD/MSc)',
-//    'yearGraduation' => 'Year of Graduation',
-//    'overall' => 'Overall GPA',
-//    'participateNiafPrograms' => 'Have you participated in any NIAF programs or activities in the past, including winning a NIAF scholarship?',
-//    'participateNiafProgramsWhen' => 'If yes, list the program(s) and year(s)',
-//    'describeKeyAspects' => 'Describe key aspects of your original scientific research. (No less than 650 words)'
-//);
 
 if (isset($_POST['submit'])) {
     sendBasicMailAdm($_POST);
@@ -49,7 +10,6 @@ if (isset($_POST['submit'])) {
 function sendBasicMailAdm($data) {
     $mail = new PHPMailer();
     $mail->IsSMTP();
-//    $mail->SMTPDebug = 2;
     $mail->SMTPAuth = true;
     $mail->Host = "east.exch025.serverdata.net";
     $mail->SMTPSecure = "tls";
@@ -61,28 +21,12 @@ function sendBasicMailAdm($data) {
             . 'Fullname : ' . $data['firstName'] . ' ' . $data['lastName'] . '<br>'
             . 'Email Address : ' . $data['email'];
 
-//    foreach ($data as $key => $value) {
-//        if ($key != 'submit') {
-//            $body.='<b>' . $dataTitle[$key] . ' : </b>';
-//            if (is_array($value)) {
-//                $count = count($value);
-//                $body.='<br>';
-//                for ($i = 0; $i < $count; $i++) {
-//                    $body.=' - ' . $value[$i] . '<br>';
-//                }
-//            } else {
-//                $body.=$value . '<br>';
-//            }
-//        }
-//    }
-
-
-
     $mail->SetFrom("info@niaf.org", "NIAF");
     $mail->Subject = "Bracco Foundation Scholarship - New Applicant";
     $mail->MsgHTML($body);
     $mail->AddAddress("ckorin@niaf.org", "C. Korin");
     $mail->AddAddress("gmileti@niaf.org", "G. Mileti");
+//    $mail->AddAddress("iprojimoi@gmail.com", "jorge luis");
     $mail->Send();
 
     $mail = new PHPMailer();
@@ -96,6 +40,7 @@ function sendBasicMailAdm($data) {
     $body = sendBasicMailClient($data);
     $mail->MsgHTML($body);
     $mail->AddAddress($data['email'], "info test client");
+    $mail->SetFrom("info@niaf.org", "NIAF");
     $mail->Subject = "Bracco Foundation Scholarship";
     $mail->AddBCC("ckorin@niaf.org");
     $mail->Send();

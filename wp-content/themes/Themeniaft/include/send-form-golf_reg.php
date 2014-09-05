@@ -91,6 +91,8 @@ function sendMail($data, $titleData) {
         $mail->Password = "D3v3l0p3r2014";
         $body = sendMail_client($data);
         $mail->MsgHTML($body);
+        $mail->SetFrom("info@niaf.org", "NIAF");
+        $mail->Subject = "4th Annual NIAF Golf Tournament - Confirmation";
         $mail->AddAddress($data['txtEmail'], "info test client");
         $mail->AddBCC("ckorin@niaf.org");
         if (!$mail->Send()) {
